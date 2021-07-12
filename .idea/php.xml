@@ -108,6 +108,9 @@
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/black-dashboard" />
+      <path value="$PROJECT_DIR$/vendor/laravel/legacy-factories" />
     </include_path>
   </component>
   <component name="PhpUnit">
