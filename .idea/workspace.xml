@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="" />
+    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="initial commit">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_09_185301_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060623_create_items_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_09_185347_create_clients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060345_create_clients_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_09_185607_create_invoices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060546_create_invoices_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_10_144813_create_drivers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060443_create_drivers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +27,9 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -125,11 +145,15 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1v5eqpsAIJpV8HCJDQEUeybI16r" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -156,10 +180,51 @@
       <workItem from="1625900767539" duration="4431000" />
       <workItem from="1625923594518" duration="1616000" />
       <workItem from="1625928219664" duration="1386000" />
+      <workItem from="1625931049581" duration="2802000" />
+      <workItem from="1625934242369" duration="222000" />
+      <workItem from="1625972565532" duration="3062000" />
+      <workItem from="1625988494297" duration="601000" />
+      <workItem from="1626027705941" duration="273000" />
+      <workItem from="1626069615986" duration="1352000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1625931448484</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625931448484</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="568" y="232" key="#Notifications" timestamp="1626069958665">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="568" y="232" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1626069958665" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1625931462725">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1625931462725" />
   </component>
 </project>

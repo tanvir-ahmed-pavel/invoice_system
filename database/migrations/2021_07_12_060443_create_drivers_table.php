@@ -14,11 +14,12 @@ class CreateDriversTable extends Migration
     public function up()
     {
         Schema::create('drivers', function (Blueprint $table) {
+
             $table->id();
             $table->string("name");
             $table->string("contact");
-            $table->integer("user_id")->nullable();
-            $table->integer("client_id")->nullable();
+            $table->unsignedBigInteger("user_id")->nullable();
+            $table->unsignedBigInteger("client_id")->nullable();
             $table->foreign("user_id")->references("id")->on("users");
             $table->foreign("client_id")->references("id")->on("clients");
             $table->timestamps();

@@ -14,14 +14,17 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
+
             $table->id();
+            $table->unsignedBigInteger('invoice_id');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->integer("sl");
-            $table->string("description");
-            $table->float("quantity");
-            $table->string("unit");
-            $table->float("rate");
-            $table->float("total");
-            $table->timestamps();
+            $table->text("description");
+            $table->float("quantity")->nullable();
+            $table->string("unit")->nullable();
+            $table->float("rate")->nullable();
+            $table->float("total")->nullable();
+            $table->timestamps();;
         });
     }
 
