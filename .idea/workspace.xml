@@ -10,239 +10,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="Migration table fixed">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfileController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/PasswordRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ProfileRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UserRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Rules/CurrentPasswordCheckRule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/UsersTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/css/black-dashboard.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/css/black-dashboard.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/css/black-dashboard.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/css/nucleo-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/css/theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/demo/demo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/demo/demo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/fonts/nucleo.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/fonts/nucleo.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/fonts/nucleo.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/fonts/nucleo.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/anime3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/anime6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/apple-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/bg5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/card-primary.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/default-avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/emilyz.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/header.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/img_3115.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/james.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/img/mike.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/black-dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/black-dashboard.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/black-dashboard.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/core/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/core/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/core/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/plugins/bootstrap-notify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/plugins/chartjs.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/plugins/perfect-scrollbar.jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/js/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_alert.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_badge.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_breadcrumb.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_button-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_card.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_carousel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_close.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_code.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_custom-forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_images.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_input-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_jumbotron.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_media.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_modal.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_nav.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_navbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_popover.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_print.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_progress.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_reboot.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_root.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_tooltip.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_transitions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_type.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_alert.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_background-variant.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_badge.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_border-radius.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_box-shadow.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_breakpoints.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_caret.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_clearfix.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_float.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_gradients.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_grid-framework.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_hover.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_image.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_lists.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_nav-divider.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_reset-text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_resize.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_screen-reader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_size.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_table-row.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_text-emphasis.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_text-hide.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_text-truncate.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_transition.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/mixins/_visibility.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_align.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_background.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_borders.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_clearfix.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_display.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_embed.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_flex.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_float.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_position.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_screenreaders.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_shadows.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_sizing.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_spacing.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/bootstrap/utilities/_visibility.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_alerts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_card.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_checkboxes-radio.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_fixed-plugin.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_images.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_input-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_misc.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_modal.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_navbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_rtl.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_sidebar-and-main-panel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_type.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/cards/_card-chart.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/cards/_card-map.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/cards/_card-plain.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/cards/_card-task.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/cards/_card-user.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_alert.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_background-variant.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_badges.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_icon.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_inputs.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_modals.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_page-header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_popovers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_vendor-prefixes.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/_wizard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/mixins/opacity.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_backgrounds.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_floating.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_helper.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_position.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_shadows.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_sizing.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_spacing.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/utilities/_transform.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/vendor/_plugin-animate-bootstrap-notify.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/custom/vendor/_plugin-perfect-scrollbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/black/scss/black-dashboard/plugins/_plugin-perfect-scrollbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/alerts/feedback.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/alerts/success.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navbar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/auth.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/navs/guest.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/icons.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/map.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/maps.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/notifications.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/rtl.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/table_list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/tables.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/typography.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/upgrade.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/invoice_system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/invoice_system.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="theme installed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/map.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/maps.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/rtl.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +193,8 @@
       <workItem from="1626069615986" duration="1990000" />
       <workItem from="1626093945149" duration="708000" />
       <workItem from="1626097064948" duration="1538000" />
-      <workItem from="1626102547980" duration="291000" />
+      <workItem from="1626102547980" duration="2702000" />
+      <workItem from="1626233445455" duration="3066000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1625931448484</created>
@@ -432,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626071005843</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="theme installed">
+      <created>1626102977667</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626102977667</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +239,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="Migration table fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migration table fixed" />
+    <MESSAGE value="theme installed" />
+    <option name="LAST_COMMIT_MESSAGE" value="theme installed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="232" key="#Notifications" timestamp="1626069958665">
@@ -465,9 +251,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1626071124707" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1626071135967">
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1626103100271">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1626071135967" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1626103100271" />
   </component>
 </project>
