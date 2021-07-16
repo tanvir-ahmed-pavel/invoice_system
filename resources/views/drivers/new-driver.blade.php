@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('New Driver'), 'pageSlug' => 'new-driver'])
+@extends('layouts.app', ['page' => __('New Driver'), 'pageSlug' => 'drivers-create'])
 @section('content')
     <div class="row justify-content-center ">
         <div class="col-md-10">
@@ -7,16 +7,14 @@
                     <h5 class="title">{{ __('ADD New Driver') }}</h5>
                 </div>
 
-                <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+                <form method="post" action="{{ route('drivers.store') }}" autocomplete="off">
                     <div class="card-body">
                         @csrf
-                        @method('put')
-
                         @include('alerts.success')
 
                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                             <label>{{ __('Name') }}</label>
-                            <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="">
+                            <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{old('name')}}">
                             @include('alerts.feedback', ['field' => 'name'])
                         </div>
 

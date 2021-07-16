@@ -24,7 +24,7 @@ class DriverController extends Controller
      */
     public function create()
     {
-        return view("driver.new-driver");
+        return view("drivers.new-driver");
     }
 
     /**
