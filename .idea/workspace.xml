@@ -25,11 +25,20 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-9 Clean The theme">
-      <change afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060344_create_companies_table.php" afterDir="false" />
+    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-11 Create Company Table Migration">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/invoices/new-invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +48,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,12 +176,6 @@
       <path value="$PROJECT_DIR$/vendor/laravel/legacy-factories" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="88" />
-    <option name="y" value="23" />
-    <option name="width" value="1272" />
-    <option name="height" value="678" />
-  </component>
   <component name="ProjectId" id="1v5eqpsAIJpV8HCJDQEUeybI16r" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -195,7 +205,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="" />
-      <changelist id="5c7c4294-9003-4979-bb4f-12647a0cac5e" name="#IS-2 Create the driver CRUD &amp; input fields on front-end (blade)" comment="" />
       <created>1625856570549</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -216,6 +225,9 @@
       <workItem from="1626233445455" duration="3066000" />
       <workItem from="1626364420643" duration="4948000" />
       <workItem from="1626416750184" duration="2689000" />
+      <workItem from="1627803627966" duration="8000" />
+      <workItem from="1627909215638" duration="1778000" />
+      <workItem from="1628008747101" duration="165000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1625931448484</created>
@@ -245,18 +257,37 @@
       <option name="project" value="LOCAL" />
       <updated>1626379840686</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="#IS-11 Create Company Table Migration">
+      <created>1627743716520</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1627743716520</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -283,7 +314,8 @@
     <MESSAGE value="Migration table fixed" />
     <MESSAGE value="theme installed" />
     <MESSAGE value="#IS-2 Create the driver CRUD &amp; input fields on front-end (blade)" />
-    <option name="LAST_COMMIT_MESSAGE" value="#IS-2 Create the driver CRUD &amp; input fields on front-end (blade)" />
+    <MESSAGE value="#IS-11 Create Company Table Migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="#IS-11 Create Company Table Migration" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="232" key="#Notifications" timestamp="1626069958665">
@@ -294,10 +326,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1626071124707" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1626103100271">
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1627743728763">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1626103100271" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1627743728763" />
     <state x="492" y="283" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627742723177">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

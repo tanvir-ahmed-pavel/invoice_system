@@ -37,6 +37,34 @@
 
             </li>
 
+{{--            Invoice--}}
+
+            <li>
+                <a data-toggle="collapse" href="#drivers" aria-expanded="true">
+                    <i class="tim-icons icon-bus-front-12" ></i>
+                    <span class="nav-link-text" >{{ __('Invoices') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+
+                <div class="collapse show" id="drivers">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug == 'invoices-create') class="active " @endif>
+                            <a href="{{ route('invoices.create')  }}">
+                                <i class="tim-icons icon-simple-add"></i>
+                                <p>{{ __('New Invoice') }}</p>
+                            </a>
+                        </li>
+{{--                        <li @if ($pageSlug == 'drivers') class="active " @endif>--}}
+{{--                            <a href="{{ route('drivers.index')  }}">--}}
+{{--                                <i class="tim-icons icon-bullet-list-67"></i>--}}
+{{--                                <p>{{ __('Driver Management') }}</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+                    </ul>
+                </div>
+
+            </li>
+
 {{--            Drivers Section--}}
 
             <li>
