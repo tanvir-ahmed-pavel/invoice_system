@@ -383,6 +383,7 @@
                 }
                 if (this.form.vatChkBox) {
                     this.calculateVat();
+                    this.calculatePayable();
                 }
                 this.calculateNetAmount();
             },

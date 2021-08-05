@@ -2255,6 +2255,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.form.vatChkBox) {
         this.calculateVat();
+        this.calculatePayable();
       }
 
       this.calculateNetAmount();
