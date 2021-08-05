@@ -25,20 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-11 Create Company Table Migration">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/invoices/new-invoice.blade.php" afterDir="false" />
+    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-4 Create invoice structure, CRUD and  input fields with items associated on front-end (Vue)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +217,12 @@
       <workItem from="1626416750184" duration="2689000" />
       <workItem from="1627803627966" duration="8000" />
       <workItem from="1627909215638" duration="1778000" />
-      <workItem from="1628008747101" duration="165000" />
+      <workItem from="1628008747101" duration="1188000" />
+      <workItem from="1628018639553" duration="5662000" />
+      <workItem from="1628059512439" duration="14206000" />
+      <workItem from="1628077377282" duration="25219000" />
+      <workItem from="1628106569204" duration="2712000" />
+      <workItem from="1628182732495" duration="4525000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1625931448484</created>
@@ -264,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627743716520</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="#IS-4 Create invoice structure, CRUD and  input fields with items associated on front-end (Vue)">
+      <created>1628009203706</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628009203706</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,21 +317,22 @@
     <MESSAGE value="theme installed" />
     <MESSAGE value="#IS-2 Create the driver CRUD &amp; input fields on front-end (blade)" />
     <MESSAGE value="#IS-11 Create Company Table Migration" />
-    <option name="LAST_COMMIT_MESSAGE" value="#IS-11 Create Company Table Migration" />
+    <MESSAGE value="#IS-4 Create invoice structure, CRUD and  input fields with items associated on front-end (Vue)" />
+    <option name="LAST_COMMIT_MESSAGE" value="#IS-4 Create invoice structure, CRUD and  input fields with items associated on front-end (Vue)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="232" key="#Notifications" timestamp="1626069958665">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="568" y="232" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1626069958665" />
-    <state x="129" y="56" key="DiffContextDialog" timestamp="1626071124707">
+    <state x="129" y="56" key="DiffContextDialog" timestamp="1628009373525">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1626071124707" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1627743728763">
+    <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1628009373525" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1628009380132">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1627743728763" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1628009380132" />
     <state x="492" y="283" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1627742723177">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
