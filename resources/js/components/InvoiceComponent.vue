@@ -9,28 +9,30 @@
                 <form method="post" action="" autocomplete="off">
 
                     <div class="card-body ">
-                        <div class="row align-items-start">
+                        <div class="row align-items-center justify-content-end">
                             <!--                        ROW 1: Date and Invoice Type-->
 
-                            <div class="form-group col-lg-10">
+                            <div class="form-group col-lg-9">
                                 <h6 class="h6">Invoice Type</h6>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio1"
-                                           value="option1">
-                                    <label class="text-white form-check-label pl-0" for="inlineRadio1">Monthly
-                                        Basis</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                           id="inlineRadio2"
-                                           value="option2">
-                                    <label class="text-white form-check-label pl-0" for="inlineRadio2">Daily
-                                        Basis</label>
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple">
+                                        <input class="form-check-input" type="checkbox" name="inlineRadioOptions"
+                                               id="inlineRadio1"
+                                               v-model="form.type">
+                                        Monthly Basis
+                                    </label>
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple">
+                                        <input class="form-check-input" type="checkbox" name="inlineRadioOptions"
+                                               id="inlineRadio2"
+                                               v-model="form.type2">
+                                        Daily Basis
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group col-lg-2 col-auto text-right">
-                                <input class="form-control form-control-sm rounded-0 bg-neutral text-dark text-left"
+
+                            <div class="form-group col-lg-3">
+                                <h6 class="h6">Date</h6>
+                                <input class=" form-control form-control-sm rounded-0 bg-neutral text-center text-dark"
                                        type="date"
                                        v-model="myDate"
                                        name="date">
@@ -172,6 +174,20 @@
 
                             <tr>
                                 <td colspan="2">
+<!--                                    <div class="btn-group-toggle" data-toggle="buttons">-->
+<!--                                        <label class="rounded-0 btn btn-sm btn-success btn-simple">-->
+<!--                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"-->
+<!--                                                   id="inlineRadio1"-->
+<!--                                                   value="option1">-->
+<!--                                            Monthly Basis-->
+<!--                                        </label>-->
+<!--                                        <label class="rounded-0 btn btn-sm btn-success btn-simple">-->
+<!--                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"-->
+<!--                                                   id="inlineRadio2"-->
+<!--                                                   value="option2">-->
+<!--                                            Daily Basis-->
+<!--                                        </label>-->
+<!--                                    </div>-->
                                     <div class="input-group  justify-content-center mb-0">
                                         <div class="input-group-text border-success rounded-0 mr-2">
                                             <label class="form-check-label text-white">
@@ -342,6 +358,8 @@
                     discount: 0,
                     paid: 0,
                     payable: 0,
+                    type: false,
+                    type2:false,
                 },
             }
         },

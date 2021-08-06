@@ -2191,6 +2191,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
   mounted: function mounted() {},
@@ -2217,7 +2233,9 @@ __webpack_require__.r(__webpack_exports__);
         netAmount: 0,
         discount: 0,
         paid: 0,
-        payable: 0
+        payable: 0,
+        type: false,
+        type2: false
       }
     };
   },
@@ -3165,13 +3183,154 @@ var render = function() {
           { attrs: { method: "post", action: "", autocomplete: "off" } },
           [
             _c("div", { staticClass: "card-body " }, [
-              _c("div", { staticClass: "row align-items-start" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "form-group col-lg-2 col-auto text-right" },
-                  [
+              _c(
+                "div",
+                { staticClass: "row align-items-center justify-content-end" },
+                [
+                  _c("div", { staticClass: "form-group col-lg-9" }, [
+                    _c("h6", { staticClass: "h6" }, [_vm._v("Invoice Type")]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group-toggle",
+                        attrs: { "data-toggle": "buttons" }
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "rounded-0 btn btn-sm btn-success btn-simple"
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.type,
+                                  expression: "form.type"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "inlineRadioOptions",
+                                id: "inlineRadio1"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.form.type)
+                                  ? _vm._i(_vm.form.type, null) > -1
+                                  : _vm.form.type
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.form.type,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.form,
+                                          "type",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.form,
+                                          "type",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.form, "type", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        Monthly Basis\n                                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "rounded-0 btn btn-sm btn-success btn-simple"
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.type2,
+                                  expression: "form.type2"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "checkbox",
+                                name: "inlineRadioOptions",
+                                id: "inlineRadio2"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.form.type2)
+                                  ? _vm._i(_vm.form.type2, null) > -1
+                                  : _vm.form.type2
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.form.type2,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.form,
+                                          "type2",
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.form,
+                                          "type2",
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(_vm.form, "type2", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        Daily Basis\n                                    "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-lg-3" }, [
+                    _c("h6", { staticClass: "h6" }, [_vm._v("Date")]),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -3182,7 +3341,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "form-control form-control-sm rounded-0 bg-neutral text-dark text-left",
+                        " form-control form-control-sm rounded-0 bg-neutral text-center text-dark",
                       attrs: { type: "date", name: "date" },
                       domProps: { value: _vm.myDate },
                       on: {
@@ -3194,65 +3353,68 @@ var render = function() {
                         }
                       }
                     })
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-lg-6" }, [
-                  _c("label", { staticClass: "col-lg-12" }, [
-                    _vm._v(_vm._s("TO"))
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "rounded-0 btn btn-sm btn-success btn-simple"
-                    },
-                    [_vm._v(_vm._s("Add a client"))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group ml-auto col-lg-6" }, [
-                  _c("label", { staticClass: "col-lg-12" }, [
-                    _vm._v(_vm._s("From"))
+                  _c("div", { staticClass: "form-group col-lg-6" }, [
+                    _c("label", { staticClass: "col-lg-12" }, [
+                      _vm._v(_vm._s("TO"))
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "rounded-0 btn btn-sm btn-success btn-simple"
+                      },
+                      [_vm._v(_vm._s("Add a client"))]
+                    )
                   ]),
                   _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "rounded-0 btn btn-sm btn-success btn-simple"
-                    },
-                    [_vm._v(_vm._s("Add a Company"))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-lg-6" }, [
-                  _c("label", { staticClass: "col-lg-12" }, [
-                    _vm._v(_vm._s("DRIVER"))
+                  _c("div", { staticClass: "form-group ml-auto col-lg-6" }, [
+                    _c("label", { staticClass: "col-lg-12" }, [
+                      _vm._v(_vm._s("From"))
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "rounded-0 btn btn-sm btn-success btn-simple"
+                      },
+                      [_vm._v(_vm._s("Add a Company"))]
+                    )
                   ]),
                   _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "rounded-0 btn btn-sm btn-success btn-simple"
-                    },
-                    [_vm._v(_vm._s("Add a Driver"))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-lg-6" }, [
-                  _c("label", { staticClass: "col-lg-12" }, [
-                    _vm._v(_vm._s("Car Name and Reg. No:"))
+                  _c("div", { staticClass: "form-group col-lg-6" }, [
+                    _c("label", { staticClass: "col-lg-12" }, [
+                      _vm._v(_vm._s("DRIVER"))
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "rounded-0 btn btn-sm btn-success btn-simple"
+                      },
+                      [_vm._v(_vm._s("Add a Driver"))]
+                    )
                   ]),
                   _vm._v(" "),
-                  _vm._m(4)
-                ])
-              ]),
+                  _c("div", { staticClass: "form-group col-lg-6" }, [
+                    _c("label", { staticClass: "col-lg-12" }, [
+                      _vm._v(_vm._s("Car Name and Reg. No:"))
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(3)
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "table",
@@ -3261,7 +3423,7 @@ var render = function() {
                     "border-neutral table-responsive-xl table-bordered bg-default table pt-2"
                 },
                 [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3592,7 +3754,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            + TAX"
+                                      "\n                                                + TAX"
                                     )
                                   ]
                                 )
@@ -3673,7 +3835,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            + VAT"
+                                      "\n                                                + VAT"
                                     )
                                   ]
                                 )
@@ -3756,7 +3918,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            Discount"
+                                      "\n                                                Discount"
                                     )
                                   ]
                                 )
@@ -3837,7 +3999,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            Paid"
+                                      "\n                                                Paid"
                                     )
                                   ]
                                 )
@@ -3924,7 +4086,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(6)
+                                _vm._m(5)
                               ]
                             )
                           ]),
@@ -4000,7 +4162,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(7)
+                                _vm._m(6)
                               ]
                             )
                           ]),
@@ -4217,56 +4379,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-lg-10" }, [
-      _c("h6", { staticClass: "h6" }, [_vm._v("Invoice Type")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-check form-check-inline" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: {
-            type: "radio",
-            name: "inlineRadioOptions",
-            id: "inlineRadio1",
-            value: "option1"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "text-white form-check-label pl-0",
-            attrs: { for: "inlineRadio1" }
-          },
-          [_vm._v("Monthly\n                                    Basis")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-check form-check-inline" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: {
-            type: "radio",
-            name: "inlineRadioOptions",
-            id: "inlineRadio2",
-            value: "option2"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "text-white form-check-label pl-0",
-            attrs: { for: "inlineRadio2" }
-          },
-          [_vm._v("Daily\n                                    Basis")]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
