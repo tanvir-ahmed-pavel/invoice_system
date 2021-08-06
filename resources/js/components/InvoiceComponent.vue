@@ -14,17 +14,16 @@
 
                             <div class="form-group col-lg-9">
                                 <h6 class="h6">Invoice Type</h6>
-                                <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="rounded-0 btn btn-sm btn-success btn-simple">
-                                        <input class="form-check-input" type="checkbox" name="inlineRadioOptions"
-                                               id="inlineRadio1"
-                                               v-model="form.type">
+
+                                <div class="btn-group-toggle">
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple" :class="(form.invoiceType=='monthly')? 'active': ''">
+                                        <input class="form-check-input" type="radio" v-model="form.invoiceType"
+                                               value="monthly">
                                         Monthly Basis
                                     </label>
-                                    <label class="rounded-0 btn btn-sm btn-success btn-simple">
-                                        <input class="form-check-input" type="checkbox" name="inlineRadioOptions"
-                                               id="inlineRadio2"
-                                               v-model="form.type2">
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple" :class="(form.invoiceType=='daily')? 'active': ''">
+                                        <input class="form-check-input" type="radio" v-model="form.invoiceType"
+                                               value="daily">
                                         Daily Basis
                                     </label>
                                 </div>
@@ -174,45 +173,31 @@
 
                             <tr>
                                 <td colspan="2">
-<!--                                    <div class="btn-group-toggle" data-toggle="buttons">-->
-<!--                                        <label class="rounded-0 btn btn-sm btn-success btn-simple">-->
-<!--                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"-->
-<!--                                                   id="inlineRadio1"-->
-<!--                                                   value="option1">-->
-<!--                                            Monthly Basis-->
-<!--                                        </label>-->
-<!--                                        <label class="rounded-0 btn btn-sm btn-success btn-simple">-->
-<!--                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"-->
-<!--                                                   id="inlineRadio2"-->
-<!--                                                   value="option2">-->
-<!--                                            Daily Basis-->
-<!--                                        </label>-->
-<!--                                    </div>-->
-                                    <div class="input-group  justify-content-center mb-0">
-                                        <div class="input-group-text border-success rounded-0 mr-2">
-                                            <label class="form-check-label text-white">
-                                                <input type="checkbox" @change="calculateNetAmount()"
-                                                       v-model="form.taxChkBox">
-                                                + TAX</label>
-                                        </div>
-                                        <div class="input-group-text border-success rounded-0 mr-2">
-                                            <label class="form-check-label text-white">
-                                                <input type="checkbox" @change="calculateNetAmount()"
-                                                       v-model="form.vatChkBox">
-                                                + VAT</label>
-                                        </div>
-                                        <div class="input-group-text border-success rounded-0 mr-2">
-                                            <label class="form-check-label text-white">
-                                                <input type="checkbox" @change="calculateNetAmount()"
-                                                       v-model="form.discountChkBox">
-                                                Discount</label>
-                                        </div>
-                                        <div class="input-group-text border-success rounded-0">
-                                            <label class="form-check-label text-white">
-                                                <input type="checkbox" @change="calculateNetAmount()"
-                                                       v-model="form.paidChkBox">
-                                                Paid</label>
-                                        </div>
+                                    <div class="btn-group-toggle text-center">
+                                        <label :class="(form.taxChkBox)? 'active ': ''"
+                                               class="rounded-0 btn btn-sm btn-success btn-simple">
+                                            <input type="checkbox" @change="calculateNetAmount()"
+                                                   v-model="form.taxChkBox">
+                                            + TAX
+                                        </label>
+                                        <label :class="(form.vatChkBox)? 'active ': ''"
+                                               class="rounded-0 btn btn-sm btn-success btn-simple">
+                                            <input type="checkbox" @change="calculateNetAmount()"
+                                                   v-model="form.vatChkBox">
+                                            + VAT
+                                        </label>
+                                        <label :class="(form.discountChkBox)? 'active ': ''"
+                                               class="rounded-0 btn btn-sm btn-success btn-simple">
+                                            <input type="checkbox" @change="calculateNetAmount()"
+                                                   v-model="form.discountChkBox">
+                                            Discount
+                                        </label>
+                                        <label :class="(form.paidChkBox)? 'active ': ''"
+                                               class="rounded-0 btn btn-sm btn-success btn-simple">
+                                            <input type="checkbox" @change="calculateNetAmount()"
+                                                   v-model="form.paidChkBox">
+                                            Paid
+                                        </label>
                                     </div>
                                 </td>
 
@@ -295,7 +280,8 @@
                             <tr v-if="form.paidChkBox">
                                 <td class="text-right" colspan="4">Advance Paid:</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="paid" @input="calculatePayable()" v-model="form.paid"
+                                    <input type="number" step="any" name="paid" @input="calculatePayable()"
+                                           v-model="form.paid"
                                            class="border text-dark bg-neutral rounded-0 form-control"
                                            placeholder="Paid Amount">
                                 </td>
@@ -358,8 +344,7 @@
                     discount: 0,
                     paid: 0,
                     payable: 0,
-                    type: false,
-                    type2:false,
+                    invoiceType:null,
                 },
             }
         },
@@ -415,7 +400,7 @@
             },
             calculateNetAmount() {
                 this.form.netAmount = (this.form.taxChkBox ? this.form.taxOut : 0) + (this.form.vatChkBox ? this.form.vatOut : 0) + this.form.subTotal;
-                if (this.form.discountChkBox||this.form.paidChkBox){
+                if (this.form.discountChkBox || this.form.paidChkBox) {
                     this.calculatePayable();
                 }
             },

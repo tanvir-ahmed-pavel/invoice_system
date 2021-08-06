@@ -2193,20 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
   mounted: function mounted() {},
@@ -2234,8 +2220,7 @@ __webpack_require__.r(__webpack_exports__);
         discount: 0,
         paid: 0,
         payable: 0,
-        type: false,
-        type2: false
+        invoiceType: null
       }
     };
   },
@@ -3190,142 +3175,84 @@ var render = function() {
                   _c("div", { staticClass: "form-group col-lg-9" }, [
                     _c("h6", { staticClass: "h6" }, [_vm._v("Invoice Type")]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "btn-group-toggle",
-                        attrs: { "data-toggle": "buttons" }
-                      },
-                      [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "rounded-0 btn btn-sm btn-success btn-simple"
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.type,
-                                  expression: "form.type"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: {
-                                type: "checkbox",
-                                name: "inlineRadioOptions",
-                                id: "inlineRadio1"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.form.type)
-                                  ? _vm._i(_vm.form.type, null) > -1
-                                  : _vm.form.type
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.form.type,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.form,
-                                          "type",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.form,
-                                          "type",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.form, "type", $$c)
-                                  }
-                                }
+                    _c("div", { staticClass: "btn-group-toggle" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "rounded-0 btn btn-sm btn-success btn-simple",
+                          class:
+                            _vm.form.invoiceType == "monthly" ? "active" : ""
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.invoiceType,
+                                expression: "form.invoiceType"
                               }
-                            }),
-                            _vm._v(
-                              "\n                                        Monthly Basis\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "rounded-0 btn btn-sm btn-success btn-simple"
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.type2,
-                                  expression: "form.type2"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: {
-                                type: "checkbox",
-                                name: "inlineRadioOptions",
-                                id: "inlineRadio2"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.form.type2)
-                                  ? _vm._i(_vm.form.type2, null) > -1
-                                  : _vm.form.type2
-                              },
-                              on: {
-                                change: function($event) {
-                                  var $$a = _vm.form.type2,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        _vm.$set(
-                                          _vm.form,
-                                          "type2",
-                                          $$a.concat([$$v])
-                                        )
-                                    } else {
-                                      $$i > -1 &&
-                                        _vm.$set(
-                                          _vm.form,
-                                          "type2",
-                                          $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1))
-                                        )
-                                    }
-                                  } else {
-                                    _vm.$set(_vm.form, "type2", $$c)
-                                  }
-                                }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: { type: "radio", value: "monthly" },
+                            domProps: {
+                              checked: _vm._q(_vm.form.invoiceType, "monthly")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(
+                                  _vm.form,
+                                  "invoiceType",
+                                  "monthly"
+                                )
                               }
-                            }),
-                            _vm._v(
-                              "\n                                        Daily Basis\n                                    "
-                            )
-                          ]
-                        )
-                      ]
-                    )
+                            }
+                          }),
+                          _vm._v(
+                            "\n                                    Monthly Basis\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass:
+                            "rounded-0 btn btn-sm btn-success btn-simple",
+                          class: _vm.form.invoiceType == "daily" ? "active" : ""
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.invoiceType,
+                                expression: "form.invoiceType"
+                              }
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: { type: "radio", value: "daily" },
+                            domProps: {
+                              checked: _vm._q(_vm.form.invoiceType, "daily")
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(
+                                  _vm.form,
+                                  "invoiceType",
+                                  "daily"
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(
+                            "\n                                    Daily Basis\n                                "
+                          )
+                        ]
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-3" }, [
@@ -3675,333 +3602,271 @@ var render = function() {
                       _c("td", { attrs: { colspan: "2" } }, [
                         _c(
                           "div",
-                          {
-                            staticClass:
-                              "input-group  justify-content-center mb-0"
-                          },
+                          { staticClass: "btn-group-toggle text-center" },
                           [
                             _c(
-                              "div",
+                              "label",
                               {
                                 staticClass:
-                                  "input-group-text border-success rounded-0 mr-2"
+                                  "rounded-0 btn btn-sm btn-success btn-simple",
+                                class: _vm.form.taxChkBox ? "active " : ""
                               },
                               [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-check-label text-white"
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.taxChkBox,
+                                      expression: "form.taxChkBox"
+                                    }
+                                  ],
+                                  attrs: { type: "checkbox" },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.form.taxChkBox)
+                                      ? _vm._i(_vm.form.taxChkBox, null) > -1
+                                      : _vm.form.taxChkBox
                                   },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.taxChkBox,
-                                          expression: "form.taxChkBox"
-                                        }
-                                      ],
-                                      attrs: { type: "checkbox" },
-                                      domProps: {
-                                        checked: Array.isArray(
-                                          _vm.form.taxChkBox
-                                        )
-                                          ? _vm._i(_vm.form.taxChkBox, null) >
-                                            -1
-                                          : _vm.form.taxChkBox
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$a = _vm.form.taxChkBox,
-                                              $$el = $event.target,
-                                              $$c = $$el.checked ? true : false
-                                            if (Array.isArray($$a)) {
-                                              var $$v = null,
-                                                $$i = _vm._i($$a, $$v)
-                                              if ($$el.checked) {
-                                                $$i < 0 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "taxChkBox",
-                                                    $$a.concat([$$v])
-                                                  )
-                                              } else {
-                                                $$i > -1 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "taxChkBox",
-                                                    $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      )
-                                                  )
-                                              }
-                                            } else {
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$a = _vm.form.taxChkBox,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
                                               _vm.$set(
                                                 _vm.form,
                                                 "taxChkBox",
-                                                $$c
+                                                $$a.concat([$$v])
                                               )
-                                            }
-                                          },
-                                          function($event) {
-                                            return _vm.calculateNetAmount()
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "taxChkBox",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
                                           }
-                                        ]
+                                        } else {
+                                          _vm.$set(_vm.form, "taxChkBox", $$c)
+                                        }
+                                      },
+                                      function($event) {
+                                        return _vm.calculateNetAmount()
                                       }
-                                    }),
-                                    _vm._v(
-                                      "\n                                                + TAX"
-                                    )
-                                  ]
+                                    ]
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                        + TAX\n                                    "
                                 )
                               ]
                             ),
                             _vm._v(" "),
                             _c(
-                              "div",
+                              "label",
                               {
                                 staticClass:
-                                  "input-group-text border-success rounded-0 mr-2"
+                                  "rounded-0 btn btn-sm btn-success btn-simple",
+                                class: _vm.form.vatChkBox ? "active " : ""
                               },
                               [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-check-label text-white"
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.vatChkBox,
+                                      expression: "form.vatChkBox"
+                                    }
+                                  ],
+                                  attrs: { type: "checkbox" },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.form.vatChkBox)
+                                      ? _vm._i(_vm.form.vatChkBox, null) > -1
+                                      : _vm.form.vatChkBox
                                   },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.vatChkBox,
-                                          expression: "form.vatChkBox"
-                                        }
-                                      ],
-                                      attrs: { type: "checkbox" },
-                                      domProps: {
-                                        checked: Array.isArray(
-                                          _vm.form.vatChkBox
-                                        )
-                                          ? _vm._i(_vm.form.vatChkBox, null) >
-                                            -1
-                                          : _vm.form.vatChkBox
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$a = _vm.form.vatChkBox,
-                                              $$el = $event.target,
-                                              $$c = $$el.checked ? true : false
-                                            if (Array.isArray($$a)) {
-                                              var $$v = null,
-                                                $$i = _vm._i($$a, $$v)
-                                              if ($$el.checked) {
-                                                $$i < 0 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "vatChkBox",
-                                                    $$a.concat([$$v])
-                                                  )
-                                              } else {
-                                                $$i > -1 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "vatChkBox",
-                                                    $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      )
-                                                  )
-                                              }
-                                            } else {
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$a = _vm.form.vatChkBox,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
                                               _vm.$set(
                                                 _vm.form,
                                                 "vatChkBox",
-                                                $$c
+                                                $$a.concat([$$v])
                                               )
-                                            }
-                                          },
-                                          function($event) {
-                                            return _vm.calculateNetAmount()
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "vatChkBox",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
                                           }
-                                        ]
+                                        } else {
+                                          _vm.$set(_vm.form, "vatChkBox", $$c)
+                                        }
+                                      },
+                                      function($event) {
+                                        return _vm.calculateNetAmount()
                                       }
-                                    }),
-                                    _vm._v(
-                                      "\n                                                + VAT"
-                                    )
-                                  ]
+                                    ]
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                        + VAT\n                                    "
                                 )
                               ]
                             ),
                             _vm._v(" "),
                             _c(
-                              "div",
+                              "label",
                               {
                                 staticClass:
-                                  "input-group-text border-success rounded-0 mr-2"
+                                  "rounded-0 btn btn-sm btn-success btn-simple",
+                                class: _vm.form.discountChkBox ? "active " : ""
                               },
                               [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-check-label text-white"
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.discountChkBox,
+                                      expression: "form.discountChkBox"
+                                    }
+                                  ],
+                                  attrs: { type: "checkbox" },
+                                  domProps: {
+                                    checked: Array.isArray(
+                                      _vm.form.discountChkBox
+                                    )
+                                      ? _vm._i(_vm.form.discountChkBox, null) >
+                                        -1
+                                      : _vm.form.discountChkBox
                                   },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.discountChkBox,
-                                          expression: "form.discountChkBox"
-                                        }
-                                      ],
-                                      attrs: { type: "checkbox" },
-                                      domProps: {
-                                        checked: Array.isArray(
-                                          _vm.form.discountChkBox
-                                        )
-                                          ? _vm._i(
-                                              _vm.form.discountChkBox,
-                                              null
-                                            ) > -1
-                                          : _vm.form.discountChkBox
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$a = _vm.form.discountChkBox,
-                                              $$el = $event.target,
-                                              $$c = $$el.checked ? true : false
-                                            if (Array.isArray($$a)) {
-                                              var $$v = null,
-                                                $$i = _vm._i($$a, $$v)
-                                              if ($$el.checked) {
-                                                $$i < 0 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "discountChkBox",
-                                                    $$a.concat([$$v])
-                                                  )
-                                              } else {
-                                                $$i > -1 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "discountChkBox",
-                                                    $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      )
-                                                  )
-                                              }
-                                            } else {
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$a = _vm.form.discountChkBox,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
                                               _vm.$set(
                                                 _vm.form,
                                                 "discountChkBox",
-                                                $$c
+                                                $$a.concat([$$v])
                                               )
-                                            }
-                                          },
-                                          function($event) {
-                                            return _vm.calculateNetAmount()
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "discountChkBox",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
                                           }
-                                        ]
+                                        } else {
+                                          _vm.$set(
+                                            _vm.form,
+                                            "discountChkBox",
+                                            $$c
+                                          )
+                                        }
+                                      },
+                                      function($event) {
+                                        return _vm.calculateNetAmount()
                                       }
-                                    }),
-                                    _vm._v(
-                                      "\n                                                Discount"
-                                    )
-                                  ]
+                                    ]
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                        Discount\n                                    "
                                 )
                               ]
                             ),
                             _vm._v(" "),
                             _c(
-                              "div",
+                              "label",
                               {
                                 staticClass:
-                                  "input-group-text border-success rounded-0"
+                                  "rounded-0 btn btn-sm btn-success btn-simple",
+                                class: _vm.form.paidChkBox ? "active " : ""
                               },
                               [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-check-label text-white"
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.paidChkBox,
+                                      expression: "form.paidChkBox"
+                                    }
+                                  ],
+                                  attrs: { type: "checkbox" },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.form.paidChkBox)
+                                      ? _vm._i(_vm.form.paidChkBox, null) > -1
+                                      : _vm.form.paidChkBox
                                   },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.paidChkBox,
-                                          expression: "form.paidChkBox"
-                                        }
-                                      ],
-                                      attrs: { type: "checkbox" },
-                                      domProps: {
-                                        checked: Array.isArray(
-                                          _vm.form.paidChkBox
-                                        )
-                                          ? _vm._i(_vm.form.paidChkBox, null) >
-                                            -1
-                                          : _vm.form.paidChkBox
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$a = _vm.form.paidChkBox,
-                                              $$el = $event.target,
-                                              $$c = $$el.checked ? true : false
-                                            if (Array.isArray($$a)) {
-                                              var $$v = null,
-                                                $$i = _vm._i($$a, $$v)
-                                              if ($$el.checked) {
-                                                $$i < 0 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "paidChkBox",
-                                                    $$a.concat([$$v])
-                                                  )
-                                              } else {
-                                                $$i > -1 &&
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "paidChkBox",
-                                                    $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      )
-                                                  )
-                                              }
-                                            } else {
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$a = _vm.form.paidChkBox,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
                                               _vm.$set(
                                                 _vm.form,
                                                 "paidChkBox",
-                                                $$c
+                                                $$a.concat([$$v])
                                               )
-                                            }
-                                          },
-                                          function($event) {
-                                            return _vm.calculateNetAmount()
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "paidChkBox",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
                                           }
-                                        ]
+                                        } else {
+                                          _vm.$set(_vm.form, "paidChkBox", $$c)
+                                        }
+                                      },
+                                      function($event) {
+                                        return _vm.calculateNetAmount()
                                       }
-                                    }),
-                                    _vm._v(
-                                      "\n                                                Paid"
-                                    )
-                                  ]
+                                    ]
+                                  }
+                                }),
+                                _vm._v(
+                                  "\n                                        Paid\n                                    "
                                 )
                               ]
                             )
