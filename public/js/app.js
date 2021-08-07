@@ -3173,7 +3173,7 @@ var render = function() {
                 { staticClass: "row align-items-center justify-content-end" },
                 [
                   _c("div", { staticClass: "form-group col-lg-9" }, [
-                    _c("h6", { staticClass: "h6" }, [_vm._v("Invoice Type")]),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "btn-group-toggle" }, [
                       _c(
@@ -3256,7 +3256,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-3" }, [
-                    _c("h6", { staticClass: "h6" }, [_vm._v("Date")]),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -3284,10 +3284,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-6" }, [
                     _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("TO"))
+                      _vm._v(_vm._s("TO") + " "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -3301,10 +3302,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group ml-auto col-lg-6" }, [
                     _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("From"))
+                      _vm._v(_vm._s("From") + " "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -3318,10 +3320,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-6" }, [
                     _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("DRIVER"))
+                      _vm._v(_vm._s("DRIVER") + " "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -3335,10 +3338,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-6" }, [
                     _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("Car Name and Reg. No:"))
+                      _vm._v(_vm._s("Car Name and Reg. No:") + " "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3)
+                    _vm._m(5)
                   ])
                 ]
               ),
@@ -3350,7 +3354,7 @@ var render = function() {
                     "border-neutral table-responsive-xl table-bordered bg-default table pt-2"
                 },
                 [
-                  _vm._m(4),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -3951,7 +3955,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(5)
+                                _vm._m(7)
                               ]
                             )
                           ]),
@@ -4027,7 +4031,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(6)
+                                _vm._m(8)
                               ]
                             )
                           ]),
@@ -4248,6 +4252,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "h6" }, [
+      _vm._v("Invoice Type "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", { staticClass: "h6" }, [
+      _vm._v("Date "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
       "select",
       {
@@ -4332,7 +4354,10 @@ var staticRenderFns = [
             staticStyle: { "min-width": "350px !important" },
             attrs: { scope: "col" }
           },
-          [_vm._v("Description")]
+          [
+            _vm._v("Description "),
+            _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -4359,7 +4384,10 @@ var staticRenderFns = [
             staticStyle: { "min-width": "100px !important" },
             attrs: { scope: "col" }
           },
-          [_vm._v("Rate")]
+          [
+            _vm._v("Rate "),
+            _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+          ]
         ),
         _vm._v(" "),
         _c(

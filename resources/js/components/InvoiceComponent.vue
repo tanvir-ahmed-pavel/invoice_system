@@ -13,7 +13,7 @@
                             <!--                        ROW 1: Date and Invoice Type-->
 
                             <div class="form-group col-lg-9">
-                                <h6 class="h6">Invoice Type</h6>
+                                <h6 class="h6">Invoice Type <span class="text-danger">*</span> </h6>
 
                                 <div class="btn-group-toggle">
                                     <label class="rounded-0 btn btn-sm btn-success btn-simple" :class="(form.invoiceType=='monthly')? 'active': ''">
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group col-lg-3">
-                                <h6 class="h6">Date</h6>
+                                <h6 class="h6">Date <span class="text-danger">*</span></h6>
                                 <input class=" form-control form-control-sm rounded-0 bg-neutral text-center text-dark"
                                        type="date"
                                        v-model="myDate"
@@ -40,7 +40,7 @@
                             <!--                        Row 2 From and To-->
 
                             <div class="form-group col-lg-6">
-                                <label class="col-lg-12">{{ 'TO' }}</label>
+                                <label class="col-lg-12">{{ 'TO' }} <span class="text-danger">*</span></label>
                                 <select class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="form-group ml-auto col-lg-6">
-                                <label class="col-lg-12">{{ 'From' }}</label>
+                                <label class="col-lg-12">{{ 'From' }} <span class="text-danger">*</span></label>
                                 <select class="custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
@@ -60,7 +60,7 @@
                             <!--                        Row 3 Driver and Car Info-->
 
                             <div class="form-group col-lg-6">
-                                <label class="col-lg-12">{{ 'DRIVER' }}</label>
+                                <label class="col-lg-12">{{ 'DRIVER' }} <span class="text-danger">*</span></label>
                                 <select class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group col-lg-6">
-                                <label class="col-lg-12">{{ 'Car Name and Reg. No:'}}</label>
+                                <label class="col-lg-12">{{ 'Car Name and Reg. No:'}} <span class="text-danger">*</span></label>
                                 <div class="pl-0 col-lg-12">
                                     <input type="text" name="name"
                                            class="form-control rounded-0 form-control-sm bg-neutral text-dark"
@@ -85,10 +85,10 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th style="min-width: 350px !important;" scope="col">Description</th>
+                                <th style="min-width: 350px !important;" scope="col">Description <span class="text-danger">*</span></th>
                                 <th style="min-width: 70px !important;" scope="col">Quantity</th>
                                 <th style="min-width: 100px !important;" scope="col">Unit</th>
-                                <th style="min-width: 100px !important;" scope="col">Rate</th>
+                                <th style="min-width: 100px !important;" scope="col">Rate <span class="text-danger">*</span></th>
                                 <th style="min-width: 150px !important;" scope="col">Amount</th>
                                 <th style="min-width: 70px !important;" class="border-0" scope="col">Action</th>
                             </tr>
