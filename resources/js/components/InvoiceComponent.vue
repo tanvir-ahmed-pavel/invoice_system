@@ -6,24 +6,27 @@
                     <h5 class="title">{{ 'ADD New Driver'}}</h5>
                 </div>
 
-                <form method="post" action="" autocomplete="off">
+                <form method="post" @submit.prevent="submit()"  autocomplete="off">
 
                     <div class="card-body ">
                         <div class="row align-items-center justify-content-end">
                             <!--                        ROW 1: Date and Invoice Type-->
 
                             <div class="form-group col-lg-9">
-                                <h6 class="h6">Invoice Type <span class="text-danger">*</span> </h6>
+                                <h6 class="h6">Invoice Type <span class="text-danger">*</span></h6>
+                                <validation-error :errors="errors.invoice_type"></validation-error>
 
                                 <div class="btn-group-toggle">
-                                    <label class="rounded-0 btn btn-sm btn-success btn-simple" :class="(form.invoiceType=='monthly')? 'active': ''">
-                                        <input class="form-check-input" type="radio" v-model="form.invoiceType"
-                                               value="monthly">
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple"
+                                           :class="(form.invoice_type=='Monthly')? 'active': ''">
+                                        <input class="form-check-input" type="radio" v-model="form.invoice_type"
+                                               value="Monthly">
                                         Monthly Basis
                                     </label>
-                                    <label class="rounded-0 btn btn-sm btn-success btn-simple" :class="(form.invoiceType=='daily')? 'active': ''">
-                                        <input class="form-check-input" type="radio" v-model="form.invoiceType"
-                                               value="daily">
+                                    <label class="rounded-0 btn btn-sm btn-success btn-simple"
+                                           :class="(form.invoice_type=='Daily')? 'active': ''">
+                                        <input class="form-check-input" type="radio" v-model="form.invoice_type"
+                                               value="Daily">
                                         Daily Basis
                                     </label>
                                 </div>
@@ -31,28 +34,41 @@
 
                             <div class="form-group col-lg-3">
                                 <h6 class="h6">Date <span class="text-danger">*</span></h6>
+                                <validation-error :errors="errors.date"></validation-error>
+
                                 <input class=" form-control form-control-sm rounded-0 bg-neutral text-center text-dark"
                                        type="date"
-                                       v-model="myDate"
-                                       name="date">
+                                       v-model="form.date">
                             </div>
 
                             <!--                        Row 2 From and To-->
 
                             <div class="form-group col-lg-6">
                                 <label class="col-lg-12">{{ 'TO' }} <span class="text-danger">*</span></label>
-                                <select class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
+                                <div>
+                                    <validation-error class="col-lg-6" :errors="errors.to"></validation-error>
+                                </div>
+
+                                <select v-model="form.client_id" class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
+
+                                    <option selected value="" disabled>Select....</option>
+                                    <option value="">None</option>
+                                    <option v-for="(client, index) in Clients" :value="client.id">{{client.client_name}}</option>
                                 </select>
                                 <button class="rounded-0 btn btn-sm btn-success btn-simple">{{"Add a client"}}</button>
                             </div>
 
                             <div class="form-group ml-auto col-lg-6">
                                 <label class="col-lg-12">{{ 'From' }} <span class="text-danger">*</span></label>
-                                <select class="custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
+                                <div>
+                                    <validation-error class="col-lg-12" :errors="errors.from"></validation-error>
+                                </div>
+
+
+                                <select v-model="form.company_id" class="custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8">
+                                    <option selected value="" disabled>Select...</option>
+                                    <option value="">None</option>
+                                    <option v-for="(company, index) in Companies" :value="company.id">{{company.company_name}}</option>
                                 </select>
                                 <button class="rounded-0 btn btn-sm btn-success btn-simple">{{'Add a Company'}}</button>
                             </div>
@@ -61,19 +77,24 @@
 
                             <div class="form-group col-lg-6">
                                 <label class="col-lg-12">{{ 'DRIVER' }} <span class="text-danger">*</span></label>
-                                <select class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
+                                <validation-error class="col-lg-12" :errors="errors.driver_id"></validation-error>
+
+                                <select v-model="form.driver_id" class="custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8">
+                                    <option selected value="" disabled>Select...</option>
+                                    <option value="">None</option>
+                                    <option v-for="(driver, index) in Drivers" :value="driver.id">{{driver.name}}</option>
                                 </select>
                                 <button class="rounded-0 btn btn-sm btn-success btn-simple">{{"Add a Driver"}}</button>
                             </div>
 
                             <div class="form-group col-lg-6">
                                 <label class="col-lg-12">{{ 'Car Name and Reg. No:'}} <span class="text-danger">*</span></label>
+
+                                <validation-error class="col-lg-12" :errors="errors.car_details"></validation-error>
                                 <div class="pl-0 col-lg-12">
-                                    <input type="text" name="name"
+                                    <input type="text"
                                            class="form-control rounded-0 form-control-sm bg-neutral text-dark"
-                                           placeholder="Car Name and Reg. No:" value="">
+                                           placeholder="Car Name and Reg. No:" v-model="form.car_details">
                                 </div>
                             </div>
                         </div>
@@ -85,10 +106,12 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th style="min-width: 350px !important;" scope="col">Description <span class="text-danger">*</span></th>
+                                <th style="min-width: 350px !important;" scope="col">Description <span
+                                    class="text-danger">*</span></th>
                                 <th style="min-width: 70px !important;" scope="col">Quantity</th>
                                 <th style="min-width: 100px !important;" scope="col">Unit</th>
-                                <th style="min-width: 100px !important;" scope="col">Rate <span class="text-danger">*</span></th>
+                                <th style="min-width: 100px !important;" scope="col">Rate <span
+                                    class="text-danger">*</span></th>
                                 <th style="min-width: 150px !important;" scope="col">Amount</th>
                                 <th style="min-width: 70px !important;" class="border-0" scope="col">Action</th>
                             </tr>
@@ -96,7 +119,7 @@
 
                             <tbody>
 
-                            <tr v-for="(item, index) in items">
+                            <tr v-for="(item, index) in form.items">
 
                                 <!--                                Index-->
 
@@ -105,24 +128,27 @@
                                 <!--                                Description-->
 
                                 <td>
-                                    <input type="text" name="description" v-model="item.description"
+                                    <input type="text" v-model="item.description"
                                            class="border bg-neutral text-dark rounded-0 form-control"
-                                           placeholder="Enter Description" value="">
+                                           placeholder="Enter Description">
+
+<!--                                    <validation-error :errors="errors['items.'+[index]+'.description']"></validation-error>-->
                                 </td>
 
                                 <!--                                Quantity-->
 
                                 <td>
                                     <input @input="calculateAmount(index)" type="number" step="any"
-                                           name="quantity" v-model="item.quantity"
+                                           v-model="item.quantity"
                                            class="border text-dark bg-neutral rounded-0 form-control"
                                            placeholder="Quantity">
+<!--                                    <validation-error :errors="errors['items.'+[index]+'.quantity']"></validation-error>-->
                                 </td>
 
                                 <!--                                Unit-->
 
                                 <td>
-                                    <select name="unit" v-model="item.unit"
+                                    <select v-model="item.unit"
                                             class="custom-select text-dark bg-neutral border rounded-0">
                                         <option value="" selected>None</option>
                                         <option value="Year">Year</option>
@@ -132,31 +158,35 @@
                                         <option value="KM">KM</option>
                                         <option value="Piece">Pcs.</option>
                                     </select>
+<!--                                    <validation-error :errors="errors['items.'+[index]+'.unit']"></validation-error>-->
                                 </td>
 
                                 <!--                                Rate-->
 
                                 <td>
                                     <input @input="calculateAmount(index)" v-model="item.rate"
-                                           type="number" step="any" name="rate"
+                                           type="number" step="any"
                                            class="border text-dark bg-neutral rounded-0 form-control"
                                            placeholder="Rate">
+<!--                                    <validation-error :errors="errors['items.'+[index]+'.rate']"></validation-error>-->
                                 </td>
 
                                 <!--                                Amount-->
 
                                 <td>
-                                    <input type="number" step="any" name="amount"
+                                    <input type="number" step="any"
                                            class="border text-dark bg-success rounded-0 form-control"
                                            placeholder="Total" :value="item.amount" readonly>
+<!--                                    <validation-error :errors="errors['items.'+[index]+'.amount']"></validation-error>-->
                                 </td>
+
                                 <td class="text-center">
 
                                     <button v-if="index==0" type="button" @click.prevent="addRow()"
                                             class="rounded-0 btn p-2 pl-3 pr-3 btn-success">
                                         <i class="tim-icons icon-simple-add"></i>
                                     </button>
-                                    <button v-else type="button" @click.prevent="removeRow(index)"
+                                    <button v-else type="button" @click="removeRow(index)"
                                             class="rounded-0 btn p-2 pl-3 pr-3 btn-danger">
                                         <i class="tim-icons icon-simple-delete"></i>
                                     </button>
@@ -174,28 +204,28 @@
                             <tr>
                                 <td colspan="2">
                                     <div class="btn-group-toggle text-center">
-                                        <label :class="(form.taxChkBox)? 'active ': ''"
+                                        <label :class="(taxChkBox)? 'active ': ''"
                                                class="rounded-0 btn btn-sm btn-success btn-simple">
                                             <input type="checkbox" @change="calculateNetAmount()"
-                                                   v-model="form.taxChkBox">
+                                                   v-model="taxChkBox">
                                             + TAX
                                         </label>
-                                        <label :class="(form.vatChkBox)? 'active ': ''"
+                                        <label :class="(vatChkBox)? 'active ': ''"
                                                class="rounded-0 btn btn-sm btn-success btn-simple">
                                             <input type="checkbox" @change="calculateNetAmount()"
-                                                   v-model="form.vatChkBox">
+                                                   v-model="vatChkBox">
                                             + VAT
                                         </label>
-                                        <label :class="(form.discountChkBox)? 'active ': ''"
+                                        <label :class="(discountChkBox)? 'active ': ''"
                                                class="rounded-0 btn btn-sm btn-success btn-simple">
                                             <input type="checkbox" @change="calculateNetAmount()"
-                                                   v-model="form.discountChkBox">
+                                                   v-model="discountChkBox">
                                             Discount
                                         </label>
-                                        <label :class="(form.paidChkBox)? 'active ': ''"
+                                        <label :class="(paidChkBox)? 'active ': ''"
                                                class="rounded-0 btn btn-sm btn-success btn-simple">
                                             <input type="checkbox" @change="calculateNetAmount()"
-                                                   v-model="form.paidChkBox">
+                                                   v-model="paidChkBox">
                                             Paid
                                         </label>
                                     </div>
@@ -205,20 +235,20 @@
 
                                 <td class="text-right" colspan="2">{{"Sub-Total:"}}</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="sub-total"
+                                    <input type="number" step="any"
                                            class="border text-dark bg-success rounded-0 form-control"
-                                           placeholder="Sub-Total" :value="form.subTotal" readonly>
+                                           placeholder="Sub-Total" :value="form.sub_total" readonly>
                                 </td>
                             </tr>
 
                             <!--                            VAT, TAX & Discount-->
 
-                            <tr v-if="form.taxChkBox">
+                            <tr v-if="taxChkBox">
                                 <td class="text-right" colspan="3">+TAX</td>
                                 <td>
                                     <div class="d-flex" style="max-width: 100px !important;">
-                                        <input type="number" step="any" name="taxIn" @input="calculateTax()"
-                                               v-model="form.taxIn"
+                                        <input type="number" step="any" @input="calculateTax()"
+                                               v-model="form.tax"
                                                class="border text-center text-dark bg-neutral text-dark rounded-0 form-control">
                                         <div class="input-group-prepend">
                                             <span
@@ -227,17 +257,17 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <input type="number" step="any" :value="form.taxOut"
+                                    <input type="number" step="any" :value="taxOut"
                                            class="border text-dark bg-success rounded-0 form-control"
                                            placeholder="TAX" readonly>
                                 </td>
                             </tr>
-                            <tr v-if="form.vatChkBox">
+                            <tr v-if="vatChkBox">
                                 <td class="text-right" colspan="3">(Total+TAX)+VAT</td>
                                 <td>
                                     <div class="d-flex" style="max-width: 100px !important;">
-                                        <input type="number" name="vatIn" step="any" @input="calculateVat()"
-                                               v-model="form.vatIn"
+                                        <input type="number" step="any" @input="calculateVat()"
+                                               v-model="form.vat"
                                                class="border text-center text-dark bg-neutral text-dark rounded-0 form-control">
                                         <div class="input-group-prepend">
                                             <span
@@ -246,7 +276,7 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <input type="number" step="any" :value="form.vatOut"
+                                    <input type="number" step="any" :value="vatOut"
                                            class="border text-dark bg-success rounded-0 form-control"
                                            placeholder="VAT" readonly>
                                 </td>
@@ -257,18 +287,18 @@
                             <tr>
                                 <td class="text-right" colspan="4">Net Amount:</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="total"
+                                    <input type="number" step="any"
                                            class="border text-dark bg-success rounded-0 form-control"
-                                           placeholder="Net Amount" v-model="form.netAmount" readonly>
+                                           placeholder="Net Amount" v-model="form.net_amount" readonly>
                                 </td>
                             </tr>
 
                             <!--                            Discount-->
 
-                            <tr v-if="form.discountChkBox">
+                            <tr v-if="discountChkBox">
                                 <td class="text-right" colspan="4">Discount:</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="discount" @input="calculatePayable()"
+                                    <input type="number" step="any" @input="calculatePayable()"
                                            v-model="form.discount"
                                            class="border text-dark bg-neutral rounded-0 form-control"
                                            placeholder="Discount">
@@ -277,11 +307,11 @@
 
                             <!--                            Paid-->
 
-                            <tr v-if="form.paidChkBox">
+                            <tr v-if="paidChkBox">
                                 <td class="text-right" colspan="4">Advance Paid:</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="paid" @input="calculatePayable()"
-                                           v-model="form.paid"
+                                    <input type="number" step="any" @input="calculatePayable()"
+                                           v-model="form.advance_paid"
                                            class="border text-dark bg-neutral rounded-0 form-control"
                                            placeholder="Paid Amount">
                                 </td>
@@ -289,10 +319,10 @@
 
                             <!--                            Payable-->
 
-                            <tr v-if="form.discountChkBox || form.paidChkBox">
+                            <tr v-if="discountChkBox || paidChkBox">
                                 <td class="text-right" colspan="4">Payable:</td>
                                 <td colspan="3">
-                                    <input type="number" step="any" name="payable" :value="form.payable"
+                                    <input type="number" step="any" :value="payable"
                                            class="border text-dark bg-success rounded-0 form-control"
                                            placeholder="Payable" readonly>
                                 </td>
@@ -301,9 +331,12 @@
                             </tfoot>
 
                         </table>
+
                     </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-fill btn-primary">{{'Save'}}</button>
+                    <div class="card-footer text-center">
+                        <button type="submit"  class="btn btn-fill btn-success rounded-0">
+                            {{'Save'}}
+                        </button>
                     </div>
                 </form>
             </div>
@@ -312,48 +345,68 @@
 </template>
 
 <script>
+    import ValidationError from "./validation-error";
     export default {
         name: "InvoiceComponent",
+        components: {ValidationError},
         mounted() {
-
+            console.log(this.Drivers);
         },
+        props:['Drivers', 'Companies', 'Clients'],
         data() {
             return {
-                myDate: new Date().toISOString().slice(0, 10),
-                items: [
-                    {
-
-                        description: '',
-                        quantity: null,
-                        unit: '',
-                        rate: null,
-                        amount: 0,
-                    }
-                ],
                 form: {
-                    vatChkBox: false,
-                    taxChkBox: false,
-                    paidChkBox: false,
-                    discountChkBox: false,
-                    subTotal: 0,
-                    vatIn: 0,
-                    vatOut: 0,
-                    taxIn: 0,
-                    taxOut: 0,
-                    netAmount: 0,
+                    date: new Date().toISOString().slice(0, 10),
+                    sub_total: 0,
+                    vat: 0,
+                    tax: 0,
+                    net_amount: 0,
                     discount: 0,
-                    paid: 0,
-                    payable: 0,
-                    invoiceType:null,
+                    advance_paid: 0,
+                    invoice_type: null,
+                    car_details: null,
+                    client_id:null,
+                    company_id:null,
+                    driver_id:null,
+                    items: [
+                        {
+                            description: null,
+                            quantity: null,
+                            unit: '',
+                            rate: null,
+                            amount: 0,
+                        },
+                    ],
                 },
+                payable: 0,
+                vatChkBox: false,
+                vatOut: 0,
+                taxChkBox: false,
+                taxOut: 0,
+                paidChkBox: false,
+                discountChkBox: false,
+                errors: [],
             }
         },
         watch: {},
         methods: {
+
+            submit() {
+
+                    this.axios.post("/invoices", this.form).then((res)=>{
+                        console.log(res);
+                    }).catch((e)=>{
+                        this.errors=e.response.data.errors;
+                    })
+            },
+
+
+            // Adds New Row
+
             addRow() {
-                this.items.push(
+                this.form.items.push(
                     {
-                        description: '',
+                        description: null,
                         quantity: null,
                         unit: '',
                         rate: null,
@@ -362,55 +415,58 @@
                 );
             },
 
+            // Removes Row
+
             removeRow(index) {
-                this.items.splice(index, 1);
+                this.form.items.splice(index, 1);
                 this.calculateSubtotal();
             },
 
             calculateAmount(index) {
-                this.items[index].amount = (this.items[index].quantity ? this.items[index].quantity : 1) * this.items[index].rate;
+                this.form.items[index].amount = (this.form.items[index].quantity ? this.form.items[index].quantity : 1) * this.form.items[index].rate;
                 this.calculateSubtotal();
             },
 
             calculateSubtotal() {
-                this.form.subTotal = 0;
-                this.items.forEach((vale, index) => {
-                    this.form.subTotal += vale.amount;
+                this.form.sub_total = 0;
+                this.form.items.forEach((value, index) => {
+                    this.form.sub_total += value.amount;
                 });
 
                 // Calling Based on Check Box
 
-                if (this.form.taxChkBox) {
+                if (this.taxChkBox) {
                     this.calculateTax();
                     this.calculatePayable();
                 }
-                if (this.form.vatChkBox) {
+                if (this.vatChkBox) {
                     this.calculateVat();
                     this.calculatePayable();
                 }
                 this.calculateNetAmount();
             },
+
             calculateTax() {
-                this.form.taxOut = this.form.taxIn * (1 / 100) * this.form.subTotal;
+                this.taxOut = this.form.tax * (1 / 100) * this.form.sub_total;
                 this.calculateNetAmount();
             },
+
             calculateVat() {
-                this.form.vatOut = this.form.vatIn * (1 / 100) * this.form.subTotal;
+                this.vatOut = this.form.vat * (1 / 100) * this.form.sub_total;
                 this.calculateNetAmount();
             },
             calculateNetAmount() {
-                this.form.netAmount = (this.form.taxChkBox ? this.form.taxOut : 0) + (this.form.vatChkBox ? this.form.vatOut : 0) + this.form.subTotal;
-                if (this.form.discountChkBox || this.form.paidChkBox) {
+                this.form.net_amount = (this.taxChkBox ? this.taxOut : 0) + (this.vatChkBox ? this.vatOut : 0) + this.form.sub_total;
+                if (this.discountChkBox || this.paidChkBox) {
                     this.calculatePayable();
                 }
             },
 
             calculatePayable() {
-                this.form.payable = this.form.netAmount - (this.form.discountChkBox ? this.form.discount : 0) - (this.form.paidChkBox ? this.form.paid : 0);
+                this.payable = this.form.net_amount - (this.discountChkBox ? this.form.discount : 0) - (this.paidChkBox ? this.form.advance_paid : 0);
             }
 
         },
-        computed: {}
     }
 </script>
 

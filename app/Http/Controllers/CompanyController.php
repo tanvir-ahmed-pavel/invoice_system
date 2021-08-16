@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Driver;
 use Illuminate\Http\Request;
 
-class DriverController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,24 +17,13 @@ class DriverController extends Controller
     }
 
     /**
-     * Display a listing of the resource API.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexApi()
-    {
-        $drivers = Driver::all();
-        return response()->json();
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view("drivers.new-driver");
+        //
     }
 
     /**

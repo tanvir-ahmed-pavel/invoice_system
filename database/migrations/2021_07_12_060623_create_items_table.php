@@ -17,14 +17,15 @@ class CreateItemsTable extends Migration
 
             $table->id();
             $table->unsignedBigInteger('invoice_id');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-            $table->integer("sl");
+            $table->integer("sl")->nullable();
             $table->text("description");
             $table->float("quantity")->nullable();
             $table->string("unit")->nullable();
-            $table->float("rate")->nullable();
-            $table->float("total")->nullable();
-            $table->timestamps();;
+            $table->float("rate");
+            $table->float("amount");
+            $table->timestamps();
+
+            $table->foreign('invoice_id')->references('id')->on('invoices');
         });
     }
 

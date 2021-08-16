@@ -4,9 +4,11 @@
 // window.Vue = require('vue');
 // window.Event = new Vue();
 import Vue from 'vue';
-window.axios = require('axios');
+import axios from "axios";
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+Vue.prototype.axios=axios;
+
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Calling The Components
 import InvoiceComponent from "./components/InvoiceComponent";

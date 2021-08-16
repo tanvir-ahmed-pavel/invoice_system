@@ -1880,6 +1880,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _validation_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation-error */ "./resources/js/components/validation-error.vue");
 //
 //
 //
@@ -2193,70 +2194,126 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
-  mounted: function mounted() {},
+  components: {
+    ValidationError: _validation_error__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  mounted: function mounted() {
+    console.log(this.Drivers);
+  },
+  props: ['Drivers', 'Companies', 'Clients'],
   data: function data() {
     return {
-      myDate: new Date().toISOString().slice(0, 10),
-      items: [{
-        description: '',
-        quantity: null,
-        unit: '',
-        rate: null,
-        amount: 0
-      }],
       form: {
-        vatChkBox: false,
-        taxChkBox: false,
-        paidChkBox: false,
-        discountChkBox: false,
-        subTotal: 0,
-        vatIn: 0,
-        vatOut: 0,
-        taxIn: 0,
-        taxOut: 0,
-        netAmount: 0,
+        date: new Date().toISOString().slice(0, 10),
+        sub_total: 0,
+        vat: 0,
+        tax: 0,
+        net_amount: 0,
         discount: 0,
-        paid: 0,
-        payable: 0,
-        invoiceType: null
-      }
+        advance_paid: 0,
+        invoice_type: null,
+        car_details: null,
+        client_id: null,
+        company_id: null,
+        driver_id: null,
+        items: [{
+          description: null,
+          quantity: null,
+          unit: '',
+          rate: null,
+          amount: 0
+        }]
+      },
+      payable: 0,
+      vatChkBox: false,
+      vatOut: 0,
+      taxChkBox: false,
+      taxOut: 0,
+      paidChkBox: false,
+      discountChkBox: false,
+      errors: []
     };
   },
   watch: {},
   methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.axios.post("/invoices", this.form).then(function (res) {
+        console.log(res);
+      })["catch"](function (e) {
+        _this.errors = e.response.data.errors;
+      });
+    },
+    // Adds New Row
     addRow: function addRow() {
-      this.items.push({
-        description: '',
+      this.form.items.push({
+        description: null,
         quantity: null,
         unit: '',
         rate: null,
         amount: 0
       });
     },
+    // Removes Row
     removeRow: function removeRow(index) {
-      this.items.splice(index, 1);
+      this.form.items.splice(index, 1);
       this.calculateSubtotal();
     },
     calculateAmount: function calculateAmount(index) {
-      this.items[index].amount = (this.items[index].quantity ? this.items[index].quantity : 1) * this.items[index].rate;
+      this.form.items[index].amount = (this.form.items[index].quantity ? this.form.items[index].quantity : 1) * this.form.items[index].rate;
       this.calculateSubtotal();
     },
     calculateSubtotal: function calculateSubtotal() {
-      var _this = this;
+      var _this2 = this;
 
-      this.form.subTotal = 0;
-      this.items.forEach(function (vale, index) {
-        _this.form.subTotal += vale.amount;
+      this.form.sub_total = 0;
+      this.form.items.forEach(function (value, index) {
+        _this2.form.sub_total += value.amount;
       }); // Calling Based on Check Box
 
-      if (this.form.taxChkBox) {
+      if (this.taxChkBox) {
         this.calculateTax();
         this.calculatePayable();
       }
 
-      if (this.form.vatChkBox) {
+      if (this.vatChkBox) {
         this.calculateVat();
         this.calculatePayable();
       }
@@ -2264,25 +2321,55 @@ __webpack_require__.r(__webpack_exports__);
       this.calculateNetAmount();
     },
     calculateTax: function calculateTax() {
-      this.form.taxOut = this.form.taxIn * (1 / 100) * this.form.subTotal;
+      this.taxOut = this.form.tax * (1 / 100) * this.form.sub_total;
       this.calculateNetAmount();
     },
     calculateVat: function calculateVat() {
-      this.form.vatOut = this.form.vatIn * (1 / 100) * this.form.subTotal;
+      this.vatOut = this.form.vat * (1 / 100) * this.form.sub_total;
       this.calculateNetAmount();
     },
     calculateNetAmount: function calculateNetAmount() {
-      this.form.netAmount = (this.form.taxChkBox ? this.form.taxOut : 0) + (this.form.vatChkBox ? this.form.vatOut : 0) + this.form.subTotal;
+      this.form.net_amount = (this.taxChkBox ? this.taxOut : 0) + (this.vatChkBox ? this.vatOut : 0) + this.form.sub_total;
 
-      if (this.form.discountChkBox || this.form.paidChkBox) {
+      if (this.discountChkBox || this.paidChkBox) {
         this.calculatePayable();
       }
     },
     calculatePayable: function calculatePayable() {
-      this.form.payable = this.form.netAmount - (this.form.discountChkBox ? this.form.discount : 0) - (this.form.paidChkBox ? this.form.paid : 0);
+      this.payable = this.form.net_amount - (this.discountChkBox ? this.form.discount : 0) - (this.paidChkBox ? this.form.advance_paid : 0);
     }
-  },
-  computed: {}
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "validation-error",
+  props: {
+    errors: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -2295,23 +2382,26 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var _components_InvoiceComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/InvoiceComponent */ "./resources/js/components/InvoiceComponent.vue");
-/* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_InvoiceComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/InvoiceComponent */ "./resources/js/components/InvoiceComponent.vue");
+/* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
 // require('./bootstrap');
 // window.Vue = require('vue');
 // window.Event = new Vue();
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // Calling The Components
+
+vue__WEBPACK_IMPORTED_MODULE_1__.default.prototype.axios = (axios__WEBPACK_IMPORTED_MODULE_0___default()); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// Calling The Components
 
 
 
-new vue__WEBPACK_IMPORTED_MODULE_2__.default({
+new vue__WEBPACK_IMPORTED_MODULE_1__.default({
   el: '#app',
   components: {
-    InvoiceComponent: _components_InvoiceComponent__WEBPACK_IMPORTED_MODULE_0__.default,
-    ExampleComponent: _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_1__.default
+    InvoiceComponent: _components_InvoiceComponent__WEBPACK_IMPORTED_MODULE_2__.default,
+    ExampleComponent: _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_3__.default
   }
 });
 
@@ -2335,6 +2425,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=number][data-v-2d1526bb]::-webkit-inner-spin-button,\ninput[type=number][data-v-2d1526bb]::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.error[data-v-d63ad802] {\n    position: relative;\n    font-size: 0.75rem;\n    margin-bottom: 5px;\n    color: #ec250d;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2651,6 +2765,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InvoiceComponent_vue_vue_type_style_index_0_id_2d1526bb_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_style_index_0_id_d63ad802_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_style_index_0_id_d63ad802_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_style_index_0_id_d63ad802_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
@@ -3013,6 +3157,47 @@ component.options.__file = "resources/js/components/InvoiceComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/validation-error.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/validation-error.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation-error.vue?vue&type=template&id=d63ad802&scoped=true& */ "./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true&");
+/* harmony import */ var _validation_error_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validation-error.vue?vue&type=script&lang=js& */ "./resources/js/components/validation-error.vue?vue&type=script&lang=js&");
+/* harmony import */ var _validation_error_vue_vue_type_style_index_0_id_d63ad802_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& */ "./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _validation_error_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "d63ad802",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/validation-error.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -3045,6 +3230,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/validation-error.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/validation-error.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./validation-error.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/InvoiceComponent.vue?vue&type=style&index=0&id=2d1526bb&scoped=true&lang=css&":
 /*!***************************************************************************************************************!*\
   !*** ./resources/js/components/InvoiceComponent.vue?vue&type=style&index=0&id=2d1526bb&scoped=true&lang=css& ***!
@@ -3054,6 +3255,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_InvoiceComponent_vue_vue_type_style_index_0_id_2d1526bb_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InvoiceComponent.vue?vue&type=style&index=0&id=2d1526bb&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InvoiceComponent.vue?vue&type=style&index=0&id=2d1526bb&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_style_index_0_id_d63ad802_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=style&index=0&id=d63ad802&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -3088,6 +3302,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InvoiceComponent_vue_vue_type_template_id_2d1526bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InvoiceComponent_vue_vue_type_template_id_2d1526bb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./InvoiceComponent.vue?vue&type=template&id=2d1526bb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InvoiceComponent.vue?vue&type=template&id=2d1526bb&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true& ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./validation-error.vue?vue&type=template&id=d63ad802&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true&");
 
 
 /***/ }),
@@ -3165,122 +3396,152 @@ var render = function() {
         _vm._v(" "),
         _c(
           "form",
-          { attrs: { method: "post", action: "", autocomplete: "off" } },
+          {
+            attrs: { method: "post", autocomplete: "off" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.submit()
+              }
+            }
+          },
           [
             _c("div", { staticClass: "card-body " }, [
               _c(
                 "div",
                 { staticClass: "row align-items-center justify-content-end" },
                 [
-                  _c("div", { staticClass: "form-group col-lg-9" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "btn-group-toggle" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "rounded-0 btn btn-sm btn-success btn-simple",
-                          class:
-                            _vm.form.invoiceType == "monthly" ? "active" : ""
-                        },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.invoiceType,
-                                expression: "form.invoiceType"
-                              }
-                            ],
-                            staticClass: "form-check-input",
-                            attrs: { type: "radio", value: "monthly" },
-                            domProps: {
-                              checked: _vm._q(_vm.form.invoiceType, "monthly")
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.$set(
-                                  _vm.form,
-                                  "invoiceType",
-                                  "monthly"
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(
-                            "\n                                    Monthly Basis\n                                "
-                          )
-                        ]
-                      ),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-lg-9" },
+                    [
+                      _vm._m(0),
                       _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "rounded-0 btn btn-sm btn-success btn-simple",
-                          class: _vm.form.invoiceType == "daily" ? "active" : ""
-                        },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.invoiceType,
-                                expression: "form.invoiceType"
-                              }
-                            ],
-                            staticClass: "form-check-input",
-                            attrs: { type: "radio", value: "daily" },
-                            domProps: {
-                              checked: _vm._q(_vm.form.invoiceType, "daily")
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.$set(
-                                  _vm.form,
-                                  "invoiceType",
-                                  "daily"
+                      _c("validation-error", {
+                        attrs: { errors: _vm.errors.invoice_type }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "btn-group-toggle" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "rounded-0 btn btn-sm btn-success btn-simple",
+                            class:
+                              _vm.form.invoice_type == "Monthly" ? "active" : ""
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.invoice_type,
+                                  expression: "form.invoice_type"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "radio", value: "Monthly" },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.form.invoice_type,
+                                  "Monthly"
                                 )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.form,
+                                    "invoice_type",
+                                    "Monthly"
+                                  )
+                                }
                               }
-                            }
-                          }),
-                          _vm._v(
-                            "\n                                    Daily Basis\n                                "
-                          )
-                        ]
-                      )
-                    ])
-                  ]),
+                            }),
+                            _vm._v(
+                              "\n                                        Monthly Basis\n                                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "rounded-0 btn btn-sm btn-success btn-simple",
+                            class:
+                              _vm.form.invoice_type == "Daily" ? "active" : ""
+                          },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.invoice_type,
+                                  expression: "form.invoice_type"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "radio", value: "Daily" },
+                              domProps: {
+                                checked: _vm._q(_vm.form.invoice_type, "Daily")
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.form,
+                                    "invoice_type",
+                                    "Daily"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(
+                              "\n                                        Daily Basis\n                                    "
+                            )
+                          ]
+                        )
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-lg-3" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.myDate,
-                          expression: "myDate"
-                        }
-                      ],
-                      staticClass:
-                        " form-control form-control-sm rounded-0 bg-neutral text-center text-dark",
-                      attrs: { type: "date", name: "date" },
-                      domProps: { value: _vm.myDate },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-lg-3" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("validation-error", {
+                        attrs: { errors: _vm.errors.date }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.date,
+                            expression: "form.date"
                           }
-                          _vm.myDate = $event.target.value
+                        ],
+                        staticClass:
+                          " form-control form-control-sm rounded-0 bg-neutral text-center text-dark",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.form.date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "date", $event.target.value)
+                          }
                         }
-                      }
-                    })
-                  ]),
+                      })
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-lg-6" }, [
                     _c("label", { staticClass: "col-lg-12" }, [
@@ -3288,7 +3549,71 @@ var render = function() {
                       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _c(
+                      "div",
+                      [
+                        _c("validation-error", {
+                          staticClass: "col-lg-6",
+                          attrs: { errors: _vm.errors.to }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.client_id,
+                            expression: "form.client_id"
+                          }
+                        ],
+                        staticClass:
+                          "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "client_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "option",
+                          { attrs: { selected: "", value: "", disabled: "" } },
+                          [_vm._v("Select....")]
+                        ),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("None")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.Clients, function(client, index) {
+                          return _c(
+                            "option",
+                            { domProps: { value: client.id } },
+                            [_vm._v(_vm._s(client.client_name))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -3306,7 +3631,71 @@ var render = function() {
                       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c(
+                      "div",
+                      [
+                        _c("validation-error", {
+                          staticClass: "col-lg-12",
+                          attrs: { errors: _vm.errors.from }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.company_id,
+                            expression: "form.company_id"
+                          }
+                        ],
+                        staticClass:
+                          "custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "company_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "option",
+                          { attrs: { selected: "", value: "", disabled: "" } },
+                          [_vm._v("Select...")]
+                        ),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("None")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.Companies, function(company, index) {
+                          return _c(
+                            "option",
+                            { domProps: { value: company.id } },
+                            [_vm._v(_vm._s(company.company_name))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -3318,32 +3707,141 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-lg-6" }, [
-                    _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("DRIVER") + " "),
-                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "rounded-0 btn btn-sm btn-success btn-simple"
-                      },
-                      [_vm._v(_vm._s("Add a Driver"))]
-                    )
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-lg-6" },
+                    [
+                      _c("label", { staticClass: "col-lg-12" }, [
+                        _vm._v(_vm._s("DRIVER") + " "),
+                        _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("*")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("validation-error", {
+                        staticClass: "col-lg-12",
+                        attrs: { errors: _vm.errors.driver_id }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.driver_id,
+                              expression: "form.driver_id"
+                            }
+                          ],
+                          staticClass:
+                            "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "driver_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { selected: "", value: "", disabled: "" }
+                            },
+                            [_vm._v("Select...")]
+                          ),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("None")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.Drivers, function(driver, index) {
+                            return _c(
+                              "option",
+                              { domProps: { value: driver.id } },
+                              [_vm._v(_vm._s(driver.name))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "rounded-0 btn btn-sm btn-success btn-simple"
+                        },
+                        [_vm._v(_vm._s("Add a Driver"))]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-lg-6" }, [
-                    _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("Car Name and Reg. No:") + " "),
-                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(5)
-                  ])
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-lg-6" },
+                    [
+                      _c("label", { staticClass: "col-lg-12" }, [
+                        _vm._v(_vm._s("Car Name and Reg. No:") + " "),
+                        _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("*")
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("validation-error", {
+                        staticClass: "col-lg-12",
+                        attrs: { errors: _vm.errors.car_details }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "pl-0 col-lg-12" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.car_details,
+                              expression: "form.car_details"
+                            }
+                          ],
+                          staticClass:
+                            "form-control rounded-0 form-control-sm bg-neutral text-dark",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Car Name and Reg. No:"
+                          },
+                          domProps: { value: _vm.form.car_details },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "car_details",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ],
+                    1
+                  )
                 ]
               ),
               _vm._v(" "),
@@ -3354,11 +3852,11 @@ var render = function() {
                     "border-neutral table-responsive-xl table-bordered bg-default table pt-2"
                 },
                 [
-                  _vm._m(6),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.items, function(item, index) {
+                    _vm._l(_vm.form.items, function(item, index) {
                       return _c("tr", [
                         _c("td", [_vm._v(_vm._s(index + 1))]),
                         _vm._v(" "),
@@ -3376,9 +3874,7 @@ var render = function() {
                               "border bg-neutral text-dark rounded-0 form-control",
                             attrs: {
                               type: "text",
-                              name: "description",
-                              placeholder: "Enter Description",
-                              value: ""
+                              placeholder: "Enter Description"
                             },
                             domProps: { value: item.description },
                             on: {
@@ -3411,7 +3907,6 @@ var render = function() {
                             attrs: {
                               type: "number",
                               step: "any",
-                              name: "quantity",
                               placeholder: "Quantity"
                             },
                             domProps: { value: item.quantity },
@@ -3449,7 +3944,6 @@ var render = function() {
                               ],
                               staticClass:
                                 "custom-select text-dark bg-neutral border rounded-0",
-                              attrs: { name: "unit" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -3520,7 +4014,6 @@ var render = function() {
                             attrs: {
                               type: "number",
                               step: "any",
-                              name: "rate",
                               placeholder: "Rate"
                             },
                             domProps: { value: item.rate },
@@ -3547,7 +4040,6 @@ var render = function() {
                             attrs: {
                               type: "number",
                               step: "any",
-                              name: "amount",
                               placeholder: "Total",
                               readonly: ""
                             },
@@ -3584,7 +4076,6 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      $event.preventDefault()
                                       return _vm.removeRow(index)
                                     }
                                   }
@@ -3613,7 +4104,7 @@ var render = function() {
                               {
                                 staticClass:
                                   "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.form.taxChkBox ? "active " : ""
+                                class: _vm.taxChkBox ? "active " : ""
                               },
                               [
                                 _c("input", {
@@ -3621,20 +4112,20 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.taxChkBox,
-                                      expression: "form.taxChkBox"
+                                      value: _vm.taxChkBox,
+                                      expression: "taxChkBox"
                                     }
                                   ],
                                   attrs: { type: "checkbox" },
                                   domProps: {
-                                    checked: Array.isArray(_vm.form.taxChkBox)
-                                      ? _vm._i(_vm.form.taxChkBox, null) > -1
-                                      : _vm.form.taxChkBox
+                                    checked: Array.isArray(_vm.taxChkBox)
+                                      ? _vm._i(_vm.taxChkBox, null) > -1
+                                      : _vm.taxChkBox
                                   },
                                   on: {
                                     change: [
                                       function($event) {
-                                        var $$a = _vm.form.taxChkBox,
+                                        var $$a = _vm.taxChkBox,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -3642,23 +4133,17 @@ var render = function() {
                                             $$i = _vm._i($$a, $$v)
                                           if ($$el.checked) {
                                             $$i < 0 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "taxChkBox",
-                                                $$a.concat([$$v])
-                                              )
+                                              (_vm.taxChkBox = $$a.concat([
+                                                $$v
+                                              ]))
                                           } else {
                                             $$i > -1 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "taxChkBox",
-                                                $$a
-                                                  .slice(0, $$i)
-                                                  .concat($$a.slice($$i + 1))
-                                              )
+                                              (_vm.taxChkBox = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
                                           }
                                         } else {
-                                          _vm.$set(_vm.form, "taxChkBox", $$c)
+                                          _vm.taxChkBox = $$c
                                         }
                                       },
                                       function($event) {
@@ -3668,7 +4153,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(
-                                  "\n                                        + TAX\n                                    "
+                                  "\n                                            + TAX\n                                        "
                                 )
                               ]
                             ),
@@ -3678,7 +4163,7 @@ var render = function() {
                               {
                                 staticClass:
                                   "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.form.vatChkBox ? "active " : ""
+                                class: _vm.vatChkBox ? "active " : ""
                               },
                               [
                                 _c("input", {
@@ -3686,20 +4171,20 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.vatChkBox,
-                                      expression: "form.vatChkBox"
+                                      value: _vm.vatChkBox,
+                                      expression: "vatChkBox"
                                     }
                                   ],
                                   attrs: { type: "checkbox" },
                                   domProps: {
-                                    checked: Array.isArray(_vm.form.vatChkBox)
-                                      ? _vm._i(_vm.form.vatChkBox, null) > -1
-                                      : _vm.form.vatChkBox
+                                    checked: Array.isArray(_vm.vatChkBox)
+                                      ? _vm._i(_vm.vatChkBox, null) > -1
+                                      : _vm.vatChkBox
                                   },
                                   on: {
                                     change: [
                                       function($event) {
-                                        var $$a = _vm.form.vatChkBox,
+                                        var $$a = _vm.vatChkBox,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -3707,23 +4192,17 @@ var render = function() {
                                             $$i = _vm._i($$a, $$v)
                                           if ($$el.checked) {
                                             $$i < 0 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "vatChkBox",
-                                                $$a.concat([$$v])
-                                              )
+                                              (_vm.vatChkBox = $$a.concat([
+                                                $$v
+                                              ]))
                                           } else {
                                             $$i > -1 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "vatChkBox",
-                                                $$a
-                                                  .slice(0, $$i)
-                                                  .concat($$a.slice($$i + 1))
-                                              )
+                                              (_vm.vatChkBox = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
                                           }
                                         } else {
-                                          _vm.$set(_vm.form, "vatChkBox", $$c)
+                                          _vm.vatChkBox = $$c
                                         }
                                       },
                                       function($event) {
@@ -3733,7 +4212,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(
-                                  "\n                                        + VAT\n                                    "
+                                  "\n                                            + VAT\n                                        "
                                 )
                               ]
                             ),
@@ -3743,7 +4222,7 @@ var render = function() {
                               {
                                 staticClass:
                                   "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.form.discountChkBox ? "active " : ""
+                                class: _vm.discountChkBox ? "active " : ""
                               },
                               [
                                 _c("input", {
@@ -3751,23 +4230,20 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.discountChkBox,
-                                      expression: "form.discountChkBox"
+                                      value: _vm.discountChkBox,
+                                      expression: "discountChkBox"
                                     }
                                   ],
                                   attrs: { type: "checkbox" },
                                   domProps: {
-                                    checked: Array.isArray(
-                                      _vm.form.discountChkBox
-                                    )
-                                      ? _vm._i(_vm.form.discountChkBox, null) >
-                                        -1
-                                      : _vm.form.discountChkBox
+                                    checked: Array.isArray(_vm.discountChkBox)
+                                      ? _vm._i(_vm.discountChkBox, null) > -1
+                                      : _vm.discountChkBox
                                   },
                                   on: {
                                     change: [
                                       function($event) {
-                                        var $$a = _vm.form.discountChkBox,
+                                        var $$a = _vm.discountChkBox,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -3775,27 +4251,17 @@ var render = function() {
                                             $$i = _vm._i($$a, $$v)
                                           if ($$el.checked) {
                                             $$i < 0 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "discountChkBox",
-                                                $$a.concat([$$v])
-                                              )
+                                              (_vm.discountChkBox = $$a.concat([
+                                                $$v
+                                              ]))
                                           } else {
                                             $$i > -1 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "discountChkBox",
-                                                $$a
-                                                  .slice(0, $$i)
-                                                  .concat($$a.slice($$i + 1))
-                                              )
+                                              (_vm.discountChkBox = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
                                           }
                                         } else {
-                                          _vm.$set(
-                                            _vm.form,
-                                            "discountChkBox",
-                                            $$c
-                                          )
+                                          _vm.discountChkBox = $$c
                                         }
                                       },
                                       function($event) {
@@ -3805,7 +4271,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(
-                                  "\n                                        Discount\n                                    "
+                                  "\n                                            Discount\n                                        "
                                 )
                               ]
                             ),
@@ -3815,7 +4281,7 @@ var render = function() {
                               {
                                 staticClass:
                                   "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.form.paidChkBox ? "active " : ""
+                                class: _vm.paidChkBox ? "active " : ""
                               },
                               [
                                 _c("input", {
@@ -3823,20 +4289,20 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.paidChkBox,
-                                      expression: "form.paidChkBox"
+                                      value: _vm.paidChkBox,
+                                      expression: "paidChkBox"
                                     }
                                   ],
                                   attrs: { type: "checkbox" },
                                   domProps: {
-                                    checked: Array.isArray(_vm.form.paidChkBox)
-                                      ? _vm._i(_vm.form.paidChkBox, null) > -1
-                                      : _vm.form.paidChkBox
+                                    checked: Array.isArray(_vm.paidChkBox)
+                                      ? _vm._i(_vm.paidChkBox, null) > -1
+                                      : _vm.paidChkBox
                                   },
                                   on: {
                                     change: [
                                       function($event) {
-                                        var $$a = _vm.form.paidChkBox,
+                                        var $$a = _vm.paidChkBox,
                                           $$el = $event.target,
                                           $$c = $$el.checked ? true : false
                                         if (Array.isArray($$a)) {
@@ -3844,23 +4310,17 @@ var render = function() {
                                             $$i = _vm._i($$a, $$v)
                                           if ($$el.checked) {
                                             $$i < 0 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "paidChkBox",
-                                                $$a.concat([$$v])
-                                              )
+                                              (_vm.paidChkBox = $$a.concat([
+                                                $$v
+                                              ]))
                                           } else {
                                             $$i > -1 &&
-                                              _vm.$set(
-                                                _vm.form,
-                                                "paidChkBox",
-                                                $$a
-                                                  .slice(0, $$i)
-                                                  .concat($$a.slice($$i + 1))
-                                              )
+                                              (_vm.paidChkBox = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
                                           }
                                         } else {
-                                          _vm.$set(_vm.form, "paidChkBox", $$c)
+                                          _vm.paidChkBox = $$c
                                         }
                                       },
                                       function($event) {
@@ -3870,7 +4330,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(
-                                  "\n                                        Paid\n                                    "
+                                  "\n                                            Paid\n                                        "
                                 )
                               ]
                             )
@@ -3891,16 +4351,15 @@ var render = function() {
                           attrs: {
                             type: "number",
                             step: "any",
-                            name: "sub-total",
                             placeholder: "Sub-Total",
                             readonly: ""
                           },
-                          domProps: { value: _vm.form.subTotal }
+                          domProps: { value: _vm.form.sub_total }
                         })
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm.form.taxChkBox
+                    _vm.taxChkBox
                       ? _c("tr", [
                           _c(
                             "td",
@@ -3924,18 +4383,14 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.taxIn,
-                                      expression: "form.taxIn"
+                                      value: _vm.form.tax,
+                                      expression: "form.tax"
                                     }
                                   ],
                                   staticClass:
                                     "border text-center text-dark bg-neutral text-dark rounded-0 form-control",
-                                  attrs: {
-                                    type: "number",
-                                    step: "any",
-                                    name: "taxIn"
-                                  },
-                                  domProps: { value: _vm.form.taxIn },
+                                  attrs: { type: "number", step: "any" },
+                                  domProps: { value: _vm.form.tax },
                                   on: {
                                     input: [
                                       function($event) {
@@ -3944,7 +4399,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "taxIn",
+                                          "tax",
                                           $event.target.value
                                         )
                                       },
@@ -3955,7 +4410,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(7)
+                                _vm._m(3)
                               ]
                             )
                           ]),
@@ -3970,13 +4425,13 @@ var render = function() {
                                 placeholder: "TAX",
                                 readonly: ""
                               },
-                              domProps: { value: _vm.form.taxOut }
+                              domProps: { value: _vm.taxOut }
                             })
                           ])
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.form.vatChkBox
+                    _vm.vatChkBox
                       ? _c("tr", [
                           _c(
                             "td",
@@ -4000,18 +4455,14 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.form.vatIn,
-                                      expression: "form.vatIn"
+                                      value: _vm.form.vat,
+                                      expression: "form.vat"
                                     }
                                   ],
                                   staticClass:
                                     "border text-center text-dark bg-neutral text-dark rounded-0 form-control",
-                                  attrs: {
-                                    type: "number",
-                                    name: "vatIn",
-                                    step: "any"
-                                  },
-                                  domProps: { value: _vm.form.vatIn },
+                                  attrs: { type: "number", step: "any" },
+                                  domProps: { value: _vm.form.vat },
                                   on: {
                                     input: [
                                       function($event) {
@@ -4020,7 +4471,7 @@ var render = function() {
                                         }
                                         _vm.$set(
                                           _vm.form,
-                                          "vatIn",
+                                          "vat",
                                           $event.target.value
                                         )
                                       },
@@ -4031,7 +4482,7 @@ var render = function() {
                                   }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(8)
+                                _vm._m(4)
                               ]
                             )
                           ]),
@@ -4046,7 +4497,7 @@ var render = function() {
                                 placeholder: "VAT",
                                 readonly: ""
                               },
-                              domProps: { value: _vm.form.vatOut }
+                              domProps: { value: _vm.vatOut }
                             })
                           ])
                         ])
@@ -4065,8 +4516,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.netAmount,
-                              expression: "form.netAmount"
+                              value: _vm.form.net_amount,
+                              expression: "form.net_amount"
                             }
                           ],
                           staticClass:
@@ -4074,11 +4525,10 @@ var render = function() {
                           attrs: {
                             type: "number",
                             step: "any",
-                            name: "total",
                             placeholder: "Net Amount",
                             readonly: ""
                           },
-                          domProps: { value: _vm.form.netAmount },
+                          domProps: { value: _vm.form.net_amount },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -4086,7 +4536,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.form,
-                                "netAmount",
+                                "net_amount",
                                 $event.target.value
                               )
                             }
@@ -4095,7 +4545,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm.form.discountChkBox
+                    _vm.discountChkBox
                       ? _c("tr", [
                           _c(
                             "td",
@@ -4121,7 +4571,6 @@ var render = function() {
                               attrs: {
                                 type: "number",
                                 step: "any",
-                                name: "discount",
                                 placeholder: "Discount"
                               },
                               domProps: { value: _vm.form.discount },
@@ -4147,7 +4596,7 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.form.paidChkBox
+                    _vm.paidChkBox
                       ? _c("tr", [
                           _c(
                             "td",
@@ -4164,8 +4613,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.paid,
-                                  expression: "form.paid"
+                                  value: _vm.form.advance_paid,
+                                  expression: "form.advance_paid"
                                 }
                               ],
                               staticClass:
@@ -4173,10 +4622,9 @@ var render = function() {
                               attrs: {
                                 type: "number",
                                 step: "any",
-                                name: "paid",
                                 placeholder: "Paid Amount"
                               },
-                              domProps: { value: _vm.form.paid },
+                              domProps: { value: _vm.form.advance_paid },
                               on: {
                                 input: [
                                   function($event) {
@@ -4185,7 +4633,7 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "paid",
+                                      "advance_paid",
                                       $event.target.value
                                     )
                                   },
@@ -4199,7 +4647,7 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.form.discountChkBox || _vm.form.paidChkBox
+                    _vm.discountChkBox || _vm.paidChkBox
                       ? _c("tr", [
                           _c(
                             "td",
@@ -4217,11 +4665,10 @@ var render = function() {
                               attrs: {
                                 type: "number",
                                 step: "any",
-                                name: "payable",
                                 placeholder: "Payable",
                                 readonly: ""
                               },
-                              domProps: { value: _vm.form.payable }
+                              domProps: { value: _vm.payable }
                             })
                           ])
                         ])
@@ -4231,14 +4678,20 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
+            _c("div", { staticClass: "card-footer text-center" }, [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-fill btn-primary",
+                  staticClass: "btn btn-fill btn-success rounded-0",
                   attrs: { type: "submit" }
                 },
-                [_vm._v(_vm._s("Save"))]
+                [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s("Save") +
+                      "\n                        "
+                  )
+                ]
               )
             ])
           ]
@@ -4264,80 +4717,6 @@ var staticRenderFns = [
     return _c("h6", { staticClass: "h6" }, [
       _vm._v("Date "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass:
-          "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8"
-      },
-      [
-        _c("option", { attrs: { selected: "" } }, [
-          _vm._v("Open this select menu")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("One")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass:
-          "custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8"
-      },
-      [
-        _c("option", { attrs: { selected: "" } }, [
-          _vm._v("Open this select menu")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("One")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass:
-          "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8"
-      },
-      [
-        _c("option", { attrs: { selected: "" } }, [
-          _vm._v("Open this select menu")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("One")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pl-0 col-lg-12" }, [
-      _c("input", {
-        staticClass:
-          "form-control rounded-0 form-control-sm bg-neutral text-dark",
-        attrs: {
-          type: "text",
-          name: "name",
-          placeholder: "Car Name and Reg. No:",
-          value: ""
-        }
-      })
     ])
   },
   function() {
@@ -4440,6 +4819,38 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.errors && _vm.errors.length
+    ? _c("span", [
+        _c("small", {
+          staticClass: "error",
+          domProps: { textContent: _vm._s("*" + _vm.errors[0]) }
+        })
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

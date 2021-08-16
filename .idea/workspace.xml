@@ -26,9 +26,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-4 Create invoice structure, CRUD and  input fields with items associated on front-end (Vue)">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CompanyController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/validation-error.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DriverController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Client.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Company.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Company.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Driver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Driver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Invoice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Item.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_12_060546_create_invoices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060546_create_invoices_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_12_060623_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_12_060623_create_items_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/InvoiceComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoices/new-invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/new-invoice.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +198,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -228,7 +245,21 @@
       <workItem from="1628260934922" duration="742000" />
       <workItem from="1628261738805" duration="9284000" />
       <workItem from="1628355923946" duration="66000" />
-      <workItem from="1628362890879" duration="1442000" />
+      <workItem from="1628362890879" duration="5498000" />
+      <workItem from="1628400397845" duration="10194000" />
+      <workItem from="1628440149839" duration="190000" />
+      <workItem from="1628528547224" duration="5262000" />
+      <workItem from="1628536817600" duration="118000" />
+      <workItem from="1628571615869" duration="5763000" />
+      <workItem from="1628595931979" duration="5021000" />
+      <workItem from="1628618549315" duration="9816000" />
+      <workItem from="1628954489700" duration="598000" />
+      <workItem from="1628964438311" duration="6216000" />
+      <workItem from="1629010875930" duration="425000" />
+      <workItem from="1629031969343" duration="7609000" />
+      <workItem from="1629045338333" duration="124000" />
+      <workItem from="1629136564551" duration="3151000" />
+      <workItem from="1629139792864" duration="4934000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1625931448484</created>
@@ -286,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628188158015</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)">
+      <created>1628366035023</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1628366035023</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,6 +389,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1628009373525" />
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1628409455913">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1628409455913" />
     <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1628188171060">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -359,5 +401,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="492" y="283" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1627742723177" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1629033369608">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1629033369608" />
   </component>
 </project>

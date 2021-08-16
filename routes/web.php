@@ -33,6 +33,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+//    API
+
+    Route::get('driversApi', [\App\Http\Controllers\DriverController::class, 'indexApi']);
+
 //    Resources
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('drivers', 'App\Http\Controllers\DriverController');

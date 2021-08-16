@@ -17,17 +17,25 @@ class CreateInvoicesTable extends Migration
 
 
             $table->id();
-            $table->uuid('invoice_number');
+            $table->string('invoice_number')->unique()->nullable();
+            $table->uuid('invoice_signature')->unique()->nullable();
+            $table->string('invoice_type');
             $table->unsignedBigInteger('user_id');
-            $table->string('subject')->nullable();
-            $table->string('car_details')->nullable();
             $table->unsignedBigInteger('driver_id')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->unsignedBigInteger('client_id')->nullable();
+            $table->string('subject');
+            $table->string('car_details')->nullable();
             $table->float('tax')->nullable();
             $table->float('vat')->nullable();
+            $table->double('sub_total');
+            $table->double('net_amount');
+            $table->double('discount')->nullable();
+            $table->double('advance_paid')->nullable();
             $table->date('date');
             $table->timestamps();
 
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('driver_id')->references('id')->on('drivers');
             $table->foreign('user_id')->references('id')->on('users');
