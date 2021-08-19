@@ -24,11 +24,11 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
-  'laravel-frontend-presets/black-dashboard' => 
+  'laravel-frontend-presets/argon' => 
   array (
     'providers' => 
     array (
-      0 => 'LaravelFrontendPresets\\BlackPreset\\BlackPresetServiceProvider',
+      0 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
     ),
   ),
   'laravel/legacy-factories' => 

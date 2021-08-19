@@ -133,7 +133,8 @@ class InvoiceController extends Controller
         }
 
 
-        return $invoice->load('items', 'driver', 'client', 'company', 'user');
+        return response()->json($invoice->invoice_number,200);
+//        return redirect()->route('invoices.show', $invoice->invoice_number);
 
     }
 
@@ -143,9 +144,10 @@ class InvoiceController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($invoice_number)
     {
-        //
+        $invoice = Invoice::where('invoice_number', $invoice_number)->firstOrFail();
+        return view('invoices.show-invoice', compact($invoice->load('items', 'driver', 'client', 'company', 'user')));
     }
 
     /**
@@ -204,7 +206,7 @@ class InvoiceController extends Controller
             }
         }
 
-        return'#' . ($company_slug ? $company_slug : '0') . $date_slug . ($client_slug ? $client_slug: '0') . $id;
+        return ($company_slug ? $company_slug : '0') . $date_slug . ($client_slug ? $client_slug: '0') . $id;
     }
 
 }

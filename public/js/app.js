@@ -2227,6 +2227,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
@@ -2249,9 +2256,9 @@ __webpack_require__.r(__webpack_exports__);
         advance_paid: 0,
         invoice_type: null,
         car_details: null,
-        client_id: null,
-        company_id: null,
-        driver_id: null,
+        client_id: '',
+        company_id: '',
+        driver_id: '',
         items: [{
           description: null,
           quantity: null,
@@ -2276,7 +2283,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.post("/invoices", this.form).then(function (res) {
-        console.log(res);
+        // console.log(res.data);
+        window.location.href = '/invoices/' + res.data;
       })["catch"](function (e) {
         _this.errors = e.response.data.errors;
       });
@@ -3387,341 +3395,182 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center " }, [
-    _c("div", { staticClass: "col-lg-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("h5", { staticClass: "title" }, [_vm._v(_vm._s("ADD New Driver"))])
-        ]),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            attrs: { method: "post", autocomplete: "off" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.submit()
+  return _c("div", { staticClass: "container-fluid mt--7" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card shadow bg-lighter" }, [
+          _c(
+            "form",
+            {
+              attrs: { method: "post", autocomplete: "off" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submit()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "card-body " }, [
-              _c(
-                "div",
-                { staticClass: "row align-items-center justify-content-end" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-lg-9" },
-                    [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("validation-error", {
-                        attrs: { errors: _vm.errors.invoice_type }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "btn-group-toggle" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "rounded-0 btn btn-sm btn-success btn-simple",
-                            class:
-                              _vm.form.invoice_type == "Monthly" ? "active" : ""
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.invoice_type,
-                                  expression: "form.invoice_type"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: { type: "radio", value: "Monthly" },
-                              domProps: {
-                                checked: _vm._q(
-                                  _vm.form.invoice_type,
-                                  "Monthly"
-                                )
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.form,
-                                    "invoice_type",
+            },
+            [
+              _c("div", { staticClass: "card-body " }, [
+                _c(
+                  "div",
+                  { staticClass: "row align-items-center justify-content-end" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-9" },
+                      [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("validation-error", {
+                          attrs: { errors: _vm.errors.invoice_type }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "btn-group-toggle" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "rounded-0 btn btn-sm btn-outline-primary",
+                              class:
+                                _vm.form.invoice_type == "Monthly"
+                                  ? "active"
+                                  : ""
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.invoice_type,
+                                    expression: "form.invoice_type"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: { type: "radio", value: "Monthly" },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.form.invoice_type,
                                     "Monthly"
                                   )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      "invoice_type",
+                                      "Monthly"
+                                    )
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(
-                              "\n                                        Monthly Basis\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass:
-                              "rounded-0 btn btn-sm btn-success btn-simple",
-                            class:
-                              _vm.form.invoice_type == "Daily" ? "active" : ""
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.invoice_type,
-                                  expression: "form.invoice_type"
-                                }
-                              ],
-                              staticClass: "form-check-input",
-                              attrs: { type: "radio", value: "Daily" },
-                              domProps: {
-                                checked: _vm._q(_vm.form.invoice_type, "Daily")
-                              },
-                              on: {
-                                change: function($event) {
-                                  return _vm.$set(
-                                    _vm.form,
-                                    "invoice_type",
+                              }),
+                              _vm._v(
+                                "\n                                        Monthly Basis\n                                    "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "rounded-0 btn btn-sm btn-outline-primary",
+                              class:
+                                _vm.form.invoice_type == "Daily" ? "active" : ""
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.invoice_type,
+                                    expression: "form.invoice_type"
+                                  }
+                                ],
+                                staticClass: "form-check-input",
+                                attrs: { type: "radio", value: "Daily" },
+                                domProps: {
+                                  checked: _vm._q(
+                                    _vm.form.invoice_type,
                                     "Daily"
                                   )
+                                },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      "invoice_type",
+                                      "Daily"
+                                    )
+                                  }
                                 }
-                              }
-                            }),
-                            _vm._v(
-                              "\n                                        Daily Basis\n                                    "
-                            )
-                          ]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-lg-3" },
-                    [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c("validation-error", {
-                        attrs: { errors: _vm.errors.date }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.date,
-                            expression: "form.date"
-                          }
-                        ],
-                        staticClass:
-                          " form-control form-control-sm rounded-0 bg-neutral text-center text-dark",
-                        attrs: { type: "date" },
-                        domProps: { value: _vm.form.date },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                              }),
+                              _vm._v(
+                                "\n                                        Daily Basis\n                                    "
+                              )
+                            ]
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-3" },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("validation-error", {
+                          attrs: { errors: _vm.errors.date }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.date,
+                              expression: "form.date"
                             }
-                            _vm.$set(_vm.form, "date", $event.target.value)
+                          ],
+                          staticClass:
+                            " form-control form-control-sm rounded-0 text-center text-dark",
+                          attrs: { type: "date" },
+                          domProps: { value: _vm.form.date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "date", $event.target.value)
+                            }
                           }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-lg-6" }, [
-                    _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("TO") + " "),
-                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      [
-                        _c("validation-error", {
-                          staticClass: "col-lg-6",
-                          attrs: { errors: _vm.errors.to }
                         })
                       ],
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.client_id,
-                            expression: "form.client_id"
-                          }
-                        ],
-                        staticClass:
-                          "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "client_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "option",
-                          { attrs: { selected: "", value: "", disabled: "" } },
-                          [_vm._v("Select....")]
-                        ),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("None")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.Clients, function(client, index) {
-                          return _c(
-                            "option",
-                            { domProps: { value: client.id } },
-                            [_vm._v(_vm._s(client.client_name))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "rounded-0 btn btn-sm btn-success btn-simple"
-                      },
-                      [_vm._v(_vm._s("Add a client"))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group ml-auto col-lg-6" }, [
-                    _c("label", { staticClass: "col-lg-12" }, [
-                      _vm._v(_vm._s("From") + " "),
-                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      [
-                        _c("validation-error", {
-                          staticClass: "col-lg-12",
-                          attrs: { errors: _vm.errors.from }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.company_id,
-                            expression: "form.company_id"
-                          }
-                        ],
-                        staticClass:
-                          "custom-select rounded-0 custom-select-sm bg-neutral text-dark col-lg-8",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "company_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "option",
-                          { attrs: { selected: "", value: "", disabled: "" } },
-                          [_vm._v("Select...")]
-                        ),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("None")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.Companies, function(company, index) {
-                          return _c(
-                            "option",
-                            { domProps: { value: company.id } },
-                            [_vm._v(_vm._s(company.company_name))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "rounded-0 btn btn-sm btn-success btn-simple"
-                      },
-                      [_vm._v(_vm._s("Add a Company"))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-lg-6" },
-                    [
+                    _c("div", { staticClass: "form-group col-lg-6" }, [
                       _c("label", { staticClass: "col-lg-12" }, [
-                        _vm._v(_vm._s("DRIVER") + " "),
+                        _vm._v(_vm._s("TO") + " "),
                         _c("span", { staticClass: "text-danger" }, [
                           _vm._v("*")
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("validation-error", {
-                        staticClass: "col-lg-12",
-                        attrs: { errors: _vm.errors.driver_id }
-                      }),
+                      _c(
+                        "div",
+                        [
+                          _c("validation-error", {
+                            staticClass: "col-lg-6",
+                            attrs: { errors: _vm.errors.to }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -3730,12 +3579,12 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.driver_id,
-                              expression: "form.driver_id"
+                              value: _vm.form.client_id,
+                              expression: "form.client_id"
                             }
                           ],
                           staticClass:
-                            "custom-select custom-select-sm rounded-0 bg-neutral text-dark col-lg-8",
+                            "custom-select custom-select-sm rounded-0 text-dark col-lg-8",
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -3748,7 +3597,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.form,
-                                "driver_id",
+                                "client_id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -3757,23 +3606,21 @@ var render = function() {
                           }
                         },
                         [
-                          _c(
-                            "option",
-                            {
-                              attrs: { selected: "", value: "", disabled: "" }
-                            },
-                            [_vm._v("Select...")]
-                          ),
-                          _vm._v(" "),
                           _c("option", { attrs: { value: "" } }, [
                             _vm._v("None")
                           ]),
                           _vm._v(" "),
-                          _vm._l(_vm.Drivers, function(driver, index) {
+                          _vm._l(_vm.Clients, function(client, index) {
                             return _c(
                               "option",
-                              { domProps: { value: driver.id } },
-                              [_vm._v(_vm._s(driver.name))]
+                              { domProps: { value: client.id } },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(client.client_name) +
+                                    "\n                                    "
+                                )
+                              ]
                             )
                           })
                         ],
@@ -3782,920 +3629,1129 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "button",
-                        {
-                          staticClass:
-                            "rounded-0 btn btn-sm btn-success btn-simple"
-                        },
-                        [_vm._v(_vm._s("Add a Driver"))]
+                        { staticClass: "rounded-0 btn btn-sm btn-primary" },
+                        [
+                          _vm._v(
+                            _vm._s("Add a client") +
+                              "\n                                "
+                          )
+                        ]
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-lg-6" },
-                    [
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group ml-auto col-lg-6" }, [
                       _c("label", { staticClass: "col-lg-12" }, [
-                        _vm._v(_vm._s("Car Name and Reg. No:") + " "),
+                        _vm._v(_vm._s("From") + " "),
                         _c("span", { staticClass: "text-danger" }, [
                           _vm._v("*")
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("validation-error", {
-                        staticClass: "col-lg-12",
-                        attrs: { errors: _vm.errors.car_details }
-                      }),
+                      _c(
+                        "div",
+                        [
+                          _c("validation-error", {
+                            staticClass: "col-lg-12",
+                            attrs: { errors: _vm.errors.from }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "pl-0 col-lg-12" }, [
-                        _c("input", {
+                      _c(
+                        "select",
+                        {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.car_details,
-                              expression: "form.car_details"
+                              value: _vm.form.company_id,
+                              expression: "form.company_id"
                             }
                           ],
                           staticClass:
-                            "form-control rounded-0 form-control-sm bg-neutral text-dark",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Car Name and Reg. No:"
-                          },
-                          domProps: { value: _vm.form.car_details },
+                            "custom-select rounded-0 custom-select-sm text-dark col-lg-8",
                           on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
                               _vm.$set(
                                 _vm.form,
-                                "car_details",
-                                $event.target.value
+                                "company_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
                               )
                             }
                           }
-                        })
-                      ])
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "table",
-                {
-                  staticClass:
-                    "border-neutral table-responsive-xl table-bordered bg-default table pt-2"
-                },
-                [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.form.items, function(item, index) {
-                      return _c("tr", [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("None")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.Companies, function(company, index) {
+                            return _c(
+                              "option",
+                              { domProps: { value: company.id } },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(company.company_name) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        { staticClass: "rounded-0 btn btn-sm btn-primary" },
+                        [
+                          _vm._v(
+                            _vm._s("Add a Company") +
+                              "\n                                "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6" },
+                      [
+                        _c("label", { staticClass: "col-lg-12" }, [
+                          _vm._v(_vm._s("DRIVER") + " "),
+                          _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("*")
+                          ])
+                        ]),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("validation-error", {
+                          staticClass: "col-lg-12",
+                          attrs: { errors: _vm.errors.driver_id }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.driver_id,
+                                expression: "form.driver_id"
+                              }
+                            ],
+                            staticClass:
+                              "custom-select custom-select-sm rounded-0 text-dark col-lg-8",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "driver_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("None")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.Drivers, function(driver, index) {
+                              return _c(
+                                "option",
+                                { domProps: { value: driver.id } },
+                                [
+                                  _vm._v(
+                                    _vm._s(driver.name) +
+                                      "\n                                    "
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          { staticClass: "rounded-0 btn btn-sm btn-primary" },
+                          [
+                            _vm._v(
+                              _vm._s("Add a Driver") +
+                                "\n                                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-lg-6" },
+                      [
+                        _c("label", { staticClass: "col-lg-12" }, [
+                          _vm._v(_vm._s("Car Name and Reg. No:") + " "),
+                          _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("*")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("validation-error", {
+                          staticClass: "col-lg-12",
+                          attrs: { errors: _vm.errors.car_details }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "pl-0 col-lg-12" }, [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: item.description,
-                                expression: "item.description"
+                                value: _vm.form.car_details,
+                                expression: "form.car_details"
                               }
                             ],
                             staticClass:
-                              "border bg-neutral text-dark rounded-0 form-control",
+                              "form-control rounded-0 form-control-sm text-dark",
                             attrs: {
                               type: "text",
-                              placeholder: "Enter Description"
+                              placeholder: "Car Name and Reg. No:"
                             },
-                            domProps: { value: item.description },
+                            domProps: { value: _vm.form.car_details },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
                                   return
                                 }
                                 _vm.$set(
-                                  item,
-                                  "description",
+                                  _vm.form,
+                                  "car_details",
                                   $event.target.value
                                 )
                               }
                             }
                           })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: item.quantity,
-                                expression: "item.quantity"
-                              }
-                            ],
-                            staticClass:
-                              "border text-dark bg-neutral rounded-0 form-control",
-                            attrs: {
-                              type: "number",
-                              step: "any",
-                              placeholder: "Quantity"
-                            },
-                            domProps: { value: item.quantity },
-                            on: {
-                              input: [
-                                function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    item,
-                                    "quantity",
-                                    $event.target.value
-                                  )
-                                },
-                                function($event) {
-                                  return _vm.calculateAmount(index)
-                                }
-                              ]
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "select",
-                            {
+                        ])
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    staticClass: "table-responsive-xl table-bordered table pt-2"
+                  },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.form.items, function(item, index) {
+                        return _c("tr", [
+                          _c("td", { staticClass: "p-1" }, [
+                            _vm._v(_vm._s(index + 1))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "p-1" }, [
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: item.unit,
-                                  expression: "item.unit"
+                                  value: item.description,
+                                  expression: "item.description"
                                 }
                               ],
                               staticClass:
-                                "custom-select text-dark bg-neutral border rounded-0",
+                                "border text-dark rounded-0 form-control form-control-sm",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Enter Description"
+                              },
+                              domProps: { value: item.description },
                               on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.$set(
-                                    item,
-                                    "unit",
-                                    $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "option",
-                                { attrs: { value: "", selected: "" } },
-                                [_vm._v("None")]
-                              ),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Year" } }, [
-                                _vm._v("Year")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Month" } }, [
-                                _vm._v("Month")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Day" } }, [
-                                _vm._v("Day")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Night" } }, [
-                                _vm._v("Night")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "KM" } }, [
-                                _vm._v("KM")
-                              ]),
-                              _vm._v(" "),
-                              _c("option", { attrs: { value: "Piece" } }, [
-                                _vm._v("Pcs.")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: item.rate,
-                                expression: "item.rate"
-                              }
-                            ],
-                            staticClass:
-                              "border text-dark bg-neutral rounded-0 form-control",
-                            attrs: {
-                              type: "number",
-                              step: "any",
-                              placeholder: "Rate"
-                            },
-                            domProps: { value: item.rate },
-                            on: {
-                              input: [
-                                function($event) {
+                                input: function($event) {
                                   if ($event.target.composing) {
                                     return
                                   }
-                                  _vm.$set(item, "rate", $event.target.value)
-                                },
-                                function($event) {
-                                  return _vm.calculateAmount(index)
+                                  _vm.$set(
+                                    item,
+                                    "description",
+                                    $event.target.value
+                                  )
                                 }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "p-1" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: item.quantity,
+                                  expression: "item.quantity"
+                                }
+                              ],
+                              staticClass:
+                                "border text-dark rounded-0 form-control form-control-sm",
+                              attrs: {
+                                type: "number",
+                                step: "any",
+                                placeholder: "Quantity"
+                              },
+                              domProps: { value: item.quantity },
+                              on: {
+                                input: [
+                                  function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      item,
+                                      "quantity",
+                                      $event.target.value
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.calculateAmount(index)
+                                  }
+                                ]
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "p-1" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: item.unit,
+                                    expression: "item.unit"
+                                  }
+                                ],
+                                staticClass:
+                                  "custom-select custom-select-sm text-dark border rounded-0",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      item,
+                                      "unit",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  { attrs: { value: "", selected: "" } },
+                                  [_vm._v("None")]
+                                ),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Year" } }, [
+                                  _vm._v("Year")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Month" } }, [
+                                  _vm._v("Month")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Day" } }, [
+                                  _vm._v("Day")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Night" } }, [
+                                  _vm._v("Night")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "KM" } }, [
+                                  _vm._v("KM")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "Piece" } }, [
+                                  _vm._v("Pcs.")
+                                ])
                               ]
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("input", {
-                            staticClass:
-                              "border text-dark bg-success rounded-0 form-control",
-                            attrs: {
-                              type: "number",
-                              step: "any",
-                              placeholder: "Total",
-                              readonly: ""
-                            },
-                            domProps: { value: item.amount }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          index == 0
-                            ? _c(
-                                "button",
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "p-1" }, [
+                            _c("input", {
+                              directives: [
                                 {
-                                  staticClass:
-                                    "rounded-0 btn p-2 pl-3 pr-3 btn-success",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.addRow()
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: item.rate,
+                                  expression: "item.rate"
+                                }
+                              ],
+                              staticClass:
+                                "border text-dark rounded-0 form-control form-control-sm",
+                              attrs: {
+                                type: "number",
+                                step: "any",
+                                placeholder: "Rate"
+                              },
+                              domProps: { value: item.rate },
+                              on: {
+                                input: [
+                                  function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
+                                    _vm.$set(item, "rate", $event.target.value)
+                                  },
+                                  function($event) {
+                                    return _vm.calculateAmount(index)
                                   }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "tim-icons icon-simple-add"
-                                  })
                                 ]
-                              )
-                            : _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "rounded-0 btn p-2 pl-3 pr-3 btn-danger",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.removeRow(index)
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "p-1" }, [
+                            _c("input", {
+                              staticClass:
+                                "border text-dark bg-success rounded-0 form-control form-control-sm",
+                              attrs: {
+                                type: "number",
+                                step: "any",
+                                placeholder: "Total",
+                                readonly: ""
+                              },
+                              domProps: { value: item.amount }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-center p-1" }, [
+                            index == 0
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn pl-2 pr-2 btn-primary btn-sm",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.addRow()
+                                      }
                                     }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "tim-icons icon-simple-delete"
-                                  })
-                                ]
-                              )
+                                  },
+                                  [_c("i", { staticClass: "ni ni-fat-add" })]
+                                )
+                              : _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn pl-2 pr-2 btn-danger btn-sm",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.removeRow(index)
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "ni ni-fat-delete" })]
+                                )
+                          ])
                         ])
-                      ])
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c("tfoot", [
-                    _c("tr", [
-                      _c("td", { attrs: { colspan: "2" } }, [
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c("tfoot", [
+                      _c("tr", [
                         _c(
-                          "div",
-                          { staticClass: "btn-group-toggle text-center" },
+                          "td",
+                          { staticClass: "p-1", attrs: { colspan: "2" } },
                           [
                             _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.taxChkBox ? "active " : ""
-                              },
+                              "div",
+                              { staticClass: "btn-group-toggle text-center" },
                               [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.taxChkBox,
-                                      expression: "taxChkBox"
-                                    }
-                                  ],
-                                  attrs: { type: "checkbox" },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.taxChkBox)
-                                      ? _vm._i(_vm.taxChkBox, null) > -1
-                                      : _vm.taxChkBox
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn btn-sm btn-outline-primary",
+                                    class: _vm.taxChkBox ? "active " : ""
                                   },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$a = _vm.taxChkBox,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.taxChkBox = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.taxChkBox = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.taxChkBox = $$c
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.taxChkBox,
+                                          expression: "taxChkBox"
                                         }
+                                      ],
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.taxChkBox)
+                                          ? _vm._i(_vm.taxChkBox, null) > -1
+                                          : _vm.taxChkBox
                                       },
-                                      function($event) {
-                                        return _vm.calculateNetAmount()
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.taxChkBox,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.taxChkBox = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.taxChkBox = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.taxChkBox = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.calculateNetAmount()
+                                          }
+                                        ]
                                       }
-                                    ]
-                                  }
-                                }),
-                                _vm._v(
-                                  "\n                                            + TAX\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.vatChkBox ? "active " : ""
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.vatChkBox,
-                                      expression: "vatChkBox"
-                                    }
-                                  ],
-                                  attrs: { type: "checkbox" },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.vatChkBox)
-                                      ? _vm._i(_vm.vatChkBox, null) > -1
-                                      : _vm.vatChkBox
+                                    }),
+                                    _vm._v(
+                                      "\n                                            + TAX\n                                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn btn-sm btn-outline-primary",
+                                    class: _vm.vatChkBox ? "active " : ""
                                   },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$a = _vm.vatChkBox,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.vatChkBox = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.vatChkBox = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.vatChkBox = $$c
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.vatChkBox,
+                                          expression: "vatChkBox"
                                         }
+                                      ],
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.vatChkBox)
+                                          ? _vm._i(_vm.vatChkBox, null) > -1
+                                          : _vm.vatChkBox
                                       },
-                                      function($event) {
-                                        return _vm.calculateNetAmount()
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.vatChkBox,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.vatChkBox = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.vatChkBox = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.vatChkBox = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.calculateNetAmount()
+                                          }
+                                        ]
                                       }
-                                    ]
-                                  }
-                                }),
-                                _vm._v(
-                                  "\n                                            + VAT\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.discountChkBox ? "active " : ""
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.discountChkBox,
-                                      expression: "discountChkBox"
-                                    }
-                                  ],
-                                  attrs: { type: "checkbox" },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.discountChkBox)
-                                      ? _vm._i(_vm.discountChkBox, null) > -1
-                                      : _vm.discountChkBox
+                                    }),
+                                    _vm._v(
+                                      "\n                                            + VAT\n                                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn btn-sm btn-outline-primary",
+                                    class: _vm.discountChkBox ? "active " : ""
                                   },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$a = _vm.discountChkBox,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.discountChkBox = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.discountChkBox = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.discountChkBox = $$c
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.discountChkBox,
+                                          expression: "discountChkBox"
                                         }
+                                      ],
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: Array.isArray(
+                                          _vm.discountChkBox
+                                        )
+                                          ? _vm._i(_vm.discountChkBox, null) >
+                                            -1
+                                          : _vm.discountChkBox
                                       },
-                                      function($event) {
-                                        return _vm.calculateNetAmount()
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.discountChkBox,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.discountChkBox = $$a.concat(
+                                                    [$$v]
+                                                  ))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.discountChkBox = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.discountChkBox = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.calculateNetAmount()
+                                          }
+                                        ]
                                       }
-                                    ]
-                                  }
-                                }),
-                                _vm._v(
-                                  "\n                                            Discount\n                                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "rounded-0 btn btn-sm btn-success btn-simple",
-                                class: _vm.paidChkBox ? "active " : ""
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.paidChkBox,
-                                      expression: "paidChkBox"
-                                    }
-                                  ],
-                                  attrs: { type: "checkbox" },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.paidChkBox)
-                                      ? _vm._i(_vm.paidChkBox, null) > -1
-                                      : _vm.paidChkBox
+                                    }),
+                                    _vm._v(
+                                      "\n                                            Discount\n                                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "rounded-0 btn btn-sm btn-outline-primary",
+                                    class: _vm.paidChkBox ? "active " : ""
                                   },
-                                  on: {
-                                    change: [
-                                      function($event) {
-                                        var $$a = _vm.paidChkBox,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.paidChkBox = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.paidChkBox = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.paidChkBox = $$c
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.paidChkBox,
+                                          expression: "paidChkBox"
                                         }
+                                      ],
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.paidChkBox)
+                                          ? _vm._i(_vm.paidChkBox, null) > -1
+                                          : _vm.paidChkBox
                                       },
-                                      function($event) {
-                                        return _vm.calculateNetAmount()
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.paidChkBox,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = null,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.paidChkBox = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.paidChkBox = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.paidChkBox = $$c
+                                            }
+                                          },
+                                          function($event) {
+                                            return _vm.calculateNetAmount()
+                                          }
+                                        ]
                                       }
-                                    ]
-                                  }
-                                }),
-                                _vm._v(
-                                  "\n                                            Paid\n                                        "
+                                    }),
+                                    _vm._v(
+                                      "\n                                            Paid\n                                        "
+                                    )
+                                  ]
                                 )
                               ]
                             )
                           ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticClass: "text-right p-1 pt-2",
+                            attrs: { colspan: "2" }
+                          },
+                          [_vm._v(_vm._s("Sub-Total:"))]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "p-1", attrs: { colspan: "3" } },
+                          [
+                            _c("input", {
+                              staticClass:
+                                "border text-dark bg-success rounded-0 form-control form-control-sm",
+                              attrs: {
+                                type: "number",
+                                step: "any",
+                                placeholder: "Sub-Total",
+                                readonly: ""
+                              },
+                              domProps: { value: _vm.form.sub_total }
+                            })
+                          ]
                         )
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right", attrs: { colspan: "2" } },
-                        [_vm._v(_vm._s("Sub-Total:"))]
-                      ),
-                      _vm._v(" "),
-                      _c("td", { attrs: { colspan: "3" } }, [
-                        _c("input", {
-                          staticClass:
-                            "border text-dark bg-success rounded-0 form-control",
-                          attrs: {
-                            type: "number",
-                            step: "any",
-                            placeholder: "Sub-Total",
-                            readonly: ""
-                          },
-                          domProps: { value: _vm.form.sub_total }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm.taxChkBox
-                      ? _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { colspan: "3" }
-                            },
-                            [_vm._v("+TAX")]
-                          ),
-                          _vm._v(" "),
-                          _c("td", [
+                      _vm.taxChkBox
+                        ? _c("tr", [
                             _c(
-                              "div",
+                              "td",
                               {
-                                staticClass: "d-flex",
-                                staticStyle: { "max-width": "100px !important" }
+                                staticClass: "text-right p-1 pt-2",
+                                attrs: { colspan: "3" }
                               },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.tax,
-                                      expression: "form.tax"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "border text-center text-dark bg-neutral text-dark rounded-0 form-control",
-                                  attrs: { type: "number", step: "any" },
-                                  domProps: { value: _vm.form.tax },
-                                  on: {
-                                    input: [
-                                      function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "tax",
-                                          $event.target.value
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.calculateTax()
-                                      }
-                                    ]
+                              [_vm._v("+TAX")]
+                            ),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "p-1" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "d-flex",
+                                  staticStyle: {
+                                    "max-width": "100px !important"
                                   }
-                                }),
-                                _vm._v(" "),
-                                _vm._m(3)
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "3" } }, [
-                            _c("input", {
-                              staticClass:
-                                "border text-dark bg-success rounded-0 form-control",
-                              attrs: {
-                                type: "number",
-                                step: "any",
-                                placeholder: "TAX",
-                                readonly: ""
-                              },
-                              domProps: { value: _vm.taxOut }
-                            })
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.vatChkBox
-                      ? _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { colspan: "3" }
-                            },
-                            [_vm._v("(Total+TAX)+VAT")]
-                          ),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "d-flex",
-                                staticStyle: { "max-width": "100px !important" }
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.vat,
-                                      expression: "form.vat"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "border text-center text-dark bg-neutral text-dark rounded-0 form-control",
-                                  attrs: { type: "number", step: "any" },
-                                  domProps: { value: _vm.form.vat },
-                                  on: {
-                                    input: [
-                                      function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "vat",
-                                          $event.target.value
-                                        )
-                                      },
-                                      function($event) {
-                                        return _vm.calculateVat()
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.tax,
+                                        expression: "form.tax"
                                       }
-                                    ]
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _vm._m(4)
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "3" } }, [
-                            _c("input", {
-                              staticClass:
-                                "border text-dark bg-success rounded-0 form-control",
-                              attrs: {
-                                type: "number",
-                                step: "any",
-                                placeholder: "VAT",
-                                readonly: ""
-                              },
-                              domProps: { value: _vm.vatOut }
-                            })
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c(
-                        "td",
-                        { staticClass: "text-right", attrs: { colspan: "4" } },
-                        [_vm._v("Net Amount:")]
-                      ),
-                      _vm._v(" "),
-                      _c("td", { attrs: { colspan: "3" } }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form.net_amount,
-                              expression: "form.net_amount"
-                            }
-                          ],
-                          staticClass:
-                            "border text-dark bg-success rounded-0 form-control",
-                          attrs: {
-                            type: "number",
-                            step: "any",
-                            placeholder: "Net Amount",
-                            readonly: ""
-                          },
-                          domProps: { value: _vm.form.net_amount },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form,
-                                "net_amount",
-                                $event.target.value
+                                    ],
+                                    staticClass:
+                                      "border text-center text-dark text-dark rounded-0 form-control form-control-sm",
+                                    attrs: { type: "number", step: "any" },
+                                    domProps: { value: _vm.form.tax },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.form,
+                                            "tax",
+                                            $event.target.value
+                                          )
+                                        },
+                                        function($event) {
+                                          return _vm.calculateTax()
+                                        }
+                                      ]
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(3)
+                                ]
                               )
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm.discountChkBox
-                      ? _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { colspan: "4" }
-                            },
-                            [_vm._v("Discount:")]
-                          ),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "3" } }, [
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "p-1", attrs: { colspan: "3" } },
+                              [
+                                _c("input", {
+                                  staticClass:
+                                    "border text-dark bg-success rounded-0 form-control form-control-sm",
+                                  attrs: {
+                                    type: "number",
+                                    step: "any",
+                                    placeholder: "TAX",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: _vm.taxOut }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.vatChkBox
+                        ? _c("tr", [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-right p-1 pt-2",
+                                attrs: { colspan: "3" }
+                              },
+                              [_vm._v("+VAT")]
+                            ),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "p-1" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "d-flex",
+                                  staticStyle: {
+                                    "max-width": "100px !important"
+                                  }
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.vat,
+                                        expression: "form.vat"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "border text-center text-dark text-dark rounded-0 form-control form-control-sm",
+                                    attrs: { type: "number", step: "any" },
+                                    domProps: { value: _vm.form.vat },
+                                    on: {
+                                      input: [
+                                        function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.form,
+                                            "vat",
+                                            $event.target.value
+                                          )
+                                        },
+                                        function($event) {
+                                          return _vm.calculateVat()
+                                        }
+                                      ]
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(4)
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "p-1", attrs: { colspan: "3" } },
+                              [
+                                _c("input", {
+                                  staticClass:
+                                    "border text-dark bg-success rounded-0 form-control form-control-sm",
+                                  attrs: {
+                                    type: "number",
+                                    step: "any",
+                                    placeholder: "VAT",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: _vm.vatOut }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _c(
+                          "td",
+                          {
+                            staticClass: "text-right p-1  pt-2",
+                            attrs: { colspan: "4" }
+                          },
+                          [_vm._v("Net Amount:")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "p-1", attrs: { colspan: "3" } },
+                          [
                             _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.discount,
-                                  expression: "form.discount"
+                                  value: _vm.form.net_amount,
+                                  expression: "form.net_amount"
                                 }
                               ],
                               staticClass:
-                                "border text-dark bg-neutral rounded-0 form-control",
+                                "border text-dark bg-success rounded-0 form-control form-control-sm",
                               attrs: {
                                 type: "number",
                                 step: "any",
-                                placeholder: "Discount"
-                              },
-                              domProps: { value: _vm.form.discount },
-                              on: {
-                                input: [
-                                  function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "discount",
-                                      $event.target.value
-                                    )
-                                  },
-                                  function($event) {
-                                    return _vm.calculatePayable()
-                                  }
-                                ]
-                              }
-                            })
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.paidChkBox
-                      ? _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { colspan: "4" }
-                            },
-                            [_vm._v("Advance Paid:")]
-                          ),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "3" } }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.advance_paid,
-                                  expression: "form.advance_paid"
-                                }
-                              ],
-                              staticClass:
-                                "border text-dark bg-neutral rounded-0 form-control",
-                              attrs: {
-                                type: "number",
-                                step: "any",
-                                placeholder: "Paid Amount"
-                              },
-                              domProps: { value: _vm.form.advance_paid },
-                              on: {
-                                input: [
-                                  function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "advance_paid",
-                                      $event.target.value
-                                    )
-                                  },
-                                  function($event) {
-                                    return _vm.calculatePayable()
-                                  }
-                                ]
-                              }
-                            })
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.discountChkBox || _vm.paidChkBox
-                      ? _c("tr", [
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { colspan: "4" }
-                            },
-                            [_vm._v("Payable:")]
-                          ),
-                          _vm._v(" "),
-                          _c("td", { attrs: { colspan: "3" } }, [
-                            _c("input", {
-                              staticClass:
-                                "border text-dark bg-success rounded-0 form-control",
-                              attrs: {
-                                type: "number",
-                                step: "any",
-                                placeholder: "Payable",
+                                placeholder: "Net Amount",
                                 readonly: ""
                               },
-                              domProps: { value: _vm.payable }
+                              domProps: { value: _vm.form.net_amount },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "net_amount",
+                                    $event.target.value
+                                  )
+                                }
+                              }
                             })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm.discountChkBox
+                        ? _c("tr", [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-right p-1  pt-2",
+                                attrs: { colspan: "4" }
+                              },
+                              [_vm._v("Discount:")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "p-1", attrs: { colspan: "3" } },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.discount,
+                                      expression: "form.discount"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "border text-dark rounded-0 form-control form-control-sm",
+                                  attrs: {
+                                    type: "number",
+                                    step: "any",
+                                    placeholder: "Discount"
+                                  },
+                                  domProps: { value: _vm.form.discount },
+                                  on: {
+                                    input: [
+                                      function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "discount",
+                                          $event.target.value
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.calculatePayable()
+                                      }
+                                    ]
+                                  }
+                                })
+                              ]
+                            )
                           ])
-                        ])
-                      : _vm._e()
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-fill btn-success rounded-0",
-                  attrs: { type: "submit" }
-                },
-                [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s("Save") +
-                      "\n                        "
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.paidChkBox
+                        ? _c("tr", [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-right p-1  pt-2",
+                                attrs: { colspan: "4" }
+                              },
+                              [_vm._v("Advance Paid:")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "p-1", attrs: { colspan: "3" } },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.advance_paid,
+                                      expression: "form.advance_paid"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "border text-dark rounded-0 form-control form-control-sm",
+                                  attrs: {
+                                    type: "number",
+                                    step: "any",
+                                    placeholder: "Paid Amount"
+                                  },
+                                  domProps: { value: _vm.form.advance_paid },
+                                  on: {
+                                    input: [
+                                      function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "advance_paid",
+                                          $event.target.value
+                                        )
+                                      },
+                                      function($event) {
+                                        return _vm.calculatePayable()
+                                      }
+                                    ]
+                                  }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.discountChkBox || _vm.paidChkBox
+                        ? _c("tr", [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "text-right pt-2 p-1",
+                                attrs: { colspan: "4" }
+                              },
+                              [_vm._v("Payable:")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "p-1", attrs: { colspan: "3" } },
+                              [
+                                _c("input", {
+                                  staticClass:
+                                    "border text-dark bg-success rounded-0 form-control form-control-sm",
+                                  attrs: {
+                                    type: "number",
+                                    step: "any",
+                                    placeholder: "Payable",
+                                    readonly: ""
+                                  },
+                                  domProps: { value: _vm.payable }
+                                })
+                              ]
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-center pt-4" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-fill btn-primary rounded-0",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s("Save") +
+                          "\n                            "
+                      )
+                    ]
                   )
-                ]
-              )
-            ])
-          ]
-        )
+                ])
+              ])
+            ]
+          )
+        ])
       ])
     ])
   ])
@@ -4725,11 +4781,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _c("th", { staticClass: "p-1", attrs: { scope: "col" } }, [
+          _vm._v("#")
+        ]),
         _vm._v(" "),
         _c(
           "th",
           {
+            staticClass: "p-1",
             staticStyle: { "min-width": "350px !important" },
             attrs: { scope: "col" }
           },
@@ -4742,6 +4801,7 @@ var staticRenderFns = [
         _c(
           "th",
           {
+            staticClass: "p-1",
             staticStyle: { "min-width": "70px !important" },
             attrs: { scope: "col" }
           },
@@ -4751,6 +4811,7 @@ var staticRenderFns = [
         _c(
           "th",
           {
+            staticClass: "p-1",
             staticStyle: { "min-width": "100px !important" },
             attrs: { scope: "col" }
           },
@@ -4760,6 +4821,7 @@ var staticRenderFns = [
         _c(
           "th",
           {
+            staticClass: "p-1",
             staticStyle: { "min-width": "100px !important" },
             attrs: { scope: "col" }
           },
@@ -4772,6 +4834,7 @@ var staticRenderFns = [
         _c(
           "th",
           {
+            staticClass: "p-1",
             staticStyle: { "min-width": "150px !important" },
             attrs: { scope: "col" }
           },
@@ -4781,7 +4844,7 @@ var staticRenderFns = [
         _c(
           "th",
           {
-            staticClass: "border-0",
+            staticClass: "p-1",
             staticStyle: { "min-width": "70px !important" },
             attrs: { scope: "col" }
           },
@@ -4794,12 +4857,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
+    return _c("div", { staticClass: "input-group-prepend input-group-sm" }, [
       _c(
         "span",
-        {
-          staticClass: "input-group-text bg-neutral border text-dark rounded-0"
-        },
+        { staticClass: "pl-2 pr-2 pt-1  border text-dark rounded-0" },
         [_vm._v("%")]
       )
     ])
@@ -4808,14 +4869,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c(
-        "span",
-        {
-          staticClass: "input-group-text bg-neutral border text-dark rounded-0"
-        },
-        [_vm._v("%")]
-      )
+    return _c("div", { staticClass: "input-group-prepend input-group-sm" }, [
+      _c("span", { staticClass: "pl-2 pr-2 pt-1 border text-dark rounded-0" }, [
+        _vm._v("%")
+      ])
     ])
   }
 ]
