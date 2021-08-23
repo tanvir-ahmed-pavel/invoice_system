@@ -2234,6 +2234,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
@@ -2432,7 +2435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=number][data-v-2d1526bb]::-webkit-inner-spin-button,\ninput[type=number][data-v-2d1526bb]::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=number][data-v-2d1526bb]::-webkit-inner-spin-button,\ninput[type=number][data-v-2d1526bb]::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n.custom-placeholder[data-v-2d1526bb]::-moz-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\n    color: red;\n    opacity: 1; /* Firefox */\n}\n.custom-placeholder[data-v-2d1526bb]:-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\n    color: red;\n    opacity: 1; /* Firefox */\n}\n.custom-placeholder[data-v-2d1526bb]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\n    color: red;\n    opacity: 1; /* Firefox */\n}\n.custom-placeholder[data-v-2d1526bb]:-ms-input-placeholder { /* Internet Explorer 10-11 */\n    color: red;\n}\n.custom-placeholder[data-v-2d1526bb]::-ms-input-placeholder { /* Microsoft Edge */\n    color: red;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3466,7 +3469,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(
-                                "\n                                        Monthly Basis\n                                    "
+                                "\n                                            Monthly Basis\n                                        "
                               )
                             ]
                           ),
@@ -3508,7 +3511,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(
-                                "\n                                        Daily Basis\n                                    "
+                                "\n                                            Daily Basis\n                                        "
                               )
                             ]
                           )
@@ -3616,9 +3619,9 @@ var render = function() {
                               { domProps: { value: client.id } },
                               [
                                 _vm._v(
-                                  "\n                                        " +
+                                  "\n                                            " +
                                     _vm._s(client.client_name) +
-                                    "\n                                    "
+                                    "\n                                        "
                                 )
                               ]
                             )
@@ -3633,7 +3636,7 @@ var render = function() {
                         [
                           _vm._v(
                             _vm._s("Add a client") +
-                              "\n                                "
+                              "\n                                    "
                           )
                         ]
                       )
@@ -3702,9 +3705,9 @@ var render = function() {
                               { domProps: { value: company.id } },
                               [
                                 _vm._v(
-                                  "\n                                        " +
+                                  "\n                                            " +
                                     _vm._s(company.company_name) +
-                                    "\n                                    "
+                                    "\n                                        "
                                 )
                               ]
                             )
@@ -3719,7 +3722,7 @@ var render = function() {
                         [
                           _vm._v(
                             _vm._s("Add a Company") +
-                              "\n                                "
+                              "\n                                    "
                           )
                         ]
                       )
@@ -3785,8 +3788,10 @@ var render = function() {
                                 { domProps: { value: driver.id } },
                                 [
                                   _vm._v(
-                                    _vm._s(driver.name) +
-                                      "\n                                    "
+                                    _vm._s(
+                                      driver.name + " -- " + driver.contact
+                                    ) +
+                                      "\n                                        "
                                   )
                                 ]
                               )
@@ -3801,7 +3806,7 @@ var render = function() {
                           [
                             _vm._v(
                               _vm._s("Add a Driver") +
-                                "\n                                "
+                                "\n                                    "
                             )
                           ]
                         )
@@ -3889,10 +3894,19 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "border text-dark rounded-0 form-control form-control-sm",
+                                "rounded-0 form-control form-control-sm",
+                              class: _vm.errors[
+                                "items." + index + ".description"
+                              ]
+                                ? "is-invalid custom-placeholder"
+                                : "",
                               attrs: {
                                 type: "text",
-                                placeholder: "Enter Description"
+                                placeholder: _vm.errors[
+                                  "items." + index + ".description"
+                                ]
+                                  ? "*This is a required filed"
+                                  : "Enter Description"
                               },
                               domProps: { value: item.description },
                               on: {
@@ -4028,11 +4042,18 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "border text-dark rounded-0 form-control form-control-sm",
+                                "rounded-0 form-control form-control-sm",
+                              class: _vm.errors["items." + index + ".rate"]
+                                ? "is-invalid custom-placeholder"
+                                : "",
                               attrs: {
                                 type: "number",
                                 step: "any",
-                                placeholder: "Rate"
+                                placeholder: _vm.errors[
+                                  "items." + index + ".rate"
+                                ]
+                                  ? "*This is a required filed"
+                                  : "Enter Rate"
                               },
                               domProps: { value: item.rate },
                               on: {
@@ -4166,7 +4187,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            + TAX\n                                        "
+                                      "\n                                                + TAX\n                                            "
                                     )
                                   ]
                                 ),
@@ -4225,7 +4246,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            + VAT\n                                        "
+                                      "\n                                                + VAT\n                                            "
                                     )
                                   ]
                                 ),
@@ -4287,7 +4308,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            Discount\n                                        "
+                                      "\n                                                Discount\n                                            "
                                     )
                                   ]
                                 ),
@@ -4346,7 +4367,7 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                                            Paid\n                                        "
+                                      "\n                                                Paid\n                                            "
                                     )
                                   ]
                                 )
@@ -4741,9 +4762,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                " +
+                        "\n                                    " +
                           _vm._s("Save") +
-                          "\n                            "
+                          "\n                                "
                       )
                     ]
                   )

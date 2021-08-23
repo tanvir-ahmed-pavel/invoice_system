@@ -84,7 +84,7 @@
                                     <select v-model="form.driver_id"
                                             class="custom-select custom-select-sm rounded-0 text-dark col-lg-8">
                                         <option value="">None</option>
-                                        <option v-for="(driver, index) in Drivers" :value="driver.id">{{driver.name}}
+                                        <option v-for="(driver, index) in Drivers" :value="driver.id">{{driver.name + ' -- ' + driver.contact}}
                                         </option>
                                     </select>
                                     <button class="rounded-0 btn btn-sm btn-primary">{{"Add a Driver"}}
@@ -105,6 +105,7 @@
                             </div>
 
                             <!--                        Row 4: Invoice Table-->
+
 
                             <table class="table-responsive-xl table-bordered table pt-2">
 
@@ -133,9 +134,11 @@
                                     <!--                                Description-->
 
                                     <td class="p-1">
+<!--                                        <span class="text-danger" v-if="errors[`items.${index}.description`]">*This is a required filed</span>-->
                                         <input type="text" v-model="item.description"
-                                               class="border text-dark rounded-0 form-control form-control-sm"
-                                               placeholder="Enter Description">
+                                               class="rounded-0 form-control form-control-sm"
+                                               :class="(errors[`items.${index}.description`])?'is-invalid custom-placeholder':''"
+                                               :placeholder="(errors[`items.${index}.description`])? '*This is a required filed': 'Enter Description'">
 
                                         <!--                                    <validation-error :errors="errors['items.'+[index]+'.description']"></validation-error>-->
                                     </td>
@@ -171,8 +174,8 @@
                                     <td class="p-1">
                                         <input @input="calculateAmount(index)" v-model="item.rate"
                                                type="number" step="any"
-                                               class="border text-dark rounded-0 form-control form-control-sm"
-                                               placeholder="Rate">
+                                               class="rounded-0 form-control form-control-sm" :class="(errors[`items.${index}.rate`])?'is-invalid custom-placeholder':''"
+                                               :placeholder="(errors[`items.${index}.rate`])? '*This is a required filed': 'Enter Rate'">
                                         <!--                                    <validation-error :errors="errors['items.'+[index]+'.rate']"></validation-error>-->
                                     </td>
 
@@ -485,4 +488,19 @@
         -webkit-appearance: none;
         margin: 0;
     }
+
+    .custom-placeholder::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: red;
+        opacity: 1; /* Firefox */
+    }
+
+
+    .custom-placeholder:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: red;
+    }
+
+    .custom-placeholder::-ms-input-placeholder { /* Microsoft Edge */
+        color: red;
+    }
+
 </style>
