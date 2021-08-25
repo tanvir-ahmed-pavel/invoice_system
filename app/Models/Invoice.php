@@ -12,6 +12,7 @@ class Invoice extends Model
 
     protected $fillable = [
         'invoice_number',
+        'invoice_signature',
         'invoice_type',
         'subject',
         'car_details',
@@ -21,6 +22,7 @@ class Invoice extends Model
         'net_amount',
         'advance_paid',
         'date',
+        'discount'
     ];
 
     public function items(){

@@ -136,7 +136,7 @@
                                     <td class="p-1">
 <!--                                        <span class="text-danger" v-if="errors[`items.${index}.description`]">*This is a required filed</span>-->
                                         <input type="text" v-model="item.description"
-                                               class="rounded-0 form-control form-control-sm"
+                                               class="text-dark rounded-0 form-control form-control-sm"
                                                :class="(errors[`items.${index}.description`])?'is-invalid custom-placeholder':''"
                                                :placeholder="(errors[`items.${index}.description`])? '*This is a required filed': 'Enter Description'">
 
@@ -146,7 +146,7 @@
                                     <!--                                Quantity-->
 
                                     <td class="p-1">
-                                        <input @input="calculateAmount(index)" type="number" step="any"
+                                        <input @input="calculateAmount(index)" type="number" step=".01"
                                                v-model="item.quantity"
                                                class="border text-dark rounded-0 form-control form-control-sm"
                                                placeholder="Quantity">
@@ -173,8 +173,8 @@
 
                                     <td class="p-1">
                                         <input @input="calculateAmount(index)" v-model="item.rate"
-                                               type="number" step="any"
-                                               class="rounded-0 form-control form-control-sm" :class="(errors[`items.${index}.rate`])?'is-invalid custom-placeholder':''"
+                                               type="number" step=".01"
+                                               class="text-dark rounded-0 form-control form-control-sm" :class="(errors[`items.${index}.rate`])?'is-invalid custom-placeholder':''"
                                                :placeholder="(errors[`items.${index}.rate`])? '*This is a required filed': 'Enter Rate'">
                                         <!--                                    <validation-error :errors="errors['items.'+[index]+'.rate']"></validation-error>-->
                                     </td>
@@ -182,9 +182,9 @@
                                     <!--                                Amount-->
 
                                     <td class="p-1">
-                                        <input type="number" step="any"
+                                        <input type="number" step=".01"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
-                                               placeholder="Total" :value="item.amount" readonly>
+                                               placeholder="Total" :value="item.amount.toFixed(2)" readonly>
                                         <!--                                    <validation-error :errors="errors['items.'+[index]+'.amount']"></validation-error>-->
                                     </td>
 
@@ -243,9 +243,9 @@
 
                                     <td class="text-right p-1 pt-2" colspan="2">{{"Sub-Total:"}}</td>
                                     <td colspan="3" class="p-1">
-                                        <input type="number" step="any"
+                                        <input type="number" step=".01"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
-                                               placeholder="Sub-Total" :value="form.sub_total" readonly>
+                                               placeholder="Sub-Total" :value="form.sub_total.toFixed(2)" readonly>
                                     </td>
                                 </tr>
 
@@ -255,7 +255,7 @@
                                     <td class="text-right p-1 pt-2" colspan="3">+TAX</td>
                                     <td class="p-1">
                                         <div class="d-flex" style="max-width: 100px !important;">
-                                            <input type="number" step="any" @input="calculateTax()"
+                                            <input type="number" step=".01" @input="calculateTax()"
                                                    v-model="form.tax"
                                                    class="border text-center text-dark text-dark rounded-0 form-control form-control-sm">
                                             <div class="input-group-prepend input-group-sm">
@@ -265,7 +265,7 @@
                                         </div>
                                     </td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any" :value="taxOut"
+                                        <input type="number" step=".01" :value="taxOut.toFixed(2)"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
                                                placeholder="TAX" readonly>
                                     </td>
@@ -274,7 +274,7 @@
                                     <td class="text-right p-1 pt-2" colspan="3">+VAT</td>
                                     <td class="p-1">
                                         <div class="d-flex" style="max-width: 100px !important;">
-                                            <input type="number" step="any" @input="calculateVat()"
+                                            <input type="number" step=".01" @input="calculateVat()"
                                                    v-model="form.vat"
                                                    class="border text-center text-dark text-dark rounded-0 form-control form-control-sm">
                                             <div class="input-group-prepend input-group-sm">
@@ -284,7 +284,7 @@
                                         </div>
                                     </td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any" :value="vatOut"
+                                        <input type="number" step=".01" :value="vatOut.toFixed(2)"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
                                                placeholder="VAT" readonly>
                                     </td>
@@ -295,9 +295,9 @@
                                 <tr>
                                     <td class="text-right p-1  pt-2" colspan="4">Net Amount:</td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any"
+                                        <input type="number" step=".01"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
-                                               placeholder="Net Amount" v-model="form.net_amount" readonly>
+                                               placeholder="Net Amount" :value="form.net_amount.toFixed(2)" readonly>
                                     </td>
                                 </tr>
 
@@ -306,7 +306,7 @@
                                 <tr v-if="discountChkBox">
                                     <td class="text-right p-1  pt-2" colspan="4">Discount:</td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any" @input="calculatePayable()"
+                                        <input type="number" step=".01" @input="calculatePayable()"
                                                v-model="form.discount"
                                                class="border text-dark rounded-0 form-control form-control-sm"
                                                placeholder="Discount">
@@ -318,7 +318,7 @@
                                 <tr v-if="paidChkBox">
                                     <td class="text-right p-1  pt-2" colspan="4">Advance Paid:</td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any" @input="calculatePayable()"
+                                        <input type="number" step=".01" @input="calculatePayable()"
                                                v-model="form.advance_paid"
                                                class="border text-dark rounded-0 form-control form-control-sm"
                                                placeholder="Paid Amount">
@@ -330,7 +330,7 @@
                                 <tr v-if="discountChkBox || paidChkBox">
                                     <td class="text-right pt-2 p-1" colspan="4">Payable:</td>
                                     <td class="p-1" colspan="3">
-                                        <input type="number" step="any" :value="payable"
+                                        <input type="number" step=".01" :value="payable.toFixed(2)"
                                                class="border text-dark bg-success rounded-0 form-control form-control-sm"
                                                placeholder="Payable" readonly>
                                     </td>

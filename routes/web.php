@@ -43,6 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('drivers', 'App\Http\Controllers\DriverController');
     Route::resource('invoices', 'App\Http\Controllers\InvoiceController');
 
+
+//    Invoice Print Route
+
+    Route::get('/invoices/{id}/print', [\App\Http\Controllers\InvoiceController::class, 'printInvoice'])->name('invoices.print');
+
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

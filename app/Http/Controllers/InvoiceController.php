@@ -7,12 +7,18 @@ use App\Models\Driver;
 use App\Models\Invoice;
 use App\Models\User;
 use App\Models\Client;
+
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+
+
+
 class InvoiceController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -89,6 +95,8 @@ class InvoiceController extends Controller
 //        Creating Invoice
 
             $invoice = $user->invoices()->create([
+                'invoice_signature' => (string)Str::uuid(),
+                'discount' => $data['discount'],
                 'invoice_type' => $data['invoice_type'],
                 'subject' => $subject,
                 'car_details' => $data['car_details'],
@@ -100,9 +108,8 @@ class InvoiceController extends Controller
                 'date' => $data['date'],
             ]);
 
-//            Creating Invoice number & Signature
+//            Creating Invoice number
 
-            $invoice->invoice_signature=  (string)Str::uuid();
 
             $invoice->invoice_number = $this->generate_invoiceNumber($data['company_id']?$company:null, $data['client_id']?$client:null, $data['date'], $invoice->id);
 
@@ -132,7 +139,6 @@ class InvoiceController extends Controller
             ]);
         }
 
-
         return response()->json($invoice->invoice_number,200);
 //        return redirect()->route('invoices.show', $invoice->invoice_number);
 
@@ -147,7 +153,9 @@ class InvoiceController extends Controller
     public function show($invoice_number)
     {
         $invoice = Invoice::where('invoice_number', $invoice_number)->firstOrFail();
-        return view('invoices.show-invoice', compact($invoice->load('items', 'driver', 'client', 'company', 'user')));
+        return view('invoices.show-invoice')->with([
+            'invoice' => $invoice->load('items', 'driver', 'client', 'company', 'user')
+        ]);
     }
 
     /**
@@ -207,6 +215,15 @@ class InvoiceController extends Controller
         }
 
         return ($company_slug ? $company_slug : '0') . $date_slug . ($client_slug ? $client_slug: '0') . $id;
+    }
+
+    function printInvoice($id) {
+        $invoice =Invoice::where('invoice_number', $id)->firstOrFail();
+        $data['invoice'] = $invoice->load('items', 'driver', 'client', 'company', 'user');
+        $pdf = SnappyPdf::loadView('invoices.print-invoice', $data);
+        return $pdf->stream('inv_'.$invoice->invoice_number.'.pdf');
+
+//        return $pdf->stream('inv_'.$invoice->invoice_number.'.pdf');
     }
 
 }
