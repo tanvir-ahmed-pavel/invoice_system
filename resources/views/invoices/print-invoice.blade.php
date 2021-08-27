@@ -109,7 +109,7 @@
                 <!--                                    Invoice Date and ID-->
 
                     <div><strong>Invoice Date: </strong>{{$invoice->date}}</div>
-                        <div><strong>Invoice No: </strong>{{$invoice->invoice_number}}</div>
+                    <div><strong>Invoice No: </strong>{{$invoice->invoice_number}}</div>
 
 
                 </div>
@@ -160,7 +160,8 @@
                     <br>
                     <p><strong>Thank you very much for choosing us.</strong></p>
 
-                        <small style="font-size: 12px">"{{$invoice->invoice_signature}}"<br> - This Invoice is auto generated, thus requires no sign.</small>
+                    <small style="font-size: 12px">"{{$invoice->invoice_signature}}"<br> - This Invoice is auto
+                        generated, thus requires no sign.</small>
                 </div>
             </td>
             <td style="width: 40%; vertical-align: top" class="text-right">
