@@ -44,9 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('invoices', 'App\Http\Controllers\InvoiceController');
 
 
-//    Invoice Print Route
+//    Invoice Print & Download Route
 
     Route::get('/invoices/{id}/print', [\App\Http\Controllers\InvoiceController::class, 'printInvoice'])->name('invoices.print');
+    Route::get('/invoices/{id}/download', [\App\Http\Controllers\InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

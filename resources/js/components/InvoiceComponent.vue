@@ -361,7 +361,6 @@
         name: "InvoiceComponent",
         components: {ValidationError},
         mounted() {
-            console.log(this.Drivers);
         },
         props: ['Drivers', 'Companies', 'Clients'],
         data() {

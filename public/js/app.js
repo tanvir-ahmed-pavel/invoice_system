@@ -2208,9 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ValidationError: _validation_error__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  mounted: function mounted() {
-    console.log(this.Drivers);
-  },
+  mounted: function mounted() {},
   props: ['Drivers', 'Companies', 'Clients'],
   data: function data() {
     return {
@@ -2499,9 +2497,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceShowComponent",
   props: ['Invoice'],
+  created: function created() {},
   methods: {
     printInvoice: function printInvoice() {
-      window.location.href = '/invoices/' + this.Invoice.invoice_number + '/print';
+      window.open(window.location.origin + '/invoices/' + this.Invoice.invoice_number + '/print', "_blank");
+    },
+    downloadInvoice: function downloadInvoice() {
+      window.location.href = window.location.origin + '/invoices/' + this.Invoice.invoice_number + '/download';
     }
   }
 });
@@ -5357,19 +5359,29 @@ var render = function() {
               "a",
               {
                 staticClass: "btn btn-info",
-                attrs: {
-                  rel: "noreferrer noopener",
-                  target: "_blank",
-                  href:
-                    "http://invoice-system/invoices/" +
-                    this.Invoice.invoice_number +
-                    "/print"
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.printInvoice()
+                  }
                 }
               },
               [_c("span", { staticClass: "fa fa-print" })]
             ),
             _vm._v(" "),
-            _vm._m(11)
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.downloadInvoice()
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-download" })]
+            )
           ])
         ])
       ])
@@ -5481,14 +5493,6 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", [_c("strong", [_vm._v("Thank you very much for choosing us.")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "btn btn-success", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-download" })
     ])
   }
 ]

@@ -10,7 +10,7 @@
     <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
     <style type="text/css" media="all">
         html {
-            font-size: 20px;
+            font-size: 18px;
             line-height: 15px !important;
             /*font-family: "Open Sans", serif;*/
             font-weight: 300;
@@ -20,7 +20,7 @@
 
 <body>
 
-<div class="container-fluid">
+<div class="container-fluid bg-white text-dark">
 
 
     <br>
@@ -35,7 +35,7 @@
                 <div class="text-left">
                     @if($invoice->company)
                         <div class="mb-3">
-                            <span class="text-success"><strong>Invoice From:</strong></span>
+                            <span class="text-success border border-success pl-2 pt-1 pb-1 pr-2"><strong>Invoice From:</strong></span>
                             <address class="mt-3">
                                 @if($invoice->company->company_name)
                                     <div>
@@ -75,7 +75,7 @@
                 <div class="text-right">
                     @if($invoice->client)
                         <div class="mb-3">
-                            <span class="text-success text-right"><strong>Invoice To:</strong></span>
+                            <span class="text-success text-right border border-success pl-2 pt-1 pb-1 pr-2"><strong>Invoice To:</strong></span>
                             <address class="mt-3 d-block">
                                 @if($invoice->client->client_name)
                                     <div>

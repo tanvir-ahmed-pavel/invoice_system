@@ -152,11 +152,11 @@
 
                     <div class="card-footer text-left">
                         <a class="btn btn-danger" href="#">Cancel</a>
-                        <a rel="noreferrer noopener" target="_blank" :href="'http://invoice-system/invoices/'+this.Invoice.invoice_number+'/print'"
+                        <a href="#" @click="printInvoice()"
                                 class="btn btn-info">
                             <span class="fa fa-print"></span>
                         </a>
-                        <a class="btn btn-success" href="#"><i class="fa fa-download"> </i></a>
+                        <a class="btn btn-success" href="#" @click="downloadInvoice()"><i class="fa fa-download"> </i></a>
                     </div>
                 </div>
             </div>
@@ -168,9 +168,15 @@
     export default {
         name: "InvoiceShowComponent",
         props: ['Invoice'],
+        created() {
+
+        },
         methods: {
             printInvoice() {
-                window.location.href = '/invoices/' + this.Invoice.invoice_number + '/print';
+                window.open(window.location.origin+'/invoices/' + this.Invoice.invoice_number + '/print', "_blank");
+            },
+            downloadInvoice(){
+                window.location.href = window.location.origin+'/invoices/' + this.Invoice.invoice_number + '/download';
             }
         },
     }

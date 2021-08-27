@@ -226,4 +226,13 @@ class InvoiceController extends Controller
 //        return $pdf->stream('inv_'.$invoice->invoice_number.'.pdf');
     }
 
+    function downloadInvoice($id) {
+        $invoice =Invoice::where('invoice_number', $id)->firstOrFail();
+        $data['invoice'] = $invoice->load('items', 'driver', 'client', 'company', 'user');
+        $pdf = SnappyPdf::loadView('invoices.print-invoice', $data);
+        return $pdf->download('inv_'.$invoice->invoice_number.'.pdf');
+
+//        return $pdf->stream('inv_'.$invoice->invoice_number.'.pdf');
+    }
+
 }
