@@ -10,7 +10,7 @@
                             <!--                                Invoice from-->
 
                             <div class="col-md-6">
-                                <div v-if="Invoice.company">
+                                <div v-if="Invoice.company" class="mb-3">
                                         <span
                                             class="border-success text-success border rounded-0 p-1"><strong>Invoice From:</strong></span>
                                     <address class="mt-3 d-block">
@@ -31,8 +31,15 @@
                                         </div>
                                     </address>
                                 </div>
-                                <div class="mt-3" v-if="Invoice.subject">
+                                <div class="" v-if="Invoice.subject">
                                     <abbr><b>Subject: </b></abbr>{{Invoice.subject}}
+                                </div>
+                                <div class="" v-if="Invoice.driver">
+                                    <abbr><b>Driver: </b></abbr>{{ Invoice.driver.name}} -- {{Invoice.driver.contact}}
+                                </div>
+
+                                <div class="" v-if="Invoice.car_details">
+                                    <abbr><b>Vehicle: </b></abbr>{{Invoice.car_details}}
                                 </div>
 
                             </div>

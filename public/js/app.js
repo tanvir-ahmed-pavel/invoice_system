@@ -2494,6 +2494,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceShowComponent",
   props: ['Invoice'],
@@ -5017,7 +5024,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
                 _vm.Invoice.company
-                  ? _c("div", [
+                  ? _c("div", { staticClass: "mb-3" }, [
                       _vm._m(0),
                       _vm._v(" "),
                       _c("address", { staticClass: "mt-3 d-block" }, [
@@ -5075,10 +5082,32 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.Invoice.subject
-                  ? _c("div", { staticClass: "mt-3" }, [
+                  ? _c("div", {}, [
                       _vm._m(4),
                       _vm._v(
                         _vm._s(_vm.Invoice.subject) +
+                          "\n                            "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.Invoice.driver
+                  ? _c("div", {}, [
+                      _vm._m(5),
+                      _vm._v(
+                        _vm._s(_vm.Invoice.driver.name) +
+                          " -- " +
+                          _vm._s(_vm.Invoice.driver.contact) +
+                          "\n                            "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.Invoice.car_details
+                  ? _c("div", {}, [
+                      _vm._m(6),
+                      _vm._v(
+                        _vm._s(_vm.Invoice.car_details) +
                           "\n                            "
                       )
                     ])
@@ -5088,7 +5117,7 @@ var render = function() {
               _c("div", { staticClass: "col-md-6 text-left" }, [
                 _vm.Invoice.client
                   ? _c("div", [
-                      _vm._m(5),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("address", { staticClass: "mt-3 d-block" }, [
                         _vm.Invoice.client.client_name
@@ -5112,7 +5141,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.Invoice.client.client_contact
                           ? _c("div", [
-                              _vm._m(6),
+                              _vm._m(8),
                               _vm._v(
                                 " " +
                                   _vm._s(_vm.Invoice.client.client_contact) +
@@ -5123,7 +5152,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.Invoice.client.client_email
                           ? _c("div", [
-                              _vm._m(7),
+                              _vm._m(9),
                               _vm._v(
                                 _vm._s(_vm.Invoice.client.client_email) +
                                   "\n                                    "
@@ -5133,7 +5162,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.Invoice.client.client_website
                           ? _c("div", [
-                              _vm._m(8),
+                              _vm._m(10),
                               _vm._v(
                                 _vm._s(_vm.Invoice.client.client_website) +
                                   "\n                                    "
@@ -5166,7 +5195,7 @@ var render = function() {
                     "table table-striped table-sm table-responsive-lg"
                 },
                 [
-                  _vm._m(9),
+                  _vm._m(11),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -5223,7 +5252,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row mt-3" }, [
-              _vm._m(10),
+              _vm._m(12),
               _vm._v(" "),
               _c("div", { staticClass: "col-lg-4" }, [
                 _c("table", { staticClass: "table table-sm" }, [
@@ -5422,6 +5451,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("abbr", [_c("b", [_vm._v("Subject: ")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("abbr", [_c("b", [_vm._v("Driver: ")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("abbr", [_c("b", [_vm._v("Vehicle: ")])])
   },
   function() {
     var _vm = this
