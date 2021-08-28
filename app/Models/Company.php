@@ -9,6 +9,15 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'company_name',
+        'company_address',
+        'company_contact',
+        'company_email',
+        'company_website',
+        'user_id',
+    ];
+
     public function invoices(){
         return $this->hasMany(Invoice::class);
     }
