@@ -15,7 +15,7 @@ class CompanySeeder extends Seeder
     public function run()
     {
         Company::create([
-            'company_name' => 'Jinia  Enterprise',
+            'company_name' => 'Jinia Enterprise',
             'company_address' => 'Room #4, 42, Sabera Tower, Gulshan-2, Dhaka-1212',
             'company_contact' => '01716633445, 01534280295',
             'company_email' => 'jiniaenterprise.com@gmail.com',

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+                aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
@@ -11,7 +12,8 @@
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
                         <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
@@ -58,7 +60,9 @@
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="true" aria-label="Toggle sidenav">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                                data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="true"
+                                aria-label="Toggle sidenav">
                             <span></span>
                             <span></span>
                         </button>
@@ -68,7 +72,8 @@
             <!-- Form -->
             <form class="mt-4 mb-3 d-md-none">
                 <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended"
+                           placeholder="{{ __('Search') }}" aria-label="Search">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="fa fa-search"></span>
@@ -79,25 +84,32 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link @if ($pageSlug == 'dashboard') {{'active text-primary'}} @endif" href="{{ route('home') }}">
+                    <a class="nav-link @if ($pageSlug == 'dashboard') {{'active text-primary'}} @endif"
+                       href="{{ route('home') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
-                <li >
-                    <a class="nav-link @if (str_starts_with($pageSlug, "user")) {{'active text-primary'}} @endif" href="#navbar-examples" data-toggle="collapse" aria-expanded="{{str_starts_with($pageSlug, "user")?'true':'false'}}" aria-controls="navbar-examples">
+                <li>
+                    <a class="nav-link @if (str_starts_with($pageSlug, "user")) {{'active text-primary'}} @endif"
+                       href="#navbar-examples" data-toggle="collapse"
+                       aria-expanded="{{str_starts_with($pageSlug, "user")?'true':'false'}}"
+                       aria-controls="navbar-examples">
                         <i class="fab fa-laravel"></i>
                         <span class="nav-link-text">{{ __('Laravel Examples') }}</span>
                     </a>
 
-                    <div class="collapse @if (str_starts_with($pageSlug, "user")) {{'show'}} @endif" id="navbar-examples">
+                    <div class="collapse @if (str_starts_with($pageSlug, "user")) {{'show'}} @endif"
+                         id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item ">
-                                <a class="nav-link @if ($pageSlug=="user-edit") {{'active text-primary'}} @endif" href="{{ route('profile.edit') }}">
+                                <a class="nav-link @if ($pageSlug=="user-edit") {{'active text-primary'}} @endif"
+                                   href="{{ route('profile.edit') }}">
                                     {{ __('User profile') }}
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a class="nav-link @if ($pageSlug=="user-index") {{'active text-primary'}} @endif" href="{{ route('user.index') }}">
+                                <a class="nav-link @if ($pageSlug=="user-index") {{'active text-primary'}} @endif"
+                                   href="{{ route('user.index') }}">
                                     {{ __('User Management') }}
                                 </a>
                             </li>
@@ -107,16 +119,34 @@
 
                 {{--            Invoice--}}
 
+                {{--                For Top Nav Link--}}
+
+                @if (str_starts_with($pageSlug, "invoices"))
+                    @push('top-nav-link')
+                        <li class="breadcrumb-item"><a href="{{route('invoices.index')}}">{{ __('Invoices') }}</a></li>
+                    @endpush
+                @endif
+                @if ($pageSlug == 'invoices-create')
+                    @push('top-nav-link')
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('New Invoice') }}</li>
+                    @endpush
+                @endif
+
                 <li class="nav-item">
-                    <a class="nav-link @if (str_starts_with($pageSlug, "invoices")) {{'active text-primary'}} @endif" href="#navbar-invoices" data-toggle="collapse" aria-expanded="{{str_starts_with($pageSlug, "invoices")?'true':'false'}}" aria-controls="navbar-invoices">
+                    <a class="nav-link @if (str_starts_with($pageSlug, "invoices")) {{'active text-primary'}} @endif"
+                       href="#navbar-invoices" data-toggle="collapse"
+                       aria-expanded="{{str_starts_with($pageSlug, "invoices")?'true':'false'}}"
+                       aria-controls="navbar-invoices">
                         <i class="ni ni-money-coins"></i>
                         <span class="nav-link-text">{{ __('Invoices') }}</span>
                     </a>
 
-                    <div class="collapse @if (str_starts_with($pageSlug, "invoices")) {{'show'}} @endif" id="navbar-invoices">
+                    <div class="collapse @if (str_starts_with($pageSlug, "invoices")) {{'show'}} @endif"
+                         id="navbar-invoices">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif" href="{{ route('invoices.create') }}">
+                                <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif"
+                                   href="{{ route('invoices.create') }}">
                                     <i class="ni ni-ruler-pencil"></i>
                                     {{ __('New Invoice') }}
                                 </a>
@@ -127,19 +157,38 @@
 
                 {{--            Drivers Section--}}
 
+                {{--                For Top Nav Link--}}
+
+                @if (str_starts_with($pageSlug, "drivers"))
+                    @push('top-nav-link')
+                        <li class="breadcrumb-item"><a href="{{route('drivers.index')}}">{{ __('Drivers') }}</a></li>
+                    @endpush
+                @endif
+                @if ($pageSlug == 'drivers-create')
+                    @push('top-nav-link')
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('New Driver') }}</li>
+                    @endpush
+                @endif
+
                 <li class="nav-item">
-                    <a class="nav-link @if (str_starts_with($pageSlug, "drivers")) {{'active text-primary'}} @endif" href="#navbar-drivers" data-toggle="collapse" aria-expanded="{{str_starts_with($pageSlug, "drivers")?'true':'false'}}" aria-controls="navbar-drivers">
-                        <i class="ni ni-bus-front-12" ></i>
+                    <a class="nav-link @if (str_starts_with($pageSlug, "drivers")) {{'active text-primary'}} @endif"
+                       href="#navbar-drivers" data-toggle="collapse"
+                       aria-expanded="{{str_starts_with($pageSlug, "drivers")?'true':'false'}}"
+                       aria-controls="navbar-drivers">
+                        <i class="ni ni-bus-front-12"></i>
                         <span class="nav-link-text">{{ __('Drivers') }}</span>
                     </a>
 
-                    <div class="collapse @if (str_starts_with($pageSlug, "drivers")) {{'show'}} @endif" id="navbar-drivers">
+                    <div class="collapse @if (str_starts_with($pageSlug, "drivers")) {{'show'}} @endif"
+                         id="navbar-drivers">
                         <ul class="nav nav-sm flex-column">
                             <li class="active">
-                                <a class="nav-link @if ($pageSlug == 'drivers-create') {{'active text-primary'}} @endif" href="{{ route('drivers.create') }}">
+                                <a class="nav-link @if ($pageSlug == 'drivers-create') {{'active text-primary'}} @endif"
+                                   href="{{ route('drivers.create') }}">
                                     <i class="ni ni-ruler-pencil"></i>
                                     {{ __('New Driver') }}
                                 </a>
+
                             </li>
                         </ul>
                     </div>
@@ -151,13 +200,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if ($pageSlug == 'tables') {{'active text-primary'}} @endif" href="{{ route('table') }}">
-                      <i class="ni ni-bullet-list-67 text-default"></i>
-                      <span class="nav-link-text">Tables</span>
+                    <a class="nav-link @if ($pageSlug == 'tables') {{'active text-primary'}} @endif"
+                       href="{{ route('table') }}">
+                        <i class="ni ni-bullet-list-67 text-default"></i>
+                        <span class="nav-link-text">Tables</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
+                    <a class="nav-link"
+                       href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html"
+                       target="_blank">
                         <i class="ni ni-ui-04"></i>
                         <span class="nav-link-text">Components</span>
                     </a>
