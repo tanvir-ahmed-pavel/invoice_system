@@ -123,17 +123,12 @@
 
                 @if (str_starts_with($pageSlug, "invoices"))
                     @push('top-nav-link')
-                        <li class="breadcrumb-item"><a href="#">{{ __('Invoices') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('invoices.index')}}">{{ __('Invoices') }}</a></li>
                     @endpush
                 @endif
                 @if ($pageSlug == 'invoices-create')
                     @push('top-nav-link')
                         <li class="breadcrumb-item active" aria-current="page">{{ __('New Invoice') }}</li>
-                    @endpush
-                @endif
-                @if ($pageSlug == 'invoices-manage')
-                    @push('top-nav-link')
-                        <li class="breadcrumb-item active" aria-current="page">{{ __('Manage Invoice') }}</li>
                     @endpush
                 @endif
 
@@ -149,20 +144,11 @@
                     <div class="collapse @if (str_starts_with($pageSlug, "invoices")) {{'show'}} @endif"
                          id="navbar-invoices">
                         <ul class="nav nav-sm flex-column">
-{{--                            New Invoice--}}
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.create') }}">
                                     <i class="ni ni-ruler-pencil"></i>
                                     {{ __('New Invoice') }}
-                                </a>
-                            </li>
-{{--                            Manage Invoice--}}
-                            <li class="nav-item">
-                                <a class="nav-link @if ($pageSlug == 'invoices-manage') {{'active text-primary'}} @endif"
-                                   href="{{ route('invoices.index') }}">
-                                    <i class="ni ni-ruler-pencil"></i>
-                                    {{ __('Manage Invoice') }}
                                 </a>
                             </li>
                         </ul>
