@@ -26,6 +26,11 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        $invoices = Invoice::all();
+
+        return view("invoices.manage-invoice")->with([
+            "invoices" => $invoices,
+        ]);
 
     }
 

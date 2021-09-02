@@ -25,13 +25,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-17 Add dynamic navigation and hot link for creating invoice on top nav">
+    <list default="true" id="9cfe2c3e-73a8-425d-9491-28aceca06e43" name="Default Changelist" comment="#IS-21 Create The Invoice Manage with all functionality">
       <change afterPath="$PROJECT_DIR$/resources/views/invoices/manage-invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/invoices/print-invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoices/print-invoice.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +414,28 @@
       <option name="project" value="LOCAL" />
       <updated>1630301859647</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)">
+      <created>1630573846557</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1630573846557</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Revert &quot;#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)&quot;&#10;&#10;This reverts commit 9a383b9f">
+      <created>1630574026034</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1630574026034</updated>
+    </task>
+    <task id="LOCAL-00022" summary="#IS-21 Create The Invoice Manage with all functionality">
+      <created>1630574138598</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1630574138598</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,11 +491,13 @@
     <MESSAGE value="#IS-7 Process, validate and insert  data for invoice on back-end" />
     <MESSAGE value="#IS-15 Changing the theme" />
     <MESSAGE value="#IS-15 Change the Theme" />
-    <MESSAGE value="#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)" />
     <MESSAGE value="#IS-14 Create the invoice view based on data filed from database (Backend &amp; Frontend).&#10;#IS-18 HTML to PDF (Print and Download functionality)" />
     <MESSAGE value="#IS-19 Create DB Seed and Factories" />
     <MESSAGE value="#IS-17 Add dynamic navigation and hot link for creating invoice on top nav" />
-    <option name="LAST_COMMIT_MESSAGE" value="#IS-17 Add dynamic navigation and hot link for creating invoice on top nav" />
+    <MESSAGE value="#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)" />
+    <MESSAGE value="Revert &quot;#IS-4 Create invoice structure, CRUD and input fields with items associated on front-end (Vue)&quot;&#10;&#10;This reverts commit 9a383b9f" />
+    <MESSAGE value="#IS-21 Create The Invoice Manage with all functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="#IS-21 Create The Invoice Manage with all functionality" />
   </component>
   <component name="WindowStateProjectService">
     <state x="568" y="203" width="480" height="332" key="#File_Watchers" timestamp="1629284013109">
@@ -537,12 +558,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="php">
           <url>file://$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php</url>
-          <line>161</line>
+          <line>175</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="php">
           <url>file://$PROJECT_DIR$/resources/views/layouts/navbars/sidebar.blade.php</url>
-          <line>167</line>
+          <line>181</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
