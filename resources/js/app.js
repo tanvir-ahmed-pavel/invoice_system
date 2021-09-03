@@ -13,6 +13,7 @@ Vue.prototype.axios=axios;
 // Calling The Components
 import InvoiceComponent from "./components/InvoiceComponent";
 import InvoiceShowComponent from "./components/InvoiceShowComponent";
+import InvoiceManageComponent from "./components/InvoiceManageComponent";
 
 
 
@@ -21,5 +22,6 @@ new Vue({
     components:{
         InvoiceComponent,
         InvoiceShowComponent,
+        InvoiceManageComponent
     },
 });

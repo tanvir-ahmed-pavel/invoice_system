@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,18 +38,21 @@ Route::group(['middleware' => 'auth'], function () {
 
 //    API
 
-    Route::get('driversApi', [\App\Http\Controllers\DriverController::class, 'indexApi']);
+    Route::get('driversApi', [DriverController::class, 'indexApi']);
 
 //    Resources
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('drivers', 'App\Http\Controllers\DriverController');
     Route::resource('invoices', 'App\Http\Controllers\InvoiceController');
 
+//    APIS
+
+    Route::get("/invoices_api", [InvoiceController::class, "index_api"])->name("invoice.index_api");
 
 //    Invoice Print & Download Route
 
-    Route::get('/invoices/{id}/print', [\App\Http\Controllers\InvoiceController::class, 'printInvoice'])->name('invoices.print');
-    Route::get('/invoices/{id}/download', [\App\Http\Controllers\InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
+    Route::get('/invoices/{id}/print', [InvoiceController::class, 'printInvoice'])->name('invoices.print');
+    Route::get('/invoices/{id}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);

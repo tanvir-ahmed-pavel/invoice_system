@@ -29,10 +29,18 @@ class InvoiceController extends Controller
         $invoices = Invoice::all();
 
         return view("invoices.manage-invoice")->with([
-            "invoices" => $invoices,
+            "invoices" => $invoices->load('client', 'company'),
         ]);
 
     }
+
+    public function index_api(Request $request){
+        $invoices = Invoice::all();
+        $invoices->load('client', 'company');
+
+        return response()->json($invoices, 200);
+    }
+
 
     /**
      * Show the form for creating a new resource.
