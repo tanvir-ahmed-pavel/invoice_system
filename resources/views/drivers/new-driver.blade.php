@@ -1,6 +1,6 @@
 @extends('layouts.app', ['page' => __('New Driver'), 'pageSlug' => 'drivers-create'])
 @section('content')
-    <div class="container mt--7">
+    <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -21,12 +21,12 @@
                                 @include('alerts.feedback', ['field' => 'name'])
                             </div>
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                            <div class="form-group{{ $errors->has('contact') ? ' has-danger' : '' }}">
                                 <label>{{ __('Contact') }}</label>
                                 <input type="text" name="contact"
                                        class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}"
                                        placeholder="{{ __('Add Contact Number') }}" value="{{ old('contact')}}">
-                                @include('alerts.feedback', ['field' => 'email'])
+                                @include('alerts.feedback', ['field' => 'contact'])
                             </div>
                         </div>
                         <div class="card-footer">

@@ -47,7 +47,15 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            "name" => 'required|string',
+            "contact" => 'required|numeric',
+        ]);
+        $driver = Driver::create([
+            'name'=>$data['name'],
+            'contact'=>$data['contact'],
+        ]);
+        return $driver;
     }
 
     /**
