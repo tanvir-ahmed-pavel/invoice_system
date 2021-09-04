@@ -116,6 +116,34 @@
                         </ul>
                     </div>
                 </li>
+                {{-- Clients--}}
+                <li>
+                    <a class="nav-link @if (str_starts_with($pageSlug, "user")) {{'active text-primary'}} @endif"
+                       href="#navbar-examples" data-toggle="collapse"
+                       aria-expanded="{{str_starts_with($pageSlug, "user")?'true':'false'}}"
+                       aria-controls="navbar-examples">
+                        <i class="ni ni-single-02"></i>
+                        <span class="nav-link-text">{{ __('Our Clients') }}</span>
+                    </a>
+
+                    <div class="collapse @if (str_starts_with($pageSlug, "user")) {{'show'}} @endif"
+                         id="navbar-examples">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item ">
+                                <a class="nav-link @if ($pageSlug=="user-edit") {{'active text-primary'}} @endif"
+                                   href="{{ route('profile.edit') }}">
+                                    {{ __('Create New Clients') }}
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a class="nav-link @if ($pageSlug=="user-index") {{'active text-primary'}} @endif"
+                                   href="{{ route('user.index') }}">
+                                    {{ __('Client Management') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 {{--            Invoice--}}
 
@@ -202,7 +230,13 @@
                                     <i class="ni ni-ruler-pencil"></i>
                                     {{ __('New Driver') }}
                                 </a>
-
+                            </li>
+                            <li class="active">
+                                <a class="nav-link @if ($pageSlug == 'drivers-create') {{'active text-primary'}} @endif"
+                                   href="{{ route('drivers.create') }}">
+                                    <i class="ni ni-circle-08"></i>
+                                    {{ __('Our Drivers') }}
+                                </a>
                             </li>
                         </ul>
                     </div>
