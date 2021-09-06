@@ -116,28 +116,30 @@
                         </ul>
                     </div>
                 </li>
+
                 {{-- Clients--}}
+
                 <li>
-                    <a class="nav-link @if (str_starts_with($pageSlug, "user")) {{'active text-primary'}} @endif"
-                       href="#navbar-examples" data-toggle="collapse"
-                       aria-expanded="{{str_starts_with($pageSlug, "user")?'true':'false'}}"
-                       aria-controls="navbar-examples">
+                    <a class="nav-link @if (str_starts_with($pageSlug, "client")) {{'active text-primary'}} @endif"
+                       href="#navbar-client" data-toggle="collapse"
+                       aria-expanded="{{str_starts_with($pageSlug, "client")?'true':'false'}}"
+                       aria-controls="navbar-client">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-text">{{ __('Our Clients') }}</span>
                     </a>
 
-                    <div class="collapse @if (str_starts_with($pageSlug, "user")) {{'show'}} @endif"
-                         id="navbar-examples">
+                    <div class="collapse @if (str_starts_with($pageSlug, "client")) {{'show'}} @endif"
+                         id="navbar-client">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item ">
-                                <a class="nav-link @if ($pageSlug=="user-edit") {{'active text-primary'}} @endif"
-                                   href="{{ route('profile.edit') }}">
+                                <a class="nav-link @if ($pageSlug=="client-create") {{'active text-primary'}} @endif"
+                                   href="{{ route('clients.create') }}">
                                     {{ __('Create New Clients') }}
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a class="nav-link @if ($pageSlug=="user-index") {{'active text-primary'}} @endif"
-                                   href="{{ route('user.index') }}">
+                                <a class="nav-link @if ($pageSlug=="client-manager") {{'active text-primary'}} @endif"
+                                   href="{{ route('clients.index') }}">
                                     {{ __('Client Management') }}
                                 </a>
                             </li>
@@ -211,6 +213,11 @@
                         <li class="breadcrumb-item active" aria-current="page">{{ __('New Driver') }}</li>
                     @endpush
                 @endif
+                @if ($pageSlug == 'drivers-manager')
+                    @push('top-nav-link')
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('Manage Driver') }}</li>
+                    @endpush
+                @endif
 
                 <li class="nav-item">
                     <a class="nav-link @if (str_starts_with($pageSlug, "drivers")) {{'active text-primary'}} @endif"
@@ -232,8 +239,8 @@
                                 </a>
                             </li>
                             <li class="active">
-                                <a class="nav-link @if ($pageSlug == 'drivers-create') {{'active text-primary'}} @endif"
-                                   href="{{ route('drivers.create') }}">
+                                <a class="nav-link @if ($pageSlug == 'drivers-manager') {{'active text-primary'}} @endif"
+                                   href="{{ route('drivers.index') }}">
                                     <i class="ni ni-circle-08"></i>
                                     {{ __('Our Drivers') }}
                                 </a>
