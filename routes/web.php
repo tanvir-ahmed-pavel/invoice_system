@@ -44,6 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::resource('drivers', 'App\Http\Controllers\DriverController');
     Route::resource('invoices', 'App\Http\Controllers\InvoiceController');
+    Route::resource('clients','App\Http\Controllers\ClientController');
+
+//  Driver
+
+    Route::post('drivers.store','App\Http\Controllers\DriverController@store');
 
     Route::post('drivers.store','App\Http\Controllers\DriverController@store');
 
