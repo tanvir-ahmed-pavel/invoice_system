@@ -21,11 +21,11 @@ class CreateItemsTable extends Migration
             $table->text("description");
             $table->float("quantity")->nullable();
             $table->string("unit")->nullable();
-            $table->float("rate");
-            $table->float("amount");
+            $table->double("rate");
+            $table->double("amount");
             $table->timestamps();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
         });
     }
 

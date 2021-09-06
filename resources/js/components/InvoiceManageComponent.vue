@@ -15,7 +15,8 @@
                                 <th scope="col" class="sort" data-sort=""><h5>Invoice No #</h5></th>
                                 <th scope="col" class="sort" data-sort=""><h5>Issued By</h5></th>
                                 <th scope="col" class="sort" data-sort=""><h5>Client</h5></th>
-                                <th scope="col" class="sort" data-sort=""><h5>Payable Amount</h5></th>
+                                <th scope="col" class="sort" data-sort=""><h5>Bill Amount</h5></th>
+                                <th scope="col" class="sort" data-sort=""><h5>Status</h5></th>
                                 <th scope="col" class="sort" data-sort=""><h5>Date</h5></th>
                                 <th scope="col" class="sort" data-sort=""><h5>Actions</h5></th>
                             </tr>
@@ -29,14 +30,17 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td class="">
-                                    {{invoice.company.company_name}}
+                                <td>
+                                    {{invoice.company?invoice.company.company_name:"--"}}
                                 </td>
                                 <td>
-                                    {{invoice.client.client_name}}
+                                    {{invoice.client?invoice.client.client_name:"--"}}
                                 </td>
                                 <td>
                                     {{'BDT '+(invoice.net_amount-invoice.discount-invoice.advance_paid).toFixed(2)}}
+                                </td>
+                                <td>
+                                    <span class="badge-pill badge-success">Paid</span>
                                 </td>
                                 <td>
                                     {{invoice.date}}
@@ -45,20 +49,21 @@
                                     <a class="badge badge-circle badge-floating badge-primary ml-0 mr-2" :href="`/invoices/${invoice.invoice_number}`" data-toggle="tooltip" data-placement="top" title="Show">
                                         <i class="far fa-eye"></i>
                                     </a>
-                                    <a class="badge badge-circle badge-floating badge-warning mr-2" @click="printInvoice(invoice.invoice_number)" href="#" data-toggle="tooltip" data-placement="top" title="Print">
+                                    <a class="badge badge-circle badge-floating badge-success ml-0 mr-2" :href="`/invoices/${invoice.invoice_number}`" data-toggle="tooltip" data-placement="top" title="Make Payments">
+                                        <i class="far fa-money-bill-alt"></i>
+                                    </a>
+                                    <a class="badge badge-circle badge-floating badge-info mr-2" @click="printInvoice(invoice.invoice_number)" href="#" data-toggle="tooltip" data-placement="top" title="Print">
                                         <i class="fas fa-print"></i>
                                     </a>
-                                    <a class="badge badge-circle badge-floating badge-success m-2" @click="downloadInvoice(invoice.invoice_number)" href="#" data-toggle="tooltip" data-placement="top" title="Download">
-                                        <i class="fas fa-download"></i>
-                                    </a>
+
                                     <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <a class="dropdown-item" href="#">Edit</a>
+                                            <a class="dropdown-item" @click.prevent="downloadInvoice(invoice.invoice_number)" href="#">Download</a>
+                                            <a class="dropdown-item badge-danger rounded-0" type="button" @click.prevent="deleteInvoice(invoice.id, index)" href="#">Delete</a>
                                         </div>
                                     </div>
                                 </td>
@@ -124,6 +129,16 @@
             },
             downloadInvoice(id){
                 window.location.href = window.location.origin+'/invoices/' + id + '/download';
+            },
+            deleteInvoice(id, index){
+                try {
+                    this.axios.delete("/invoices/"+id).then((response) => {
+                        console.log(response.data);
+                        this.invoices.splice(index, 1);
+                    })
+                } catch (e) {
+                    console.log(e.data);
+                }
             }
         }
     }

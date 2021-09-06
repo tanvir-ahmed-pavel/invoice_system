@@ -2202,6 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceComponent",
@@ -2428,6 +2429,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceManageComponent",
   data: function data() {
@@ -2455,6 +2461,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     downloadInvoice: function downloadInvoice(id) {
       window.location.href = window.location.origin + '/invoices/' + id + '/download';
+    },
+    deleteInvoice: function deleteInvoice(id, index) {
+      var _this2 = this;
+
+      try {
+        this.axios["delete"]("/invoices/" + id).then(function (response) {
+          console.log(response.data);
+
+          _this2.invoices.splice(index, 1);
+        });
+      } catch (e) {
+        console.log(e.data);
+      }
     }
   }
 });
@@ -5282,10 +5301,14 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", {}, [
+                          _c("td", [
                             _vm._v(
                               "\n                                " +
-                                _vm._s(invoice.company.company_name) +
+                                _vm._s(
+                                  invoice.company
+                                    ? invoice.company.company_name
+                                    : "--"
+                                ) +
                                 "\n                            "
                             )
                           ]),
@@ -5293,7 +5316,11 @@ var render = function() {
                           _c("td", [
                             _vm._v(
                               "\n                                " +
-                                _vm._s(invoice.client.client_name) +
+                                _vm._s(
+                                  invoice.client
+                                    ? invoice.client.client_name
+                                    : "--"
+                                ) +
                                 "\n                            "
                             )
                           ]),
@@ -5312,6 +5339,8 @@ var render = function() {
                                 "\n                            "
                             )
                           ]),
+                          _vm._v(" "),
+                          _vm._m(2, true),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
@@ -5341,7 +5370,26 @@ var render = function() {
                               "a",
                               {
                                 staticClass:
-                                  "badge badge-circle badge-floating badge-warning mr-2",
+                                  "badge badge-circle badge-floating badge-success ml-0 mr-2",
+                                attrs: {
+                                  href: "/invoices/" + invoice.invoice_number,
+                                  "data-toggle": "tooltip",
+                                  "data-placement": "top",
+                                  title: "Make Payments"
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "far fa-money-bill-alt"
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "badge badge-circle badge-floating badge-info mr-2",
                                 attrs: {
                                   href: "#",
                                   "data-toggle": "tooltip",
@@ -5359,29 +5407,63 @@ var render = function() {
                               [_c("i", { staticClass: "fas fa-print" })]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "badge badge-circle badge-floating badge-success m-2",
-                                attrs: {
-                                  href: "#",
-                                  "data-toggle": "tooltip",
-                                  "data-placement": "top",
-                                  title: "Download"
+                            _c("div", { staticClass: "dropdown" }, [
+                              _vm._m(3, true),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.downloadInvoice(
-                                      invoice.invoice_number
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-download" })]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(2, true)
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.downloadInvoice(
+                                            invoice.invoice_number
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Download")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "dropdown-item badge-danger rounded-0",
+                                      attrs: { type: "button", href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.deleteInvoice(
+                                            invoice.id,
+                                            index
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ]
+                              )
+                            ])
                           ])
                         ])
                       }),
@@ -5392,7 +5474,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(4)
         ])
       ])
     ])
@@ -5434,7 +5516,13 @@ var staticRenderFns = [
         _c(
           "th",
           { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
-          [_c("h5", [_vm._v("Payable Amount")])]
+          [_c("h5", [_vm._v("Bill Amount")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          [_c("h5", [_vm._v("Status")])]
         ),
         _vm._v(" "),
         _c(
@@ -5455,42 +5543,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-sm btn-icon-only text-light",
-          attrs: {
-            href: "#",
-            role: "button",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false"
-          }
-        },
-        [_c("i", { staticClass: "fas fa-ellipsis-v" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
-        },
-        [
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Action")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Another action")
-          ]),
-          _vm._v(" "),
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _vm._v("Something else here")
-          ])
-        ]
-      )
+    return _c("td", [
+      _c("span", { staticClass: "badge-pill badge-success" }, [_vm._v("Paid")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-sm btn-icon-only text-light",
+        attrs: {
+          href: "#",
+          type: "button",
+          id: "dropdownMenuButton",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+    )
   },
   function() {
     var _vm = this

@@ -7,6 +7,7 @@
 
                         <div class="card-body ">
                             <div class="row align-items-center justify-content-end">
+
                                 <!--                        ROW 1: Date and Invoice Type-->
 
                                 <div class="form-group col-lg-9">
@@ -104,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <!--                        Row 4: Invoice Table-->
+                            <!--                        Row 4: Items Table-->
 
 
                             <table class="table-responsive-xl table-bordered table pt-2">

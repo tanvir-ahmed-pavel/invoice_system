@@ -200,9 +200,12 @@ class InvoiceController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice)
     {
-        //
+
+            $invoice->delete();
+            return response()->json('Invoice Deleted', 200);
+
     }
 
     //        Helper Method for Generating Invoice Number
