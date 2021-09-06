@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('drivers', 'App\Http\Controllers\DriverController');
     Route::resource('invoices', 'App\Http\Controllers\InvoiceController');
 
+    Route::post('drivers.store','App\Http\Controllers\DriverController@store');
+
 //    APIS
 
     Route::get("/invoices_api", [InvoiceController::class, "index_api"])->name("invoice.index_api");
