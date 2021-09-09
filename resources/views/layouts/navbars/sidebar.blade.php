@@ -172,7 +172,7 @@
                        href="#navbar-invoices" data-toggle="collapse"
                        aria-expanded="{{str_starts_with($pageSlug, "invoices")?'true':'false'}}"
                        aria-controls="navbar-invoices">
-                        <i class="ni ni-money-coins"></i>
+                        <i class="fas fa-file-invoice-dollar"></i>
                         <span class="nav-link-text">{{ __('Invoices') }}</span>
                     </a>
 
@@ -183,7 +183,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.create') }}">
-                                    <i class="ni ni-ruler-pencil"></i>
+                                    <i class="far fa-plus-square"></i>
                                     {{ __('New Invoice') }}
                                 </a>
                             </li>
@@ -191,7 +191,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-manage') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.index') }}">
-                                    <i class="ni ni-ruler-pencil"></i>
+                                    <i class="fas fa-tasks"></i>
                                     {{ __('Manage Invoice') }}
                                 </a>
                             </li>

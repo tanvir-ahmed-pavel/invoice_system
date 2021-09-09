@@ -3784,7 +3784,7 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid mt--7" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col" }, [
-        _c("div", { staticClass: "card shadow bg-lighter" }, [
+        _c("div", { staticClass: "card shadow bg-gradient-lighter" }, [
           _c(
             "form",
             {
@@ -5291,7 +5291,7 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table table-flush table-sm" }, [
+            _c("table", { staticClass: "table table-striped table-sm" }, [
               _vm._m(1),
               _vm._v(" "),
               _vm.invoices
@@ -5455,7 +5455,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-outline-primary m-2",
+                                          "btn rounded-0 btn-sm btn-primary m-2",
                                         attrs: {
                                           href:
                                             "/invoices/" +
@@ -5487,7 +5487,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-outline-warning m-2",
+                                          "btn rounded-0 btn-sm btn-success m-2",
                                         attrs: {
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
@@ -5516,7 +5516,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-outline-danger m-2 ",
+                                          "btn rounded-0 btn-sm btn-danger m-2 ",
                                         attrs: {
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
@@ -5655,7 +5655,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn rounded-0 btn-sm btn-outline-info m-2",
+        staticClass: "btn rounded-0 btn-sm btn-info m-2",
         attrs: {
           "data-placement": "top",
           "data-toggle": "tooltip",

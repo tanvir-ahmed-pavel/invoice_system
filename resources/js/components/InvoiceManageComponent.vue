@@ -9,7 +9,7 @@
                     </div>
                     <!-- Light table -->
                     <div class="table-responsive">
-                        <table class="table table-flush table-sm">
+                        <table class="table table-striped table-sm">
                             <thead class="thead-light">
                             <tr>
                                 <th class="sort" data-sort="" scope="col"><h5>Invoice No #</h5></th>
@@ -68,12 +68,12 @@
                                             class="dropdown-menu p-2 dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                             <div class="d-flex justify-content-center">
                                                 <a :href="`/invoices/${invoice.invoice_number}`"
-                                                   class="btn rounded-0 btn-sm btn-outline-primary m-2" data-placement="top"
+                                                   class="btn rounded-0 btn-sm btn-primary m-2" data-placement="top"
                                                    data-toggle="tooltip" title="Show">
                                                     <i class="far fa-eye"></i>
                                                     <span>Show</span>
                                                 </a>
-                                                <a class="btn rounded-0 btn-sm btn-outline-info m-2"
+                                                <a class="btn rounded-0 btn-sm btn-info m-2"
                                                    data-placement="top" data-toggle="tooltip" href="#" title="Edit">
                                                     <i class="far fa-edit"></i>
                                                     <span>Edit</span>
@@ -82,13 +82,13 @@
                                             </div>
                                             <div class="d-flex text-center justify-content-center">
                                                 <a @click.prevent="downloadInvoice(invoice.invoice_number)"
-                                                   class="btn rounded-0 btn-sm btn-outline-warning m-2" data-placement="top"
+                                                   class="btn rounded-0 btn-sm btn-success m-2" data-placement="top"
                                                    data-toggle="tooltip" href="#" title="Download">
                                                     <i class="fas fa-download"></i>
                                                     <span>Download</span>
                                                 </a>
                                                 <a @click.prevent="deleteInvoice(invoice.id, index)"
-                                                   class="btn rounded-0 btn-sm btn-outline-danger m-2 " data-placement="top"
+                                                   class="btn rounded-0 btn-sm btn-danger m-2 " data-placement="top"
                                                    data-toggle="tooltip" href="#" title="Delete">
                                                     <i class="far fa-trash-alt"></i>
                                                     <span>Delete</span>

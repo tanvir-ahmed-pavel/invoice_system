@@ -2,7 +2,7 @@
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
-                <div class="card shadow bg-lighter">
+                <div class="card shadow bg-gradient-lighter">
                     <form method="post" @submit.prevent="submit()" autocomplete="off">
 
                         <div class="card-body ">
