@@ -9,7 +9,7 @@
                     </div>
                     <!-- Light table -->
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
+                        <table class="table table-striped table-sm">
                             <thead class="thead-light">
                             <tr>
                                 <th scope="col" class="sort" data-sort=""><h5>Invoice No #</h5></th>
@@ -30,10 +30,10 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td>
+                                <td style="word-wrap: break-word;white-space:normal;max-width: 160px;">
                                     {{invoice.company?invoice.company.company_name:"--"}}
                                 </td>
-                                <td>
+                                <td style="word-wrap: break-word;white-space:normal;max-width: 160px;">
                                     {{invoice.client?invoice.client.client_name:"--"}}
                                 </td>
                                 <td>
@@ -46,9 +46,6 @@
                                     {{invoice.date}}
                                 </td>
                                 <td class="text-center">
-                                    <a class="badge badge-circle badge-floating badge-primary ml-0 mr-2" :href="`/invoices/${invoice.invoice_number}`" data-toggle="tooltip" data-placement="top" title="Show">
-                                        <i class="far fa-eye"></i>
-                                    </a>
                                     <a class="badge badge-circle badge-floating badge-success ml-0 mr-2" :href="`/invoices/${invoice.invoice_number}`" data-toggle="tooltip" data-placement="top" title="Make Payments">
                                         <i class="far fa-money-bill-alt"></i>
                                     </a>
@@ -56,14 +53,28 @@
                                         <i class="fas fa-print"></i>
                                     </a>
 
-                                    <div class="dropdown">
+                                    <div class="dropdown ">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" @click.prevent="downloadInvoice(invoice.invoice_number)" href="#">Download</a>
-                                            <a class="dropdown-item badge-danger rounded-0" type="button" @click.prevent="deleteInvoice(invoice.id, index)" href="#">Delete</a>
+                                        <div class="dropdown-menu p-2 dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
+                                            <div class="d-flex justify-content-center">
+                                                    <a class="badge badge-circle badge-floating badge-primary p-3 m-2 " :href="`/invoices/${invoice.invoice_number}`" data-toggle="tooltip" data-placement="top" title="Show">
+                                                        <i class="far fa-eye"></i>
+                                                    </a>
+                                                    <a class="badge badge-circle badge-floating badge-info p-3 m-2 " href="#" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="far fa-edit"></i>
+                                                    </a>
+
+                                            </div>
+                                            <div class="d-flex text-center justify-content-center">
+                                                <a class="badge badge-circle badge-floating badge-warning p-3 m-2 " @click.prevent="downloadInvoice(invoice.invoice_number)" href="#" data-toggle="tooltip" data-placement="top" title="Download">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                <a class="badge badge-circle badge-floating badge-danger p-3 m-2 " @click.prevent="deleteInvoice(invoice.id, index)" href="#" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>

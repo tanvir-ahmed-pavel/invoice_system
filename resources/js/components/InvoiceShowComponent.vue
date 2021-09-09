@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="card-footer text-left">
-                        <a class="btn btn-danger" href="#">Cancel</a>
+                        <a class="btn btn-primary" href="/invoices">Invoice List</a>
                         <a href="#" @click="printInvoice()"
                                 class="btn btn-info">
                             <span class="fa fa-print"></span>

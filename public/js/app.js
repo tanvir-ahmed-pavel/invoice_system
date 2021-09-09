@@ -2434,6 +2434,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceManageComponent",
   data: function data() {
@@ -5261,47 +5272,53 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
-            _c(
-              "table",
-              { staticClass: "table align-items-center table-flush" },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm.invoices
-                  ? _c(
-                      "tbody",
-                      { staticClass: "list" },
-                      _vm._l(_vm.invoices, function(invoice, index) {
-                        return _c("tr", [
-                          _c("th", { attrs: { scope: "row" } }, [
-                            _c(
-                              "div",
-                              { staticClass: "media align-items-center" },
-                              [
-                                _c("div", { staticClass: "media-body" }, [
-                                  _c(
-                                    "span",
-                                    { staticClass: "name mb-0 text-sm" },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href:
-                                              "/invoices/" +
-                                              invoice.invoice_number
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(invoice.invoice_number))]
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
+            _c("table", { staticClass: "table table-striped table-sm" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm.invoices
+                ? _c(
+                    "tbody",
+                    { staticClass: "list" },
+                    _vm._l(_vm.invoices, function(invoice, index) {
+                      return _c("tr", [
+                        _c("th", { attrs: { scope: "row" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "media align-items-center" },
+                            [
+                              _c("div", { staticClass: "media-body" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "name mb-0 text-sm" },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: {
+                                          href:
+                                            "/invoices/" +
+                                            invoice.invoice_number
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(invoice.invoice_number))]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "word-wrap": "break-word",
+                              "white-space": "normal",
+                              "max-width": "160px"
+                            }
+                          },
+                          [
                             _vm._v(
                               "\n                                " +
                                 _vm._s(
@@ -5311,9 +5328,19 @@ var render = function() {
                                 ) +
                                 "\n                            "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticStyle: {
+                              "word-wrap": "break-word",
+                              "white-space": "normal",
+                              "max-width": "160px"
+                            }
+                          },
+                          [
                             _vm._v(
                               "\n                                " +
                                 _vm._s(
@@ -5323,158 +5350,185 @@ var render = function() {
                                 ) +
                                 "\n                            "
                             )
-                          ]),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(
+                                "BDT " +
+                                  (
+                                    invoice.net_amount -
+                                    invoice.discount -
+                                    invoice.advance_paid
+                                  ).toFixed(2)
+                              ) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2, true),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(invoice.date) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "badge badge-circle badge-floating badge-success ml-0 mr-2",
+                              attrs: {
+                                href: "/invoices/" + invoice.invoice_number,
+                                "data-toggle": "tooltip",
+                                "data-placement": "top",
+                                title: "Make Payments"
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-money-bill-alt" })]
+                          ),
                           _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(
-                                  "BDT " +
-                                    (
-                                      invoice.net_amount -
-                                      invoice.discount -
-                                      invoice.advance_paid
-                                    ).toFixed(2)
-                                ) +
-                                "\n                            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(2, true),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(invoice.date) +
-                                "\n                            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "text-center" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "badge badge-circle badge-floating badge-primary ml-0 mr-2",
-                                attrs: {
-                                  href: "/invoices/" + invoice.invoice_number,
-                                  "data-toggle": "tooltip",
-                                  "data-placement": "top",
-                                  title: "Show"
-                                }
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "badge badge-circle badge-floating badge-info mr-2",
+                              attrs: {
+                                href: "#",
+                                "data-toggle": "tooltip",
+                                "data-placement": "top",
+                                title: "Print"
                               },
-                              [_c("i", { staticClass: "far fa-eye" })]
-                            ),
+                              on: {
+                                click: function($event) {
+                                  return _vm.printInvoice(
+                                    invoice.invoice_number
+                                  )
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-print" })]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "dropdown " }, [
+                            _vm._m(3, true),
                             _vm._v(" "),
                             _c(
-                              "a",
+                              "div",
                               {
                                 staticClass:
-                                  "badge badge-circle badge-floating badge-success ml-0 mr-2",
-                                attrs: {
-                                  href: "/invoices/" + invoice.invoice_number,
-                                  "data-toggle": "tooltip",
-                                  "data-placement": "top",
-                                  title: "Make Payments"
-                                }
+                                  "dropdown-menu p-2 dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow"
                               },
                               [
-                                _c("i", {
-                                  staticClass: "far fa-money-bill-alt"
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "badge badge-circle badge-floating badge-info mr-2",
-                                attrs: {
-                                  href: "#",
-                                  "data-toggle": "tooltip",
-                                  "data-placement": "top",
-                                  title: "Print"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.printInvoice(
-                                      invoice.invoice_number
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "d-flex justify-content-center"
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "badge badge-circle badge-floating badge-primary p-3 m-2 ",
+                                        attrs: {
+                                          href:
+                                            "/invoices/" +
+                                            invoice.invoice_number,
+                                          "data-toggle": "tooltip",
+                                          "data-placement": "top",
+                                          title: "Show"
+                                        }
+                                      },
+                                      [_c("i", { staticClass: "far fa-eye" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._m(4, true)
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "d-flex text-center justify-content-center"
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "badge badge-circle badge-floating badge-warning p-3 m-2 ",
+                                        attrs: {
+                                          href: "#",
+                                          "data-toggle": "tooltip",
+                                          "data-placement": "top",
+                                          title: "Download"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.downloadInvoice(
+                                              invoice.invoice_number
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fas fa-download"
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "badge badge-circle badge-floating badge-danger p-3 m-2 ",
+                                        attrs: {
+                                          href: "#",
+                                          "data-toggle": "tooltip",
+                                          "data-placement": "top",
+                                          title: "Delete"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.deleteInvoice(
+                                              invoice.id,
+                                              index
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "far fa-trash-alt"
+                                        })
+                                      ]
                                     )
-                                  }
-                                }
-                              },
-                              [_c("i", { staticClass: "fas fa-print" })]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "dropdown" }, [
-                              _vm._m(3, true),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "dropdown-menu dropdown-menu-right dropdown-menu-arrow"
-                                },
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { href: "#" }
-                                    },
-                                    [_vm._v("Edit")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.downloadInvoice(
-                                            invoice.invoice_number
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Download")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "dropdown-item badge-danger rounded-0",
-                                      attrs: { type: "button", href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.deleteInvoice(
-                                            invoice.id,
-                                            index
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Delete")]
-                                  )
-                                ]
-                              )
-                            ])
+                                  ]
+                                )
+                              ]
+                            )
                           ])
                         ])
-                      }),
-                      0
-                    )
-                  : _vm._e()
-              ]
-            )
+                      ])
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ])
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _vm._m(5)
         ])
       ])
     ])
@@ -5565,6 +5619,24 @@ var staticRenderFns = [
         }
       },
       [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "badge badge-circle badge-floating badge-info p-3 m-2 ",
+        attrs: {
+          href: "#",
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "Edit"
+        }
+      },
+      [_c("i", { staticClass: "far fa-edit" })]
     )
   },
   function() {
@@ -6006,9 +6078,11 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-footer text-left" }, [
-            _c("a", { staticClass: "btn btn-danger", attrs: { href: "#" } }, [
-              _vm._v("Cancel")
-            ]),
+            _c(
+              "a",
+              { staticClass: "btn btn-primary", attrs: { href: "/invoices" } },
+              [_vm._v("Invoice List")]
+            ),
             _vm._v(" "),
             _c(
               "a",
