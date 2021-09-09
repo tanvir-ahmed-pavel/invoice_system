@@ -2445,6 +2445,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceManageComponent",
   data: function data() {
@@ -5272,7 +5291,7 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table table-striped table-sm" }, [
+            _c("table", { staticClass: "table table-flush table-sm" }, [
               _vm._m(1),
               _vm._v(" "),
               _vm.invoices
@@ -5386,8 +5405,8 @@ var render = function() {
                                 "badge badge-circle badge-floating badge-success ml-0 mr-2",
                               attrs: {
                                 href: "/invoices/" + invoice.invoice_number,
-                                "data-toggle": "tooltip",
                                 "data-placement": "top",
+                                "data-toggle": "tooltip",
                                 title: "Make Payments"
                               }
                             },
@@ -5400,9 +5419,9 @@ var render = function() {
                               staticClass:
                                 "badge badge-circle badge-floating badge-info mr-2",
                               attrs: {
-                                href: "#",
-                                "data-toggle": "tooltip",
                                 "data-placement": "top",
+                                "data-toggle": "tooltip",
+                                href: "#",
                                 title: "Print"
                               },
                               on: {
@@ -5436,17 +5455,21 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "badge badge-circle badge-floating badge-primary p-3 m-2 ",
+                                          "btn rounded-0 btn-sm btn-outline-primary m-2",
                                         attrs: {
                                           href:
                                             "/invoices/" +
                                             invoice.invoice_number,
-                                          "data-toggle": "tooltip",
                                           "data-placement": "top",
+                                          "data-toggle": "tooltip",
                                           title: "Show"
                                         }
                                       },
-                                      [_c("i", { staticClass: "far fa-eye" })]
+                                      [
+                                        _c("i", { staticClass: "far fa-eye" }),
+                                        _vm._v(" "),
+                                        _c("span", [_vm._v("Show")])
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _vm._m(4, true)
@@ -5464,11 +5487,11 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "badge badge-circle badge-floating badge-warning p-3 m-2 ",
+                                          "btn rounded-0 btn-sm btn-outline-warning m-2",
                                         attrs: {
-                                          href: "#",
-                                          "data-toggle": "tooltip",
                                           "data-placement": "top",
+                                          "data-toggle": "tooltip",
+                                          href: "#",
                                           title: "Download"
                                         },
                                         on: {
@@ -5483,7 +5506,9 @@ var render = function() {
                                       [
                                         _c("i", {
                                           staticClass: "fas fa-download"
-                                        })
+                                        }),
+                                        _vm._v(" "),
+                                        _c("span", [_vm._v("Download")])
                                       ]
                                     ),
                                     _vm._v(" "),
@@ -5491,11 +5516,11 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "badge badge-circle badge-floating badge-danger p-3 m-2 ",
+                                          "btn rounded-0 btn-sm btn-outline-danger m-2 ",
                                         attrs: {
-                                          href: "#",
-                                          "data-toggle": "tooltip",
                                           "data-placement": "top",
+                                          "data-toggle": "tooltip",
+                                          href: "#",
                                           title: "Delete"
                                         },
                                         on: {
@@ -5511,7 +5536,9 @@ var render = function() {
                                       [
                                         _c("i", {
                                           staticClass: "far fa-trash-alt"
-                                        })
+                                        }),
+                                        _vm._v(" "),
+                                        _c("span", [_vm._v("Delete")])
                                       ]
                                     )
                                   ]
@@ -5551,43 +5578,43 @@ var staticRenderFns = [
       _c("tr", [
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Invoice No #")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Issued By")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Client")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Bill Amount")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Status")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Date")])]
         ),
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "sort", attrs: { scope: "col", "data-sort": "" } },
+          { staticClass: "sort", attrs: { "data-sort": "", scope: "col" } },
           [_c("h5", [_vm._v("Actions")])]
         )
       ])
@@ -5610,12 +5637,12 @@ var staticRenderFns = [
       {
         staticClass: "btn btn-sm btn-icon-only text-light",
         attrs: {
-          href: "#",
-          type: "button",
-          id: "dropdownMenuButton",
-          "data-toggle": "dropdown",
+          "aria-expanded": "false",
           "aria-haspopup": "true",
-          "aria-expanded": "false"
+          "data-toggle": "dropdown",
+          href: "#",
+          id: "dropdownMenuButton",
+          type: "button"
         }
       },
       [_c("i", { staticClass: "fas fa-ellipsis-v" })]
@@ -5628,15 +5655,19 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "badge badge-circle badge-floating badge-info p-3 m-2 ",
+        staticClass: "btn rounded-0 btn-sm btn-outline-info m-2",
         attrs: {
-          href: "#",
-          "data-toggle": "tooltip",
           "data-placement": "top",
+          "data-toggle": "tooltip",
+          href: "#",
           title: "Edit"
         }
       },
-      [_c("i", { staticClass: "far fa-edit" })]
+      [
+        _c("i", { staticClass: "far fa-edit" }),
+        _vm._v(" "),
+        _c("span", [_vm._v("Edit")])
+      ]
     )
   },
   function() {
