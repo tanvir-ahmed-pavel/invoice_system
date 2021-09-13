@@ -2,9 +2,9 @@
 @section('content')
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header">
+            <div class="col ">
+                <div class="card shadow bg-lighter">
+                    <div class="card-header bg-lighter">
                         <h5 class="title">{{ __('ADD New Driver') }}</h5>
                     </div>
 
@@ -29,7 +29,7 @@
                                 @include('alerts.feedback', ['field' => 'contact'])
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer bg-lighter">
                             <button type="submit" class="btn btn-fill btn-primary">{{ __('Save') }}</button>
                         </div>
                     </form>
