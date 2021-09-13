@@ -1834,6 +1834,59 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "ConfirmationModal"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InvoiceComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/InvoiceComponent.vue?vue&type=script&lang=js& ***!
@@ -2329,6 +2382,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _ConfirmationModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConfirmationModal */ "./resources/js/components/ConfirmationModal.vue");
 //
 //
 //
@@ -2464,11 +2518,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "InvoiceManageComponent",
+  components: {
+    ConfirmationModal: _ConfirmationModal__WEBPACK_IMPORTED_MODULE_0__.default
+  },
   data: function data() {
     return {
-      invoices: {}
+      invoices: {},
+      index: null,
+      id: null
     };
   },
   created: function created() {
@@ -2500,10 +2569,20 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response.data);
 
           _this2.invoices.splice(index, 1);
+
+          _this2.index = null;
+          _this2.id = null;
         });
       } catch (e) {
         console.log(e.data);
+        this.index = null;
+        this.id = null;
       }
+    },
+    deleteConfirmation: function deleteConfirmation(id, index) {
+      this.id = id;
+      this.index = index;
+      $('#modal-notification').modal('show');
     }
   }
 });
@@ -3447,6 +3526,45 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/components/ConfirmationModal.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ConfirmationModal.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true& */ "./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true&");
+/* harmony import */ var _ConfirmationModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConfirmationModal.vue?vue&type=script&lang=js& */ "./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _ConfirmationModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "0401aec6",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ConfirmationModal.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/InvoiceComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/InvoiceComponent.vue ***!
@@ -3607,6 +3725,22 @@ component.options.__file = "resources/js/components/validation-error.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmationModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConfirmationModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmationModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/InvoiceComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/InvoiceComponent.vue?vue&type=script&lang=js& ***!
@@ -3697,6 +3831,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ConfirmationModal_vue_vue_type_template_id_0401aec6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/InvoiceComponent.vue?vue&type=template&id=2d1526bb&scoped=true&":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/InvoiceComponent.vue?vue&type=template&id=2d1526bb&scoped=true& ***!
@@ -3761,6 +3912,122 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_validation_error_vue_vue_type_template_id_d63ad802_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./validation-error.vue?vue&type=template&id=d63ad802&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/validation-error.vue?vue&type=template&id=d63ad802&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ConfirmationModal.vue?vue&type=template&id=0401aec6&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-4" }, [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal-notification",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "modal-notification",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "modal-dialog modal-danger modal-dialog-centered modal-",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content bg-gradient-danger" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "py-2 text-center" }, [
+                  _c("i", {
+                    staticClass: "fas fa-exclamation-triangle fa-3x text-yellow"
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "h4",
+                    { staticClass: "heading mt-4" },
+                    [_vm._t("title")],
+                    2
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-footer" },
+                [
+                  _vm._t("actionButton"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-link text-white ml-auto",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ],
+                2
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h6",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "modal-title-notification" }
+        },
+        [_vm._v("Your attention is required")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
 
 
 /***/ }),
@@ -5288,11 +5555,46 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            { staticClass: "card-header border-0" },
+            [
+              _c("h3", { staticClass: "mb-0" }, [_vm._v("Invoice List")]),
+              _vm._v(" "),
+              _c(
+                "confirmation-modal",
+                [
+                  _c("template", { slot: "title" }, [
+                    _vm._v(
+                      "\n                            Are you sure you want to delete this invoice?!\n                        "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("template", { slot: "actionButton" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteInvoice(_vm.id, _vm.index)
+                          }
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ])
+                ],
+                2
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table table-striped table-sm" }, [
-              _vm._m(1),
+            _c("table", { staticClass: "table table-flush table-sm" }, [
+              _vm._m(0),
               _vm._v(" "),
               _vm.invoices
                 ? _c(
@@ -5387,7 +5689,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(2, true),
+                        _vm._m(1, true),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -5436,7 +5738,7 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _c("div", { staticClass: "dropdown " }, [
-                            _vm._m(3, true),
+                            _vm._m(2, true),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -5455,7 +5757,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-primary m-2 ",
+                                          "btn rounded-0 btn-sm btn-primary m-2",
                                         attrs: {
                                           href:
                                             "/invoices/" +
@@ -5472,7 +5774,7 @@ var render = function() {
                                       ]
                                     ),
                                     _vm._v(" "),
-                                    _vm._m(4, true)
+                                    _vm._m(3, true)
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -5487,7 +5789,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-success m-2 ",
+                                          "btn rounded-0 btn-sm btn-success m-2",
                                         attrs: {
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
@@ -5518,6 +5820,7 @@ var render = function() {
                                         staticClass:
                                           "btn rounded-0 btn-sm btn-danger m-2",
                                         attrs: {
+                                          type: "button",
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
                                           href: "#",
@@ -5525,8 +5828,7 @@ var render = function() {
                                         },
                                         on: {
                                           click: function($event) {
-                                            $event.preventDefault()
-                                            return _vm.deleteInvoice(
+                                            return _vm.deleteConfirmation(
                                               invoice.id,
                                               index
                                             )
@@ -5555,21 +5857,13 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(4)
         ])
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header border-0" }, [
-      _c("h3", { staticClass: "mb-0" }, [_vm._v("Invoice List")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -5655,7 +5949,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn rounded-0 btn-sm btn-info m-2 ",
+        staticClass: "btn rounded-0 btn-sm btn-info m-2",
         attrs: {
           "data-placement": "top",
           "data-toggle": "tooltip",

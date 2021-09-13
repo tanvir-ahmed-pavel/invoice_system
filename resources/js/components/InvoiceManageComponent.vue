@@ -6,10 +6,18 @@
                     <!-- Card header -->
                     <div class="card-header border-0">
                         <h3 class="mb-0">Invoice List</h3>
+                        <confirmation-modal>
+                            <template slot="title">
+                                Are you sure you want to delete this invoice?!
+                            </template>
+                            <template slot="actionButton">
+                                <button type="button" class="btn btn-danger" @click="deleteInvoice(id, index)" data-dismiss="modal">Delete</button>
+                            </template>
+                        </confirmation-modal>
                     </div>
                     <!-- Light table -->
                     <div class="table-responsive">
-                        <table class="table table-striped table-sm">
+                        <table class="table table-flush table-sm">
                             <thead class="thead-light">
                             <tr>
                                 <th class="sort" data-sort="" scope="col"><h5>Invoice No #</h5></th>
@@ -87,7 +95,8 @@
                                                     <i class="fas fa-download"></i>
                                                     <span>Download</span>
                                                 </a>
-                                                <a @click.prevent="deleteInvoice(invoice.id, index)"
+
+                                                <a type="button"@click="deleteConfirmation(invoice.id, index)"
                                                    class="btn rounded-0 btn-sm btn-danger m-2" data-placement="top"
                                                    data-toggle="tooltip" href="#" title="Delete">
                                                     <i class="far fa-trash-alt"></i>
@@ -134,11 +143,15 @@
 </template>
 
 <script>
+    import ConfirmationModal from "./ConfirmationModal";
     export default {
         name: "InvoiceManageComponent",
+        components: {ConfirmationModal},
         data() {
             return {
                 invoices: {},
+                index:null,
+                id:null,
             }
         },
         created() {
@@ -165,10 +178,19 @@
                     this.axios.delete("/invoices/" + id).then((response) => {
                         console.log(response.data);
                         this.invoices.splice(index, 1);
+                        this.index=null;
+                        this.id=null;
                     })
                 } catch (e) {
                     console.log(e.data);
+                    this.index=null;
+                    this.id=null;
                 }
+            },
+            deleteConfirmation(id, index){
+                this.id=id;
+                this.index=index;
+                $('#modal-notification').modal('show');
             }
         }
     }
