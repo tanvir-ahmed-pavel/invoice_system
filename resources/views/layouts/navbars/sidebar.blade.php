@@ -83,12 +83,12 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link @if ($pageSlug == 'dashboard') {{'active text-primary'}} @endif"
-                           href="{{ route('home') }}">
-                            <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link @if ($pageSlug == 'dashboard') {{'active text-primary'}} @endif"
+                       href="{{ route('home') }}">
+                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                    </a>
+                </li>
                 <li>
                     <a class="nav-link @if (str_starts_with($pageSlug, "user")) {{'active text-primary'}} @endif"
                        href="#navbar-examples" data-toggle="collapse"
@@ -183,7 +183,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.create') }}">
-                                    <i class="far fa-plus-square "></i>
+                                    <i class="far fa-plus-square"></i>
                                     {{ __('New Invoice') }}
                                 </a>
                             </li>
@@ -191,7 +191,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-manage') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.index') }}">
-                                    <i class="fas fa-tasks "></i>
+                                    <i class="fas fa-tasks"></i>
                                     {{ __('Manage Invoice') }}
                                 </a>
                             </li>
