@@ -183,7 +183,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-create') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.create') }}">
-                                    <i class="far fa-plus-square"></i>
+                                    <i class="far fa-plus-square "></i>
                                     {{ __('New Invoice') }}
                                 </a>
                             </li>
@@ -191,7 +191,7 @@
                             <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'invoices-manage') {{'active text-primary'}} @endif"
                                    href="{{ route('invoices.index') }}">
-                                    <i class="fas fa-tasks"></i>
+                                    <i class="fas fa-tasks "></i>
                                     {{ __('Manage Invoice') }}
                                 </a>
                             </li>

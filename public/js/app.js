@@ -5455,7 +5455,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-primary m-2",
+                                          "btn rounded-0 btn-sm btn-primary m-2 ",
                                         attrs: {
                                           href:
                                             "/invoices/" +
@@ -5487,7 +5487,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-success m-2",
+                                          "btn rounded-0 btn-sm btn-success m-2 ",
                                         attrs: {
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
@@ -5516,7 +5516,7 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass:
-                                          "btn rounded-0 btn-sm btn-danger m-2 ",
+                                          "btn rounded-0 btn-sm btn-danger m-2",
                                         attrs: {
                                           "data-placement": "top",
                                           "data-toggle": "tooltip",
@@ -5655,7 +5655,7 @@ var staticRenderFns = [
     return _c(
       "a",
       {
-        staticClass: "btn rounded-0 btn-sm btn-info m-2",
+        staticClass: "btn rounded-0 btn-sm btn-info m-2 ",
         attrs: {
           "data-placement": "top",
           "data-toggle": "tooltip",
