@@ -1,11 +1,26 @@
 <template>
     <div class="container-fluid mt--6">
+
         <div class="row">
             <div class="col">
+
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Invoice List</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="mb-0">Invoice List</h3>
+                            </div>
+
+<!--                            Calling the filter Component-->
+
+                            <div class="col-6 text-right">
+                                <filter-component :columns="columns"></filter-component>
+                            </div>
+                        </div>
+
+<!--                        Calling The Confirmation Modal Component-->
+
                         <confirmation-modal>
                             <template slot="title">
                                 Are you sure you want to delete this invoice?!
@@ -144,14 +159,16 @@
 
 <script>
     import ConfirmationModal from "./ConfirmationModal";
+    import FilterComponent from "./FilterComponent";
     export default {
         name: "InvoiceManageComponent",
-        components: {ConfirmationModal},
+        components: {FilterComponent, ConfirmationModal},
         data() {
             return {
                 invoices: {},
                 index:null,
                 id:null,
+                columns:{},
             }
         },
         created() {
@@ -161,7 +178,8 @@
             fetchData() {
                 try {
                     this.axios.get("/invoices_api").then((response) => {
-                        this.invoices = response.data;
+                        this.invoices = response.data.invoices;
+                        this.columns = response.data.columns;
                     })
                 } catch (e) {
                     console.log(e.data);

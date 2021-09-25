@@ -11,6 +11,7 @@ use App\Models\Client;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 
@@ -35,10 +36,27 @@ class InvoiceController extends Controller
     }
 
     public function index_api(Request $request){
-        $invoices = Invoice::all();
+
+        $invoices = Invoice::where(function($query) use($request){
+            if($request->inputs && $request->inputs[0]['value']!= null){
+                foreach ($request->inputs as $key=>$value){
+                    if ($value['operator']=='like' || $value['operator']=='not like'){
+                        $query->orWhere($value['column'], $value['operator'], '%'.$value['value'].'%')->get();
+                    } else {
+                        $query->orWhere($value['column'], $value['operator'], $value['value'])->get();
+                    }
+                }
+            } else{
+                $query->get();
+            }
+        })->get();
+        $columns = Schema::getColumnListing('invoices');
         $invoices->load('client', 'company');
 
-        return response()->json($invoices, 200);
+        return response()->json([
+            'invoices'=>$invoices,
+            'columns'=>$columns
+        ], 200);
     }
 
 
