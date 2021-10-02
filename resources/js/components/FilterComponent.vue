@@ -13,25 +13,37 @@
                     <form action="" method="GET">
                         <div class="card mb-0">
                             <div class="row card-header justify-content-between border-bottom">
+
+<!--                                Add New Filter-->
+
                                 <div class="col-md">
                                     <button class="btn btn-sm btn-primary" @click="addRow()" name="add" type="button">
                                         <i class="tim-icons icon-simple-add"></i>
                                         Add Filter
                                     </button>
                                 </div>
+
+<!--                                Reset Filter-->
+
                                 <div class="col-md">
                                     <button type="button" @click="clearFilter()" class="btn btn-sm btn-danger ">
                                         <i class="tim-icons icon-simple-remove"></i>
                                         Clear Filter
                                     </button>
                                 </div>
+
+<!--                                Apply Filter-->
+
                                 <div class="col-md">
-                                    <button type="submit" @click.prevent="applyFilter()" class="btn btn-sm btn-success">
+                                    <button type="submit" @click.prevent="evnt_applyFilter()" class="btn btn-sm btn-success">
                                         <i class="tim-icons icon-check-2"></i>
                                         Apply Filter
                                     </button>
                                 </div>
                             </div>
+
+<!--                            Remove Filter-->
+
                             <div class="card-body">
                                 <div v-if="index!=0" class="row justify-content-center" v-for="(row, index) in rows">
 
@@ -89,7 +101,7 @@
 <script>
     export default {
         name: "FilterComponent",
-        props: ['Columns'],
+        props: ['Columns', 'Route'],
         data() {
             return {
                 rows: [
@@ -122,8 +134,10 @@
                 this.active=0;
             },
 
-            applyFilter(){
-                this.axios.get(this.Route, this.rows);
+            evnt_applyFilter(){
+                this.axios.get(this.Route, this.rows).then(response =>{
+                    this.$emit('applyFilter', response);
+                });
             }
         }
     }

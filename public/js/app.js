@@ -1986,9 +1986,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "FilterComponent",
-  props: ['Columns'],
+  props: ['Columns', 'Route'],
   data: function data() {
     return {
       rows: [{}],
@@ -2012,8 +2024,12 @@ __webpack_require__.r(__webpack_exports__);
       this.rows.splice(1);
       this.active = 0;
     },
-    applyFilter: function applyFilter() {
-      this.axios.get(this.Route, this.rows);
+    evnt_applyFilter: function evnt_applyFilter() {
+      var _this = this;
+
+      this.axios.get(this.Route, this.rows).then(function (response) {
+        _this.$emit('applyFilter', response);
+      });
     }
   }
 });
@@ -2707,6 +2723,9 @@ __webpack_require__.r(__webpack_exports__);
       } catch (e) {
         console.log(e.data);
       }
+    },
+    filteredData: function filteredData(response) {
+      this.invoices = response.data;
     },
     printInvoice: function printInvoice(id) {
       window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
@@ -4333,7 +4352,7 @@ var render = function() {
                       [
                         _c("i", { staticClass: "tim-icons icon-simple-add" }),
                         _vm._v(
-                          "\n                                Add Filter\n                            "
+                          "\n                                        Add Filter\n                                    "
                         )
                       ]
                     )
@@ -4356,7 +4375,7 @@ var render = function() {
                           staticClass: "tim-icons icon-simple-remove"
                         }),
                         _vm._v(
-                          "\n                                Clear Filter\n                            "
+                          "\n                                        Clear Filter\n                                    "
                         )
                       ]
                     )
@@ -4371,14 +4390,14 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.applyFilter()
+                            return _vm.evnt_applyFilter()
                           }
                         }
                       },
                       [
                         _c("i", { staticClass: "tim-icons icon-check-2" }),
                         _vm._v(
-                          "\n                                Apply Filter\n                            "
+                          "\n                                        Apply Filter\n                                    "
                         )
                       ]
                     )
@@ -4464,13 +4483,13 @@ var render = function() {
                                   { domProps: { value: column } },
                                   [
                                     _vm._v(
-                                      "\n                                        " +
+                                      "\n                                                " +
                                         _vm._s(
                                           column
                                             .replace(/_/g, " ")
                                             .toUpperCase()
                                         ) +
-                                        "\n                                    "
+                                        "\n                                            "
                                     )
                                   ]
                                 )
@@ -6147,7 +6166,16 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "col-6 text-right" },
-                  [_c("filter-component", { attrs: { columns: _vm.columns } })],
+                  [
+                    _c("filter-component", {
+                      attrs: { route: "/invoices_api", columns: _vm.columns },
+                      on: {
+                        applyFilter: function($event) {
+                          return _vm.filteredData($event)
+                        }
+                      }
+                    })
+                  ],
                   1
                 )
               ]),

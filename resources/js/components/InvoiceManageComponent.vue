@@ -15,7 +15,7 @@
 <!--                            Calling the filter Component-->
 
                             <div class="col-6 text-right">
-                                <filter-component :columns="columns"></filter-component>
+                                <filter-component @applyFilter="filteredData($event)" :route="'/invoices_api'" :columns="columns"></filter-component>
                             </div>
                         </div>
 
@@ -184,6 +184,9 @@
                 } catch (e) {
                     console.log(e.data);
                 }
+            },
+            filteredData(response){
+                this.invoices=response.data;
             },
             printInvoice(id) {
                 window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
