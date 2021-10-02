@@ -2027,7 +2027,9 @@ __webpack_require__.r(__webpack_exports__);
     evnt_applyFilter: function evnt_applyFilter() {
       var _this = this;
 
-      this.axios.get(this.Route, this.rows).then(function (response) {
+      this.axios.get(this.Route, {
+        params: [inputs = this.rows]
+      }).then(function (response) {
         _this.$emit('applyFilter', response);
       });
     }

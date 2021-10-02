@@ -135,7 +135,9 @@
             },
 
             evnt_applyFilter(){
-                this.axios.get(this.Route, this.rows).then(response =>{
+                this.axios.get(this.Route, {
+                    params: [inputs=this.rows]
+                }).then(response =>{
                     this.$emit('applyFilter', response);
                 });
             }

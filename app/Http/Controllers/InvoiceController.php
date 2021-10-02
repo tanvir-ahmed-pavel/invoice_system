@@ -36,7 +36,7 @@ class InvoiceController extends Controller
     }
 
     public function index_api(Request $request){
-
+//        return $request;
         $invoices = Invoice::where(function($query) use($request){
             if($request->inputs && $request->inputs[0]['value']!= null){
                 foreach ($request->inputs as $key=>$value){
