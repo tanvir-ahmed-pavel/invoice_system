@@ -186,7 +186,7 @@
                 }
             },
             filteredData(response){
-                this.invoices=response.data;
+                this.invoices=response.data.invoices;
             },
             printInvoice(id) {
                 window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");

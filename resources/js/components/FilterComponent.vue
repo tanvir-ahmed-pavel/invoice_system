@@ -3,8 +3,8 @@
             <button class="btn btn-sm btn-secondary dropdown-toggle pl-2 pr-2 pt-1 pb-1" type="button"
                     id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="tim-icons icon-vector"></i>
-                <span v-if="active" class="badge badge-primary ml-0">{{active}}</span>
+
+                <span v-if="filterCount" class="badge badge-primary ml-0">{{filterCount}}</span>
                 <span>Filter</span>
 
             </button>
@@ -83,7 +83,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 form-group p-0 pl-1">
-                                        <input type="text" v-model="row.value" :name="'inputs['+  index + '][value]'"
+                                        <input type="text" @input="evnt_applyFilter" v-model="row.value" :name="'inputs['+  index + '][value]'"
                                                class="form-control form-control-sm form-control border-1" placeholder="Enter Value">
                                     </div>
                                 </div>
@@ -99,6 +99,7 @@
 </template>
 
 <script>
+    import qs from 'qs';
     export default {
         name: "FilterComponent",
         props: ['columns', 'route'],
@@ -107,7 +108,7 @@
                 rows: [
                     {}
                 ],
-                active:0,
+                filterCount:0,
             }
         },
         methods: {
@@ -120,23 +121,30 @@
                         value: null,
                     }
                 );
-                this.active++;
+                this.filterCount++;
             },
 
             removeRow(index) {
                 this.rows.splice(index, 1);
-                this.active--;
+                this.filterCount--;
+                this.evnt_applyFilter();
                 // if (this.rows.length=1);
             },
 
             clearFilter(){
                 this.rows.splice(1);
-                this.active=0;
+                this.filterCount=0;
+                this.evnt_applyFilter();
             },
 
             evnt_applyFilter(){
                 this.axios.get(this.route, {
-                    params:[{inputs:this.rows}]
+                    params:{
+                        inputs:this.rows
+                    },
+                    paramsSerializer: (params) => {
+                        return qs.stringify(params, )
+                    },
                 }).then(response =>{
                     this.$emit('applyFilter', response);
                 });

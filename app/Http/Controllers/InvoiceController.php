@@ -38,7 +38,7 @@ class InvoiceController extends Controller
     public function index_api(Request $request){
 //        return $request->inputs[1]->dd();
         $invoices = Invoice::where(function($query) use($request){
-            if($request->inputs && $request->inputs[0]['value']!= null){
+            if($request->inputs && $request->inputs[1]['value']!= null){
                 foreach ($request->inputs as $key=>$value){
                     if ($value['operator']=='like' || $value['operator']=='not like'){
                         $query->orWhere($value['column'], $value['operator'], '%'.$value['value'].'%')->get();

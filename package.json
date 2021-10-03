@@ -24,5 +24,7 @@
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12"
     },
-    "dependencies": {}
+    "dependencies": {
+        "qs": "^6.10.1"
+    }
 }
