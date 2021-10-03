@@ -61,7 +61,7 @@
                                                 class="custom-select custom-select-sm custom-select text-dark">
                                             <option value="" disabled hidden selected>Choose Fields...</option>
 
-                                            <option v-for="column in Columns" :value="column">
+                                            <option v-for="column in columns" :value="column">
                                                 {{column.replace(/_/g, ' ').toUpperCase()}}
                                             </option>
                                         </select>
@@ -101,7 +101,7 @@
 <script>
     export default {
         name: "FilterComponent",
-        props: ['Columns', 'Route'],
+        props: ['columns', 'route'],
         data() {
             return {
                 rows: [
@@ -135,8 +135,8 @@
             },
 
             evnt_applyFilter(){
-                this.axios.get(this.Route, {
-                    params: {inputs:this.rows}
+                this.axios.get(this.route, {
+                    params:[{inputs:this.rows}]
                 }).then(response =>{
                     this.$emit('applyFilter', response);
                 });

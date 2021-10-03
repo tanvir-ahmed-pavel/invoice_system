@@ -2000,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "FilterComponent",
-  props: ['Columns', 'Route'],
+  props: ['columns', 'route'],
   data: function data() {
     return {
       rows: [{}],
@@ -2027,8 +2027,10 @@ __webpack_require__.r(__webpack_exports__);
     evnt_applyFilter: function evnt_applyFilter() {
       var _this = this;
 
-      this.axios.get(this.Route, {
-        params: [inputs = this.rows]
+      this.axios.get(this.route, {
+        params: [{
+          inputs: this.rows
+        }]
       }).then(function (response) {
         _this.$emit('applyFilter', response);
       });
@@ -4479,7 +4481,7 @@ var render = function() {
                                 [_vm._v("Choose Fields...")]
                               ),
                               _vm._v(" "),
-                              _vm._l(_vm.Columns, function(column) {
+                              _vm._l(_vm.columns, function(column) {
                                 return _c(
                                   "option",
                                   { domProps: { value: column } },
