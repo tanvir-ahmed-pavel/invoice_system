@@ -10,23 +10,29 @@
                         <div class="row">
                             <div class="col-6">
                                 <h3 class="mb-0">Invoice List</h3>
+
                             </div>
 
-<!--                            Calling the filter Component-->
+
+                            <!--                            Calling the filter Component-->
 
                             <div class="col-6 text-right">
-                                <filter-component @applyFilter="filteredData($event)" :route="'/invoices_api'" :columns="columns"></filter-component>
+                                <div class="loader"></div>
+                                <filter-component :columns="columns" :route="'/invoices_api'"
+                                                  @applyFilter="filteredData($event)"></filter-component>
                             </div>
                         </div>
 
-<!--                        Calling The Confirmation Modal Component-->
+                        <!--                        Calling The Confirmation Modal Component-->
 
                         <confirmation-modal>
                             <template slot="title">
                                 Are you sure you want to delete this invoice?!
                             </template>
                             <template slot="actionButton">
-                                <button type="button" class="btn btn-danger" @click="deleteInvoice(id, index)" data-dismiss="modal">Delete</button>
+                                <button @click="deleteInvoice(id, index)" class="btn btn-danger" data-dismiss="modal"
+                                        type="button">Delete
+                                </button>
                             </template>
                         </confirmation-modal>
                     </div>
@@ -71,18 +77,21 @@
                                 </td>
                                 <td class="text-center">
                                     <a :href="`/invoices/${invoice.invoice_number}`"
-                                       class="badge badge-circle badge-floating badge-success ml-0 mr-2" data-placement="top"
+                                       class="badge badge-circle badge-floating badge-success ml-0 mr-2"
+                                       data-placement="top"
                                        data-toggle="tooltip" title="Make Payments">
                                         <i class="far fa-money-bill-alt"></i>
                                     </a>
                                     <a @click="printInvoice(invoice.invoice_number)"
-                                       class="badge badge-circle badge-floating badge-info mr-2" data-placement="top" data-toggle="tooltip"
+                                       class="badge badge-circle badge-floating badge-info mr-2" data-placement="top"
+                                       data-toggle="tooltip"
                                        href="#" title="Print">
                                         <i class="fas fa-print"></i>
                                     </a>
 
                                     <div class="dropdown ">
-                                        <a aria-expanded="false" aria-haspopup="true" class="btn btn-sm btn-icon-only text-light"
+                                        <a aria-expanded="false" aria-haspopup="true"
+                                           class="btn btn-sm btn-icon-only text-light"
                                            data-toggle="dropdown" href="#" id="dropdownMenuButton"
                                            type="button">
                                             <i class="fas fa-ellipsis-v"></i>
@@ -111,9 +120,9 @@
                                                     <span>Download</span>
                                                 </a>
 
-                                                <a type="button"@click="deleteConfirmation(invoice.id, index)"
-                                                   class="btn rounded-0 btn-sm btn-danger m-2" data-placement="top"
-                                                   data-toggle="tooltip" href="#" title="Delete">
+                                                <a @click="deleteConfirmation(invoice.id, index)" class="btn rounded-0 btn-sm btn-danger m-2"
+                                                   data-placement="top" data-toggle="tooltip"
+                                                   href="#" title="Delete" type="button">
                                                     <i class="far fa-trash-alt"></i>
                                                     <span>Delete</span>
                                                 </a>
@@ -160,15 +169,16 @@
 <script>
     import ConfirmationModal from "./ConfirmationModal";
     import FilterComponent from "./FilterComponent";
+
     export default {
         name: "InvoiceManageComponent",
         components: {FilterComponent, ConfirmationModal},
         data() {
             return {
                 invoices: {},
-                index:null,
-                id:null,
-                columns:{},
+                index: null,
+                id: null,
+                columns: {},
             }
         },
         created() {
@@ -185,8 +195,8 @@
                     console.log(e.data);
                 }
             },
-            filteredData(response){
-                this.invoices=response.data.invoices;
+            filteredData(response) {
+                this.invoices = response.data.invoices;
             },
             printInvoice(id) {
                 window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
@@ -199,18 +209,18 @@
                     this.axios.delete("/invoices/" + id).then((response) => {
                         console.log(response.data);
                         this.invoices.splice(index, 1);
-                        this.index=null;
-                        this.id=null;
+                        this.index = null;
+                        this.id = null;
                     })
                 } catch (e) {
                     console.log(e.data);
-                    this.index=null;
-                    this.id=null;
+                    this.index = null;
+                    this.id = null;
                 }
             },
-            deleteConfirmation(id, index){
-                this.id=id;
-                this.index=index;
+            deleteConfirmation(id, index) {
+                this.id = id;
+                this.index = index;
                 $('#modal-notification').modal('show');
             }
         }
@@ -218,5 +228,74 @@
 </script>
 
 <style scoped>
+    .loader {
+        color: #808080;
+        font-size: 5px;
+        margin: 0px auto;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        position: relative;
+        text-indent: -9999em;
+        -webkit-animation: load4 0.7s infinite linear;
+        animation: load4 0.7s infinite linear;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    @-webkit-keyframes load4 {
+        0%,
+        100% {
+            box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+        }
+        12.5% {
+            box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        }
+        25% {
+            box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        }
+        37.5% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        }
+        50% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        }
+        62.5% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+        }
+        75% {
+            box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+        }
+        87.5% {
+            box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+        }
+    }
+    @keyframes load4 {
+        0%,
+        100% {
+            box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+        }
+        12.5% {
+            box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        }
+        25% {
+            box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        }
+        37.5% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        }
+        50% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        }
+        62.5% {
+            box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+        }
+        75% {
+            box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+        }
+        87.5% {
+            box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+        }
+    }
 
 </style>
