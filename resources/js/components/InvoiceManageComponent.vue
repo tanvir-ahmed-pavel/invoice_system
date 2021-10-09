@@ -17,9 +17,8 @@
                             <!--                            Calling the filter Component-->
 
                             <div class="col-6 text-right">
-                                <div class="loader"></div>
                                 <filter-component :columns="columns" :route="'/invoices_api'"
-                                                  @applyFilter="filteredData($event)"></filter-component>
+                                                  @loading="loading=$event" @applyFilter="filteredData($event)"></filter-component>
                             </div>
                         </div>
 
@@ -50,7 +49,7 @@
                                 <th class="sort" data-sort="" scope="col"><h5>Actions</h5></th>
                             </tr>
                             </thead>
-                            <tbody class="list" v-if="invoices">
+                            <tbody class="list" v-if="invoices && !loading">
                             <tr v-for="(invoice, index) in invoices">
                                 <th scope="row">
                                     <div class="media align-items-center">
@@ -120,7 +119,8 @@
                                                     <span>Download</span>
                                                 </a>
 
-                                                <a @click="deleteConfirmation(invoice.id, index)" class="btn rounded-0 btn-sm btn-danger m-2"
+                                                <a @click="deleteConfirmation(invoice.id, index)"
+                                                   class="btn rounded-0 btn-sm btn-danger m-2"
                                                    data-placement="top" data-toggle="tooltip"
                                                    href="#" title="Delete" type="button">
                                                     <i class="far fa-trash-alt"></i>
@@ -130,6 +130,17 @@
                                         </div>
                                     </div>
                                 </td>
+                            </tr>
+                            </tbody>
+
+<!--                            Loading Animation-->
+
+                            <tbody v-else>
+                            <tr>
+                                <td colspan="7" class="p-5">
+                                    <div class="loader"></div>
+                                </td>
+
                             </tr>
                             </tbody>
                         </table>
@@ -179,6 +190,7 @@
                 index: null,
                 id: null,
                 columns: {},
+                loading: false,
             }
         },
         created() {
@@ -186,17 +198,22 @@
         },
         methods: {
             fetchData() {
+                this.loading = true;
                 try {
                     this.axios.get("/invoices_api").then((response) => {
                         this.invoices = response.data.invoices;
                         this.columns = response.data.columns;
+                        this.loading = false;
                     })
                 } catch (e) {
                     console.log(e.data);
+                    this.loading = false;
                 }
             },
             filteredData(response) {
+                this.loading = true;
                 this.invoices = response.data.invoices;
+                this.loading = false;
             },
             printInvoice(id) {
                 window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
@@ -230,19 +247,21 @@
 <style scoped>
     .loader {
         color: #808080;
-        font-size: 5px;
-        margin: 0px auto;
+        font-size: 6px;
+        margin: 3px auto;
+        text-align: right;
         width: 1em;
         height: 1em;
         border-radius: 50%;
         position: relative;
         text-indent: -9999em;
-        -webkit-animation: load4 0.7s infinite linear;
-        animation: load4 0.7s infinite linear;
+        -webkit-animation: load4 0.9s infinite linear;
+        animation: load4 0.9s infinite linear;
         -webkit-transform: translateZ(0);
         -ms-transform: translateZ(0);
         transform: translateZ(0);
     }
+
     @-webkit-keyframes load4 {
         0%,
         100% {
@@ -270,6 +289,7 @@
             box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
         }
     }
+
     @keyframes load4 {
         0%,
         100% {

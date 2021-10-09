@@ -2032,6 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
     evnt_applyFilter: function evnt_applyFilter() {
       var _this = this;
 
+      this.$emit('loading', true);
       this.axios.get(this.route, {
         params: {
           inputs: this.rows
@@ -2713,6 +2714,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2726,7 +2738,8 @@ __webpack_require__.r(__webpack_exports__);
       invoices: {},
       index: null,
       id: null,
-      columns: {}
+      columns: {},
+      loading: false
     };
   },
   created: function created() {
@@ -2736,17 +2749,23 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
+      this.loading = true;
+
       try {
         this.axios.get("/invoices_api").then(function (response) {
           _this.invoices = response.data.invoices;
           _this.columns = response.data.columns;
+          _this.loading = false;
         });
       } catch (e) {
         console.log(e.data);
+        this.loading = false;
       }
     },
     filteredData: function filteredData(response) {
+      this.loading = true;
       this.invoices = response.data.invoices;
+      this.loading = false;
     },
     printInvoice: function printInvoice(id) {
       window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
@@ -3174,7 +3193,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.loader[data-v-46dbde54] {\n    color: #808080;\n    font-size: 5px;\n    margin: 0px auto;\n    width: 1em;\n    height: 1em;\n    border-radius: 50%;\n    position: relative;\n    text-indent: -9999em;\n    -webkit-animation: load4-data-v-46dbde54 0.7s infinite linear;\n    animation: load4-data-v-46dbde54 0.7s infinite linear;\n    transform: translateZ(0);\n}\n@-webkit-keyframes load4-data-v-46dbde54 {\n0%,\n    100% {\n        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;\n}\n12.5% {\n        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n25% {\n        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n37.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n50% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n62.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;\n}\n75% {\n        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;\n}\n87.5% {\n        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;\n}\n}\n@keyframes load4-data-v-46dbde54 {\n0%,\n    100% {\n        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;\n}\n12.5% {\n        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n25% {\n        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n37.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n50% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n62.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;\n}\n75% {\n        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;\n}\n87.5% {\n        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;\n}\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.loader[data-v-46dbde54] {\n    color: #808080;\n    font-size: 6px;\n    margin: 3px auto;\n    text-align: right;\n    width: 1em;\n    height: 1em;\n    border-radius: 50%;\n    position: relative;\n    text-indent: -9999em;\n    -webkit-animation: load4-data-v-46dbde54 0.9s infinite linear;\n    animation: load4-data-v-46dbde54 0.9s infinite linear;\n    transform: translateZ(0);\n}\n@-webkit-keyframes load4-data-v-46dbde54 {\n0%,\n    100% {\n        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;\n}\n12.5% {\n        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n25% {\n        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n37.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n50% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n62.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;\n}\n75% {\n        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;\n}\n87.5% {\n        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;\n}\n}\n@keyframes load4-data-v-46dbde54 {\n0%,\n    100% {\n        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;\n}\n12.5% {\n        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n25% {\n        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;\n}\n37.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n50% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;\n}\n62.5% {\n        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;\n}\n75% {\n        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;\n}\n87.5% {\n        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8361,11 +8380,12 @@ var render = function() {
                   "div",
                   { staticClass: "col-6 text-right" },
                   [
-                    _c("div", { staticClass: "loader" }),
-                    _vm._v(" "),
                     _c("filter-component", {
                       attrs: { columns: _vm.columns, route: "/invoices_api" },
                       on: {
+                        loading: function($event) {
+                          _vm.loading = $event
+                        },
                         applyFilter: function($event) {
                           return _vm.filteredData($event)
                         }
@@ -8381,7 +8401,7 @@ var render = function() {
                 [
                   _c("template", { slot: "title" }, [
                     _vm._v(
-                      "\n                            Are you sure you want to delete this invoice?!\n                        "
+                      "\n                                Are you sure you want to delete this invoice?!\n                            "
                     )
                   ]),
                   _vm._v(" "),
@@ -8397,7 +8417,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Delete\n                            ")]
+                      [_vm._v("Delete\n                                ")]
                     )
                   ])
                 ],
@@ -8411,7 +8431,7 @@ var render = function() {
             _c("table", { staticClass: "table table-flush table-sm" }, [
               _vm._m(1),
               _vm._v(" "),
-              _vm.invoices
+              _vm.invoices && !_vm.loading
                 ? _c(
                     "tbody",
                     { staticClass: "list" },
@@ -8456,13 +8476,13 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                " +
+                              "\n                                    " +
                                 _vm._s(
                                   invoice.company
                                     ? invoice.company.company_name
                                     : "--"
                                 ) +
-                                "\n                            "
+                                "\n                                "
                             )
                           ]
                         ),
@@ -8478,20 +8498,20 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                " +
+                              "\n                                    " +
                                 _vm._s(
                                   invoice.client
                                     ? invoice.client.client_name
                                     : "--"
                                 ) +
-                                "\n                            "
+                                "\n                                "
                             )
                           ]
                         ),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n                                " +
+                            "\n                                    " +
                               _vm._s(
                                 "BDT " +
                                   (
@@ -8500,7 +8520,7 @@ var render = function() {
                                     invoice.advance_paid
                                   ).toFixed(2)
                               ) +
-                              "\n                            "
+                              "\n                                "
                           )
                         ]),
                         _vm._v(" "),
@@ -8508,9 +8528,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n                                " +
+                            "\n                                    " +
                               _vm._s(invoice.date) +
-                              "\n                            "
+                              "\n                                "
                           )
                         ]),
                         _vm._v(" "),
@@ -8668,11 +8688,11 @@ var render = function() {
                     }),
                     0
                   )
-                : _vm._e()
+                : _c("tbody", [_vm._m(5)])
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(6)
         ])
       ])
     ])
@@ -8786,6 +8806,16 @@ var staticRenderFns = [
         _c("span", [_vm._v("Edit")])
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("td", { staticClass: "p-5", attrs: { colspan: "7" } }, [
+        _c("div", { staticClass: "loader" })
+      ])
+    ])
   },
   function() {
     var _vm = this

@@ -138,6 +138,7 @@
             },
 
             evnt_applyFilter(){
+                this.$emit('loading', true);
                 this.axios.get(this.route, {
                     params:{
                         inputs:this.rows
@@ -154,5 +155,5 @@
 </script>
 
 <style scoped>
-    
+
 </style>
