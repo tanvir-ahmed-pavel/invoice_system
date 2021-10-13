@@ -49,7 +49,7 @@ class InvoiceController extends Controller
             } else{
                 $query->get();
             }
-        })->get();
+        })->paginate(10);
         $columns = Schema::getColumnListing('invoices');
         $invoices->load('client', 'company');
 

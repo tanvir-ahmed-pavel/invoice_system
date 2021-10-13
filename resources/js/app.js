@@ -15,6 +15,7 @@ import InvoiceComponent from "./components/InvoiceComponent";
 import InvoiceShowComponent from "./components/InvoiceShowComponent";
 import InvoiceManageComponent from "./components/InvoiceManageComponent";
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 new Vue({

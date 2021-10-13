@@ -17,6 +17,7 @@
                             <!--                            Calling the filter Component-->
 
                             <div class="col-6 text-right">
+
                                 <filter-component :columns="columns" :route="'/invoices_api'"
                                                   @loading="loading=$event" @applyFilter="filteredData($event)"></filter-component>
                             </div>
@@ -37,7 +38,8 @@
                     </div>
                     <!-- Light table -->
                     <div class="table-responsive">
-                        <table class="table table-flush table-sm">
+                        <table class="table table-flush table-sm ">
+                            <div v-if="loading" class="loader"></div>
                             <thead class="thead-light">
                             <tr>
                                 <th class="sort" data-sort="" scope="col"><h5>Invoice No #</h5></th>
@@ -49,8 +51,8 @@
                                 <th class="sort" data-sort="" scope="col"><h5>Actions</h5></th>
                             </tr>
                             </thead>
-                            <tbody class="list" v-if="invoices && !loading">
-                            <tr v-for="(invoice, index) in invoices">
+                            <tbody :class="loading?'blur list':'list'"  v-if="invoices">
+                            <tr v-for="(invoice, index) in invoices.data">
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
@@ -132,43 +134,13 @@
                                 </td>
                             </tr>
                             </tbody>
-
-<!--                            Loading Animation-->
-
-                            <tbody v-else>
-                            <tr>
-                                <td colspan="7" class="p-5">
-                                    <div class="loader"></div>
-                                </td>
-
-                            </tr>
-                            </tbody>
                         </table>
+
                     </div>
                     <!-- Card footer -->
                     <div class="card-footer py-4">
                         <nav aria-label="...">
-                            <ul class="pagination justify-content-end mb-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">
-                                        <i class="fas fa-angle-left"></i>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-angle-right"></i>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <pagination :limit="2" :data="invoices" @pagination-change-page="fetchData"></pagination>
                         </nav>
                     </div>
                 </div>
@@ -197,10 +169,10 @@
             this.fetchData();
         },
         methods: {
-            fetchData() {
+            fetchData(page=1) {
                 this.loading = true;
                 try {
-                    this.axios.get("/invoices_api").then((response) => {
+                    this.axios.get("/invoices_api?page=" + page).then((response) => {
                         this.invoices = response.data.invoices;
                         this.columns = response.data.columns;
                         this.loading = false;
@@ -245,15 +217,20 @@
 </script>
 
 <style scoped>
+    .blur{
+        filter: blur(4px);
+    }
     .loader {
-        color: #808080;
+        color: #565656;
         font-size: 6px;
         margin: 3px auto;
         text-align: right;
         width: 1em;
         height: 1em;
         border-radius: 50%;
-        position: relative;
+        position: absolute;
+        top:50%;
+        left: 50%;
         text-indent: -9999em;
         -webkit-animation: load4 0.9s infinite linear;
         animation: load4 0.9s infinite linear;
