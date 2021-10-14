@@ -5,7 +5,10 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                 <span v-if="filterCount" class="badge badge-primary ml-0">{{filterCount}}</span>
-                <span>Advance Filter</span>
+                <span>
+                    <i class="fas fa-cogs"></i>
+                    Advance Filter
+                </span>
 
             </button>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="min-width: 500px;">
