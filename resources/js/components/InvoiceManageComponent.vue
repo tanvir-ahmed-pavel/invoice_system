@@ -19,7 +19,7 @@
                             <div class="col-6 text-right">
 
                                 <filter-component :columns="columns" :route="'/invoices_api'"
-                                                  @loading="loading=$event" @applyFilter="filteredData($event)"></filter-component>
+                                                  @loading="loading=$event" @applyFilter="rows=$event, fetchData()"></filter-component>
                             </div>
                         </div>
 
@@ -140,7 +140,7 @@
                     <!-- Card footer -->
                     <div class="card-footer py-4">
                         <nav aria-label="...">
-                            <pagination :limit="2" :data="invoices" @pagination-change-page="fetchData"></pagination>
+                            <pagination :limit="2" :data="invoices" @pagination-change-page="fetchData($event)"></pagination>
                         </nav>
                     </div>
                 </div>
@@ -152,6 +152,7 @@
 <script>
     import ConfirmationModal from "./ConfirmationModal";
     import FilterComponent from "./FilterComponent";
+    import qs from 'qs';
 
     export default {
         name: "InvoiceManageComponent",
@@ -162,30 +163,45 @@
                 index: null,
                 id: null,
                 columns: {},
+                rows:[],
                 loading: false,
             }
         },
         created() {
+
             this.fetchData();
         },
         methods: {
-            fetchData(page=1) {
+            fetchData(page) {
                 this.loading = true;
+                // console.log(qs.stringify(advance_query));
+                console.log(this.rows??"null");
+                if(!page){
+                    page=1
+                }
+                console.log(page);
                 try {
-                    this.axios.get("/invoices_api?page=" + page).then((response) => {
+                    this.axios.get("/invoices_api?page=" + page , {
+                            params:{
+                                inputs:this.rows??""
+                            },
+                            paramsSerializer: (params) => {
+                                return qs.stringify(params)
+                            },
+                        })
+                        .then((response) => {
                         this.invoices = response.data.invoices;
                         this.columns = response.data.columns;
-                        this.loading = false;
+                        setTimeout(()=>
+                            this.loading = false, 500
+                        )
+
+
                     })
                 } catch (e) {
                     console.log(e.data);
                     this.loading = false;
                 }
-            },
-            filteredData(response) {
-                this.loading = true;
-                this.invoices = response.data.invoices;
-                this.loading = false;
             },
             printInvoice(id) {
                 window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");

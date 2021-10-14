@@ -2030,19 +2030,17 @@ __webpack_require__.r(__webpack_exports__);
       this.evnt_applyFilter();
     },
     evnt_applyFilter: function evnt_applyFilter() {
-      var _this = this;
-
-      this.$emit('loading', true);
-      this.axios.get(this.route, {
-        params: {
-          inputs: this.rows
-        },
-        paramsSerializer: function paramsSerializer(params) {
-          return qs__WEBPACK_IMPORTED_MODULE_0___default().stringify(params);
-        }
-      }).then(function (response) {
-        _this.$emit('applyFilter', response);
-      });
+      // this.$emit('loading', true);
+      this.$emit('applyFilter', this.rows); // this.axios.get(this.route, {
+      //     params:{
+      //         inputs:this.rows
+      //     },
+      //     paramsSerializer: (params) => {
+      //         return qs.stringify(params, )
+      //     },
+      // }).then(response =>{
+      //     this.$emit('applyFilter', response);
+      // });
     }
   }
 });
@@ -2546,6 +2544,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _ConfirmationModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConfirmationModal */ "./resources/js/components/ConfirmationModal.vue");
 /* harmony import */ var _FilterComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilterComponent */ "./resources/js/components/FilterComponent.vue");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2697,6 +2697,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2711,6 +2712,7 @@ __webpack_require__.r(__webpack_exports__);
       index: null,
       id: null,
       columns: {},
+      rows: [],
       loading: false
     };
   },
@@ -2718,27 +2720,41 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchData();
   },
   methods: {
-    fetchData: function fetchData() {
-      var _this = this;
+    fetchData: function fetchData(page) {
+      var _this$rows,
+          _this = this;
 
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      this.loading = true;
+      this.loading = true; // console.log(qs.stringify(advance_query));
+
+      console.log((_this$rows = this.rows) !== null && _this$rows !== void 0 ? _this$rows : "null");
+
+      if (!page) {
+        page = 1;
+      }
+
+      console.log(page);
 
       try {
-        this.axios.get("/invoices_api?page=" + page).then(function (response) {
+        var _this$rows2;
+
+        this.axios.get("/invoices_api?page=" + page, {
+          params: {
+            inputs: (_this$rows2 = this.rows) !== null && _this$rows2 !== void 0 ? _this$rows2 : ""
+          },
+          paramsSerializer: function paramsSerializer(params) {
+            return qs__WEBPACK_IMPORTED_MODULE_2___default().stringify(params);
+          }
+        }).then(function (response) {
           _this.invoices = response.data.invoices;
           _this.columns = response.data.columns;
-          _this.loading = false;
+          setTimeout(function () {
+            return _this.loading = false;
+          }, 500);
         });
       } catch (e) {
         console.log(e.data);
         this.loading = false;
       }
-    },
-    filteredData: function filteredData(response) {
-      this.loading = true;
-      this.invoices = response.data.invoices;
-      this.loading = false;
     },
     printInvoice: function printInvoice(id) {
       window.open(window.location.origin + '/invoices/' + id + '/print', "_blank");
@@ -7091,7 +7107,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("span", [_vm._v("Filter")])
+        _c("span", [_vm._v("Advance Filter")])
       ]
     ),
     _vm._v(" "),
@@ -8953,7 +8969,7 @@ var render = function() {
                           _vm.loading = $event
                         },
                         applyFilter: function($event) {
-                          return _vm.filteredData($event)
+                          ;(_vm.rows = $event), _vm.fetchData()
                         }
                       }
                     })
@@ -9267,7 +9283,11 @@ var render = function() {
               [
                 _c("pagination", {
                   attrs: { limit: 2, data: _vm.invoices },
-                  on: { "pagination-change-page": _vm.fetchData }
+                  on: {
+                    "pagination-change-page": function($event) {
+                      return _vm.fetchData($event)
+                    }
+                  }
                 })
               ],
               1

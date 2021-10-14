@@ -5,7 +5,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                 <span v-if="filterCount" class="badge badge-primary ml-0">{{filterCount}}</span>
-                <span>Filter</span>
+                <span>Advance Filter</span>
 
             </button>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" aria-labelledby="dropdownMenuButton" style="min-width: 500px;">
@@ -138,17 +138,18 @@
             },
 
             evnt_applyFilter(){
-                this.$emit('loading', true);
-                this.axios.get(this.route, {
-                    params:{
-                        inputs:this.rows
-                    },
-                    paramsSerializer: (params) => {
-                        return qs.stringify(params, )
-                    },
-                }).then(response =>{
-                    this.$emit('applyFilter', response);
-                });
+                // this.$emit('loading', true);
+                this.$emit('applyFilter', this.rows);
+                // this.axios.get(this.route, {
+                //     params:{
+                //         inputs:this.rows
+                //     },
+                //     paramsSerializer: (params) => {
+                //         return qs.stringify(params, )
+                //     },
+                // }).then(response =>{
+                //     this.$emit('applyFilter', response);
+                // });
             }
         }
     }
