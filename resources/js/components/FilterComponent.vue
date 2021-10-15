@@ -105,17 +105,13 @@
     import qs from 'qs';
     export default {
         name: "FilterComponent",
-        props: ['columns'],
+        props: ['columns', 'route'],
         data() {
             return {
                 rows: [
                     {}
                 ],
                 filterCount:0,
-                status:true,
-                interval:setInterval(() => {
-                    this.status= true;
-                }, 150)
             }
         },
         methods: {
@@ -145,11 +141,18 @@
             },
 
             evnt_applyFilter(){
-                if(this.status){
-                    this.$emit('applyFilter', this.rows);
-                    this.status=false;
-                }
-
+                // this.$emit('loading', true);
+                this.$emit('applyFilter', this.rows);
+                // this.axios.get(this.route, {
+                //     params:{
+                //         inputs:this.rows
+                //     },
+                //     paramsSerializer: (params) => {
+                //         return qs.stringify(params, )
+                //     },
+                // }).then(response =>{
+                //     this.$emit('applyFilter', response);
+                // });
             }
         }
     }

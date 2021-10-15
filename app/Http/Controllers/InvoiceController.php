@@ -37,7 +37,7 @@ class InvoiceController extends Controller
 
     public function index_api(Request $request){
 //        return $request->inputs[1]->dd();
-        $invoices = Invoice::search(trim($request->s_f_query))->where(function($query) use($request){
+        $invoices = Invoice::where(function($query) use($request){
             if($request->inputs && $request->inputs[1]['value']!= null){
                 foreach ($request->inputs as $key=>$value){
                     if ($value['operator']=='like' || $value['operator']=='not like'){
@@ -46,11 +46,9 @@ class InvoiceController extends Controller
                         $query->orWhere($value['column'], $value['operator'], $value['value'])->get();
                     }
                 }
+            } else{
+                $query->get();
             }
-            if($request->s_f_query!=null){
-
-            }
-            $query->get();
         })->paginate(10);
         $columns = Schema::getColumnListing('invoices');
         $invoices->load('client', 'company');
