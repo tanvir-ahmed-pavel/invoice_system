@@ -8,18 +8,19 @@
                     <!-- Card header -->
                     <div class="card-header border-0">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-7">
                                 <h3 class="mb-0">Invoice List</h3>
 
                             </div>
 
+                            <div class="col-3">
+                                <search-filter-component @searchFilter="s_f_query=$event, fetchData()"></search-filter-component>
+                            </div>
 
                             <!--                            Calling the filter Component-->
 
-                            <div class="col-6 text-right">
-
-                                <filter-component :columns="columns" :route="'/invoices_api'"
-                                                  @loading="loading=$event" @applyFilter="rows=$event, fetchData()"></filter-component>
+                            <div class="col-2 text-right">
+                                <filter-component :columns="columns" :route="'/invoices_api'" @applyFilter="rows=$event, fetchData()"></filter-component>
                             </div>
                         </div>
 
@@ -153,10 +154,11 @@
     import ConfirmationModal from "./ConfirmationModal";
     import FilterComponent from "./FilterComponent";
     import qs from 'qs';
+    import SearchFilterComponent from "./SearchFilterComponent";
 
     export default {
         name: "InvoiceManageComponent",
-        components: {FilterComponent, ConfirmationModal},
+        components: {SearchFilterComponent, FilterComponent, ConfirmationModal},
         data() {
             return {
                 invoices: {},
@@ -165,6 +167,8 @@
                 columns: {},
                 rows:[],
                 loading: false,
+                s_f_query:"",
+
             }
         },
         created() {
@@ -181,7 +185,7 @@
                 }
                 console.log(page);
                 try {
-                    this.axios.get("/invoices_api?page=" + page , {
+                    this.axios.get("/invoices_api?page=" + page +"&s_f_query=" + this.s_f_query , {
                             params:{
                                 inputs:this.rows??""
                             },
