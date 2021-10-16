@@ -125,7 +125,7 @@
                        aria-expanded="{{str_starts_with($pageSlug, "client")?'true':'false'}}"
                        aria-controls="navbar-client">
                         <i class="ni ni-single-02"></i>
-                        <span class="nav-link-text">{{ __('Our Clients') }}</span>
+                        <span class="nav-link-text">{{ __('Clients') }}</span>
                     </a>
 
                     <div class="collapse @if (str_starts_with($pageSlug, "client")) {{'show'}} @endif"
@@ -134,13 +134,15 @@
                             <li class="nav-item ">
                                 <a class="nav-link @if ($pageSlug=="client-create") {{'active text-primary'}} @endif"
                                    href="{{ route('clients.create') }}">
-                                    {{ __('Create New Clients') }}
+                                    <i class="ni ni-fat-add"></i>
+                                    {{ __('New Client') }}
                                 </a>
                             </li>
                             <li class="nav-item  ">
                                 <a class="nav-link @if ($pageSlug=="client-manager") {{'active text-primary'}} @endif"
                                    href="{{ route('clients.index') }}">
-                                    {{ __('Client Management') }}
+                                    <i class="ni ni-badge"></i>
+                                    {{ __('Our Clients') }}
                                 </a>
                             </li>
                         </ul>
@@ -231,14 +233,14 @@
                     <div class="collapse @if (str_starts_with($pageSlug, "drivers")) {{'show'}} @endif"
                          id="navbar-drivers">
                         <ul class="nav nav-sm flex-column">
-                            <li class="active">
+                            <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'drivers-create') {{'active text-primary'}} @endif"
                                    href="{{ route('drivers.create') }}">
-                                    <i class="ni ni-ruler-pencil"></i>
+                                    <i class="ni ni-fat-add"></i>
                                     {{ __('New Driver') }}
                                 </a>
                             </li>
-                            <li class="active">
+                            <li class="nav-item">
                                 <a class="nav-link @if ($pageSlug == 'drivers-manager') {{'active text-primary'}} @endif"
                                    href="{{ route('drivers.index') }}">
                                     <i class="ni ni-circle-08"></i>
