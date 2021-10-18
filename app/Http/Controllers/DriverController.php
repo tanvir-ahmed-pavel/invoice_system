@@ -15,7 +15,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
+        return view('drivers.manage-driver');
     }
 
     /**
@@ -55,7 +55,7 @@ class DriverController extends Controller
             'name'=>$data['name'],
             'contact'=>$data['contact'],
         ]);
-        return $driver;
+        return redirect()->back();
     }
 
     /**
